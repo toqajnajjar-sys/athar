@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Reports — Athar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                colors: {
+                    primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                    secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                    "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                    success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                    surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                    "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                    "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                    "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                    error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                    accent:"#cd911a","accent-fixed":"#ffdeae",
+                },
+            }},
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- HEADER -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Home</a>
+<a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
+            <a href="Report Found Item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
+            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>            <a href="my-reports.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">My Reports</a>
+            <a href="my-claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Claims</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Support</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • CS</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- Page header -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">My Reports</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">My Reports</h1>
+                    <p class="text-sm text-secondary mt-1">Track all your lost and found item reports.</p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a href="report-lost.html" class="flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">add</span>
+                        <span>New Report</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats cards -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">Total Reports</div>
+                <div class="text-2xl font-bold text-primary" id="statTotal">5</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-accent">
+                <div class="text-xs text-secondary mb-1">Active</div>
+                <div class="text-2xl font-bold text-accent" id="statActive">2</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-success">
+                <div class="text-xs text-secondary mb-1">Matched</div>
+                <div class="text-2xl font-bold text-success" id="statMatched">1</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-secondary">
+                <div class="text-xs text-secondary mb-1">Returned</div>
+                <div class="text-2xl font-bold text-secondary" id="statReturned">2</div>
+            </div>
+        </section>
+
+        <!-- Filter pills -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-3 shadow-sm flex items-center gap-1.5 overflow-x-auto">
+                <button id="rf-all" onclick="filterReports('all')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap">
+                    <span>All Reports</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-white/20 text-[10px]">5</span>
+                </button>
+                <button id="rf-active" onclick="filterReports('active')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-accent"></span>
+                    <span>Active</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">2</span>
+                </button>
+                <button id="rf-matched" onclick="filterReports('matched')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-success"></span>
+                    <span>Matched</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">1</span>
+                </button>
+                <button id="rf-returned" onclick="filterReports('returned')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    <span>Returned</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">2</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Reports List -->
+        <section id="reportsList" class="space-y-4">
+
+            <!-- ═══ REPORT 1: ACTIVE (Lost) ═══ -->
+            <article data-status="active" data-type="lost"
+                     class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="flex flex-col sm:flex-row">
+                    <!-- Image -->
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeUeRYtkdKqgU5GbVeiXGEz8443MIZzI0_xHGveU7vwBlnwSjNtCetPcvEHnwtYSQCn9_-qsayiF-fHMpMyLNChQQsme9gnjvyEfuWrV0IqxSmdE1YAOfiSZxSWVkpphF7DnR1l4oV9EIMC5rg-uUiNN7irvycXMeqek0AzsS1xU3wtrR5XmHvBrN9l9XUb8w9XUmxKgDD8LO_xVb5tdf2RxxQDXFksDs6rX78mY-32ZuT9Nx4kEufSw"
+                             alt="MacBook" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                            LOST
+                        </span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span class="font-mono">#ATH-8841</span>
+                                    <span>•</span>
+                                    <span>Electronics</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">MacBook Air M2 — Space Gray</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Business College — Hall 104</span>
+                                </div>
+                            </div>
+
+                            <!-- Status badge -->
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-fixed/60 text-accent text-[11px] font-bold">
+                                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                                Active
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Reported 2 days ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                128 views
+                            </span>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <a href="report-details.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View
+                            </a>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+                            <button onclick="archiveReport(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-error-container hover:text-error text-secondary text-xs font-semibold transition-colors ml-auto">
+                                <span class="material-symbols-outlined text-sm">archive</span>
+                                Archive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ REPORT 2: MATCHED (Lost) ═══ -->
+            <article data-status="matched" data-type="lost"
+                     class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all ring-2 ring-success/20">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
+                             alt="Wallet" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                            LOST
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span class="font-mono">#ATH-8828</span>
+                                    <span>•</span>
+                                    <span>Wallets</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Navy Leather Wallet</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Central Library — 2nd Floor</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success-container text-on-success-container text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">auto_awesome</span>
+                                Matched
+                            </span>
+                        </div>
+
+                        <!-- Match alert -->
+                        <div class="mb-3 p-3 rounded-lg bg-accent-fixed/30 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent text-lg">bolt</span>
+                            <div class="text-xs text-on-surface-variant flex-1">
+                                <strong class="text-accent">94% match found!</strong> Review the potential match now.
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Reported 5 days ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                342 views
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <a href="submit-claim.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">task_alt</span>
+                                Submit Claim
+                            </a>
+                            <a href="report-details.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View
+                            </a>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ REPORT 3: RETURNED (Found) ═══ -->
+            <article data-status="returned" data-type="found"
+                     class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVomfYU848SrkOK2OPbZGFAOKGyxZs08TWS7ApG-OIdu_W51Ai3ZHNyFVtHRRlGwxt3XFxOFe-94pJGFZXcZ1N9iIiIQRRw76xoeAeVobSL23UCqbN-FLFeIwf2HF1CnWuTpTeduta14U215j8QWs3CithW6a7G3wvzHvMVfIYoH2dZxiDR98f2oenW4d9bzYnl2txVDLFfVIvwsKY9Hy4PH5u19gpgf1bqn4sUzxYrMxFYpncQglS6g"
+                             alt="Watch" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-success-container text-on-success-container text-[10px] font-bold">
+                            FOUND
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span class="font-mono">#ATH-8770</span>
+                                    <span>•</span>
+                                    <span>Electronics</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Apple Watch with Grey Band</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Sports Complex — Gym</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">check_circle</span>
+                                Returned
+                            </span>
+                        </div>
+
+                        <div class="mb-3 p-3 rounded-lg bg-success-container/40 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-success text-lg">task_alt</span>
+                            <div class="text-xs text-on-success-container">
+                                <strong>Successfully returned on Mar 5, 2026</strong> to the rightful owner.
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Reported 3 weeks ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                567 views
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <a href="report-details.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View
+                            </a>
+                            <button onclick="archiveReport(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">archive</span>
+                                Archive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ REPORT 4: ACTIVE (Found) ═══ -->
+            <article data-status="active" data-type="found"
+                     class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVQfxH-uOAXvWcI7lTmtfLJ8907gAerx7vdoLVVz_gPMZ1CimmkRuThna8poOS-_d4tklfzo01Gf9lSCmM-G9Xq_Q6ZYKCvIhD_5B51hWfjWVJNwPA2uUWq1vEmbmDkvDCMi-3l_Y4QoKVuqXeW99ZWd4zzVlbOCIbW2hwTfCXqr3k5s5nbUHGYyP_AHOZdDQq-e5ZG-_Eqwde0GXMvHV4gzP0BgnUav8B1Rr1XuDBHRLrRHcpUeSDSg"
+                             alt="AirPods" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-success-container text-on-success-container text-[10px] font-bold">
+                            FOUND
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span class="font-mono">#ATH-8839</span>
+                                    <span>•</span>
+                                    <span>Electronics</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Silver AirPods Max</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Sports Hall — Training Room 2</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-fixed/60 text-accent text-[11px] font-bold">
+                                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                                Active
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Reported 1 day ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                89 views
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <a href="report-details.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View
+                            </a>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+                            <button onclick="archiveReport(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-error-container hover:text-error text-secondary text-xs font-semibold transition-colors ml-auto">
+                                <span class="material-symbols-outlined text-sm">archive</span>
+                                Archive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ REPORT 5: RETURNED (Lost) ═══ -->
+            <article data-status="returned" data-type="lost"
+                     class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5PlWdmMTUyqZxoFQEPmzd_ligvhfVLR8RaRyau51k60yT4kDQbiGv0zs_AY7xZG6l7diS3GxQ-ZLRA3cVGGx7g35ef8xjiNLwKSNP3xWvylrnjZaof789SK2TAbGlSgqOsOwbFuSiiNM_iWWpvhBUU4i3jZpiEx7wahXKGmRBAizosr_xwCAvhHmZVC_hb2Ce6mnocjbH8N0lrqxE1GVd0Wl_OoQu-KVAfbMxHGT84fGVPNPA5XfX7A"
+                             alt="Keys" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                            LOST
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span class="font-mono">#ATH-8604</span>
+                                    <span>•</span>
+                                    <span>Keys</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Lexus Key Fob with Blue Lanyard</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Gate 4 Parking</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">check_circle</span>
+                                Returned
+                            </span>
+                        </div>
+
+                        <div class="mb-3 p-3 rounded-lg bg-success-container/40 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-success text-lg">task_alt</span>
+                            <div class="text-xs text-on-success-container">
+                                <strong>Successfully recovered on Feb 28, 2026</strong>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Reported 1 month ago
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <a href="report-details.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View
+                            </a>
+                            <button onclick="archiveReport(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">archive</span>
+                                Archive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Empty state -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">inbox</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">No reports found</h3>
+                <p class="text-xs text-secondary mb-4">Try a different filter or create a new report.</p>
+                <a href="report-lost.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors">
+                    <span class="material-symbols-outlined text-lg">add</span>
+                    Create Report
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* ═══ Filter Reports ═══ */
+    function filterReports(status) {
+        const cards = document.querySelectorAll(".report-card");
+        let visible = 0;
+
+        cards.forEach(card => {
+            const match = (status === "all") || (card.dataset.status === status);
+            card.style.display = match ? "" : "none";
+            if (match) visible++;
+        });
+
+        // Update pill styles
+        ["all","active","matched","returned"].forEach(s => {
+            const btn = document.getElementById("rf-" + s);
+            if (s === status) {
+                btn.className = "flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap";
+            } else {
+                btn.className = "flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap";
+            }
+        });
+
+        // Show empty state if needed
+        document.getElementById("emptyState").classList.toggle("hidden", visible > 0);
+    }
+
+    /* ═══ Archive Report ═══ */
+    function archiveReport(btn) {
+        if (!confirm("Archive this report? You can find it later in Archives.")) return;
+
+        const card = btn.closest(".report-card");
+        card.style.transition = "all 0.3s";
+        card.style.opacity = "0";
+        card.style.transform = "translateX(-20px)";
+
+        setTimeout(() => {
+            card.remove();
+            updateStats();
+        }, 300);
+    }
+
+    /* ═══ Update Stats ═══ */
+    function updateStats() {
+        const cards = document.querySelectorAll(".report-card");
+        const active   = [...cards].filter(c => c.dataset.status === "active").length;
+        const matched  = [...cards].filter(c => c.dataset.status === "matched").length;
+        const returned = [...cards].filter(c => c.dataset.status === "returned").length;
+
+        document.getElementById("statTotal").textContent    = cards.length;
+        document.getElementById("statActive").textContent   = active;
+        document.getElementById("statMatched").textContent  = matched;
+        document.getElementById("statReturned").textContent = returned;
+    }
+</script>
+
+</body>
+</html>

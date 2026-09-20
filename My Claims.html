@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Claims — Athar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                colors: {
+                    primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                    secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                    "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                    success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                    surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                    "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                    "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                    "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                    error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                    accent:"#cd911a","accent-fixed":"#ffdeae",
+                },
+            }},
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- HEADER (نفس السابق) -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Home</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Inventory</a>
+            <a href="my-reports.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Reports</a>
+            <a href="my-claims.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">My Claims</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Support</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • CS</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 lg:px-8 py-8">
+
+      
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">My Claims</h1>
+                    <p class="text-sm text-secondary mt-1">Track the ownership claims you've submitted.</p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a href="inventory.html" class="flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">search</span>
+                        <span>Browse Inventory</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">Total Claims</div>
+                <div class="text-2xl font-bold text-primary" id="statTotal">4</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-accent">
+                <div class="text-xs text-secondary mb-1">Under Review</div>
+                <div class="text-2xl font-bold text-accent" id="statReview">2</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-success">
+                <div class="text-xs text-secondary mb-1">Approved</div>
+                <div class="text-2xl font-bold text-success" id="statApproved">1</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-error">
+                <div class="text-xs text-secondary mb-1">Rejected</div>
+                <div class="text-2xl font-bold text-error" id="statRejected">1</div>
+            </div>
+        </section>
+
+        <!-- Filter pills -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-3 shadow-sm flex items-center gap-1.5 overflow-x-auto">
+                <button id="cf-all" onclick="filterClaims('all')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap">
+                    <span>All Claims</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-white/20 text-[10px]">4</span>
+                </button>
+                <button id="cf-review" onclick="filterClaims('review')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-accent"></span>
+                    <span>Under Review</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">2</span>
+                </button>
+                <button id="cf-approved" onclick="filterClaims('approved')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-success"></span>
+                    <span>Approved</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">1</span>
+                </button>
+                <button id="cf-rejected" onclick="filterClaims('rejected')" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-error"></span>
+                    <span>Rejected</span>
+                    <span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-[10px]">1</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Claims List -->
+        <section id="claimsList" class="space-y-4">
+
+            <!-- ═══ CLAIM 1: UNDER REVIEW ═══ -->
+            <article data-status="review" class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVomfYU848SrkOK2OPbZGFAOKGyxZs08TWS7ApG-OIdu_W51Ai3ZHNyFVtHRRlGwxt3XFxOFe-94pJGFZXcZ1N9iIiIQRRw76xoeAeVobSL23UCqbN-FLFeIwf2HF1CnWuTpTeduta14U215j8QWs3CithW6a7G3wvzHvMVfIYoH2dZxiDR98f2oenW4d9bzYnl2txVDLFfVIvwsKY9Hy4PH5u19gpgf1bqn4sUzxYrMxFYpncQglS6g"
+                             alt="Watch" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/80 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                            #CLM-2026-901
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span>Ref to: <strong class="text-primary font-mono">#ATH-8770</strong></span>
+                                    <span>•</span>
+                                    <span>Electronics</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Apple Watch with Grey Band</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Sports Complex — Gym</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-fixed/60 text-accent text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">hourglass_top</span>
+                                Under Review
+                            </span>
+                        </div>
+
+                        <div class="mb-3 p-3 rounded-lg bg-accent-fixed/20 flex items-start gap-2">
+                            <span class="material-symbols-outlined text-accent text-lg shrink-0">schedule</span>
+                            <div class="text-xs text-on-surface-variant">
+                                <strong class="text-accent">Officer reviewing your evidence.</strong> Expected decision within 24 working hours.
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Submitted 3 hours ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">attach_file</span>
+                                2 documents
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                Details
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-error-container hover:text-error text-secondary text-xs font-semibold transition-colors ml-auto">
+                                <span class="material-symbols-outlined text-sm">cancel</span>
+                                Cancel Claim
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ CLAIM 2: APPROVED ═══ -->
+            <article data-status="approved" class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all ring-2 ring-success/20">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
+                             alt="Wallet" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/80 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                            #CLM-2026-847
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span>Ref to: <strong class="text-primary font-mono">#ATH-8840</strong></span>
+                                    <span>•</span>
+                                    <span>Wallets</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Navy Montblanc Wallet</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Central Library — 2nd Floor</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success-container text-on-success-container text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">check_circle</span>
+                                Approved
+                            </span>
+                        </div>
+
+                        <div class="mb-3 p-3 rounded-lg bg-success-container/40 flex items-start gap-2">
+                            <span class="material-symbols-outlined text-success text-lg shrink-0">task_alt</span>
+                            <div class="text-xs text-on-success-container">
+                                <strong>Approved on Mar 12, 2026.</strong> Pick up at Bldg 17 — Central Custody.
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Submitted 2 days ago
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">attach_file</span>
+                                3 documents
+                            </span>
+                            <span class="flex items-center gap-1 text-success font-semibold">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                Pickup window: 8 AM – 4 PM
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                                Show Pickup QR
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ CLAIM 3: UNDER REVIEW ═══ -->
+            <article data-status="review" class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5PlWdmMTUyqZxoFQEPmzd_ligvhfVLR8RaRyau51k60yT4kDQbiGv0zs_AY7xZG6l7diS3GxQ-ZLRA3cVGGx7g35ef8xjiNLwKSNP3xWvylrnjZaof789SK2TAbGlSgqOsOwbFuSiiNM_iWWpvhBUU4i3jZpiEx7wahXKGmRBAizosr_xwCAvhHmZVC_hb2Ce6mnocjbH8N0lrqxE1GVd0Wl_OoQu-KVAfbMxHGT84fGVPNPA5XfX7A"
+                             alt="Keys" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/80 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                            #CLM-2026-899
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span>Ref to: <strong class="text-primary font-mono">#ATH-8604</strong></span>
+                                    <span>•</span>
+                                    <span>Keys</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Lexus Key Fob with Blue Lanyard</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Gate 4 Parking</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-fixed/60 text-accent text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">hourglass_top</span>
+                                Under Review
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Submitted yesterday
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">attach_file</span>
+                                1 document
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ CLAIM 4: REJECTED ═══ -->
+            <article data-status="rejected" class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJb4DVnMJWqJNvZHvys2fNno9IxlIc573fagKL6E_VA66mnDGft7CVsbBF3ZYqhioREv1sIxuYMzNg7F3zOGbRFP4oHhr4D06sohFsyJwVyx0AwZIUrgzDr_MqI442DYZOMs2AzZ8XbwtNiYTA7qb4EWgYbmP0DCghxqxORMOvQ54f2X925Hu42_XIB_p3eoW3iGpf9vqPPwLpBZWY6m8ZhLlI3U8siIyM-aucyV7STvIzfxjc8ZCzzw"
+                             alt="Calculator" class="w-full h-full object-cover"/>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/80 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                            #CLM-2026-820
+                        </span>
+                    </div>
+
+                    <div class="flex-1 p-4 lg:p-5">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-2 text-[11px] text-secondary mb-1">
+                                    <span>Ref to: <strong class="text-primary font-mono">#ATH-8802</strong></span>
+                                    <span>•</span>
+                                    <span>Scientific Tools</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Casio fx-991EX Calculator</h3>
+                                <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mt-1">
+                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                    <span>Engineering Hall — Room 3A</span>
+                                </div>
+                            </div>
+
+                            <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold">
+                                <span class="material-symbols-outlined text-sm">cancel</span>
+                                Rejected
+                            </span>
+                        </div>
+
+                        <div class="mb-3 p-3 rounded-lg bg-error-container/40 flex items-start gap-2">
+                            <span class="material-symbols-outlined text-error text-lg shrink-0">info</span>
+                            <div class="text-xs text-on-error-container">
+                                <strong>Reason:</strong> The description provided did not match the item's private record.
+                                You may re-submit with clearer evidence within 7 days.
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-secondary mb-4">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Submitted 1 week ago
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-surface-container">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                Details
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent hover:bg-accent/90 text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-sm">refresh</span>
+                                Re-submit Claim
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Empty state -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">fact_check</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">No claims found</h3>
+                <p class="text-xs text-secondary mb-4">You haven't submitted any claims yet.</p>
+                <a href="inventory.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors">
+                    <span class="material-symbols-outlined text-lg">search</span>
+                    Browse Inventory
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function filterClaims(status) {
+        const cards = document.querySelectorAll(".claim-card");
+        let visible = 0;
+
+        cards.forEach(card => {
+            const match = (status === "all") || (card.dataset.status === status);
+            card.style.display = match ? "" : "none";
+            if (match) visible++;
+        });
+
+        ["all","review","approved","rejected"].forEach(s => {
+            const btn = document.getElementById("cf-" + s);
+            if (s === status) {
+                btn.className = "flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap";
+            } else {
+                btn.className = "flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap";
+            }
+        });
+
+        document.getElementById("emptyState").classList.toggle("hidden", visible > 0);
+    }
+</script>
+
+</body>
+</html>

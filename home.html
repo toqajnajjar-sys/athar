@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Athar — University Lost & Found Platform</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        /* Core brand */
+                        primary:            "#1a3263",
+                        "primary-dark":     "#122447",
+                        "primary-fixed":    "#d9e2ff",
+                        secondary:          "#3f627c",
+                        "secondary-container": "#badefd",
+                        "on-secondary-container": "#40637d",
+                        /* Surfaces */
+                        surface:                     "#f8f9ff",
+                        "surface-container-lowest":  "#ffffff",
+                        "surface-container-low":     "#eff4ff",
+                        "surface-container":         "#e5eeff",
+                        "surface-container-high":    "#dce9ff",
+                        "surface-variant":           "#d3e4fe",
+                        /* Text */
+                        "on-surface":         "#0b1c30",
+                        "on-surface-variant": "#44464f",
+                        outline:              "#757780",
+                        /* Status */
+                        error:                "#ba1a1a",
+                        "error-container":    "#ffdad6",
+                        "on-error-container": "#93000a",
+                        /* Accent (gold) */
+                        accent:               "#cd911a",
+                        "accent-fixed":       "#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <!-- Primary Nav -->
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="home.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Home</a>
+            <a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
+            <a href="Report Found Item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
+            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>
+            <a href="myReorts.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Reports</a>
+            <a href="My Claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Claims</a>
+        </nav>
+
+        <!-- User Actions -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="notification.html">
+                <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" aria-label="Notifications" >
+               <span class="material-symbols-outlined text-2xl" >notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+                </button>
+            </a>
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
+                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
+            </button>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • Computer Science</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20">
+
+    <!-- ─────────── HERO SECTION ─────────── -->
+    <section class="relative w-full overflow-hidden bg-gradient-to-b from-surface-container-high/45 via-surface to-surface pb-12 pt-8">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+
+            <!-- Decorative orbs -->
+            <div class="absolute -top-16 right-1/4 w-96 h-96 bg-secondary-container/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+            <div class="absolute top-20 left-10 w-80 h-80 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+            <div class="flex flex-col items-center text-center max-w-4xl mx-auto space-y-4">
+                <h1 class="text-3xl lg:text-5xl font-bold tracking-tight text-primary">
+                    University System for Lost & Found Items
+                </h1>
+                <p class="text-base lg:text-lg text-secondary max-w-2xl leading-relaxed">
+                    Locate your lost items across the campus or help your peers by reporting what you've found — safely,
+                    quickly, and with fully integrated digital reliability.
+                </p>
+
+                <!-- Dual Action Cards -->
+                <div class="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+
+                    <!-- Report Lost Item -->
+                   <a href="report lost item.html">
+                     <button class="group relative text-left p-6 rounded-xl bg-primary text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden">
+                        <div class="absolute top-0 left-0 w-28 h-28 bg-white/5 rounded-full -translate-x-8 -translate-y-8 pointer-events-none"></div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">search</span>
+                            <span class="text-xs font-medium bg-white/15 text-white px-3 py-1 rounded-full">Just One Step</span>
+                        </div>
+
+                        <div>
+                            <span class="text-lg font-bold block mb-1">Report a Lost Item</span>
+                            <span class="text-sm text-white/80 leading-snug block">
+                                Describe what you lost — our algorithm will match it instantly.
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-2 mt-4 text-sm font-medium">
+                            <span>Start Lost Report</span>
+                            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </div>
+                    </button> </a>
+
+                    <!-- Report Found Item -->
+                    <button class="group relative text-left p-6 rounded-xl bg-white text-on-surface shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">inventory_2</span>
+                            </div>
+                            <span class="text-xs font-medium bg-surface-container-high text-secondary px-3 py-1 rounded-full">Campus Security</span>
+                        </div>
+
+                        <div>
+                            <span class="text-lg font-bold text-primary block mb-1">Report a Found Item</span>
+                            <span class="text-sm text-secondary leading-snug block">
+                                Found something on campus? Help return it to its owner as fast as possible.
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-2 mt-4 text-sm font-medium text-secondary">
+                            <span>Hand Over an Item</span>
+                            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="w-full max-w-3xl mt-6">
+                    <div class="bg-white p-2 rounded-xl shadow-lg flex flex-col sm:flex-row items-center gap-2">
+                        <div class="flex items-center gap-3 flex-1 w-full px-4 py-2">
+                            <span class="material-symbols-outlined text-secondary text-2xl">search</span>
+                            <input
+                                type="text"
+                                class="w-full bg-transparent text-on-surface placeholder-outline focus:outline-none"
+                                placeholder="What are you looking for? (e.g., wallet, laptop, ID card...)"/>
+                        </div>
+                        <div class="w-full sm:w-auto flex items-center gap-2">
+                            <div class="relative w-full sm:w-56">
+                                <select class="w-full appearance-none bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-2.5 pr-8 focus:outline-none cursor-pointer">
+                                    <option value="">All Campus Buildings</option>
+                                    <option value="cs">College of Computer Science</option>
+                                    <option value="eng">College of Engineering</option>
+                                    <option value="med">College of Medicine</option>
+                                    <option value="lib">Central Library</option>
+                                    <option value="sport">Sports Complex</option>
+                                    <option value="dorm">Student Housing</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-lg">location_on</span>
+                            </div>
+                            <button class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center gap-2">
+                                <span>Search</span>
+                                <span class="material-symbols-outlined text-lg">tune</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── STATS SECTION ─────────── -->
+    <section class="w-full py-8 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Stat 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs font-semibold text-secondary block">Platform Visitors</span>
+                            <span class="text-3xl font-bold text-primary tracking-tight block">+48,250</span>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">group</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="inline-flex items-center text-xs font-medium text-accent bg-accent-fixed/40 px-2 py-0.5 rounded-md">
+                            <span class="material-symbols-outlined text-sm">trending_up</span> +14.2%
+                        </span>
+                        <span class="text-xs text-on-surface-variant">Growing monthly activity</span>
+                    </div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs font-semibold text-secondary block">Recently Found Items</span>
+                            <span class="text-3xl font-bold text-primary tracking-tight block">1,420</span>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                            <span class="material-symbols-outlined text-2xl">fact_check</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="inline-flex items-center text-xs font-semibold text-primary bg-surface-container px-2 py-0.5 rounded-md">
+                            <span class="material-symbols-outlined text-sm">verified</span> Secured in Lockers
+                        </span>
+                        <span class="text-xs text-on-surface-variant">This semester</span>
+                    </div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs font-semibold text-secondary block">Active Lost Reports</span>
+                            <span class="text-3xl font-bold text-accent tracking-tight block">385</span>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-accent-fixed flex items-center justify-center text-accent">
+                            <span class="material-symbols-outlined text-2xl">manage_search</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="inline-flex items-center text-xs font-medium text-secondary bg-surface-container-high px-2 py-0.5 rounded-md">
+                            <span class="material-symbols-outlined text-sm">radar</span> Auto-Updated
+                        </span>
+                        <span class="text-xs text-on-surface-variant">Scanning security cams</span>
+                    </div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs font-semibold text-secondary block">Successfully Returned</span>
+                            <span class="text-3xl font-bold text-primary tracking-tight block">3,890</span>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">task_alt</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="inline-flex items-center text-xs font-bold text-primary bg-surface-variant px-2 py-0.5 rounded-md">94.8%</span>
+                        <span class="text-xs text-on-surface-variant">Match & recovery rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── RECENT LOST ITEMS ─────────── -->
+    <section class="w-full py-12 bg-surface-container-low/60">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 space-y-8">
+
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-4">
+                    <div class="w-1 h-8 bg-accent rounded-full"></div>
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-bold text-primary">Recently Reported Lost Items</h2>
+                            <span class="inline-flex items-center gap-1 text-xs font-medium bg-white text-secondary px-3 py-1 rounded-full shadow-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                                Live Updates
+                            </span>
+                        </div>
+                        <p class="text-sm text-secondary mt-1">Real-time list of items recently lost across campus buildings</p>
+                    </div>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-on-secondary-container transition-colors">
+                    <span>View all lost items</span>
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- Lost Item Card (template) -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBmwY9so-U4GO2xfos1GRfhkwkqRE2WFUmvdgTAj2JM5umwRNV8nxTF-cl4caH0mZgo4cvNCvpwLdLEIQSFzZzvCRd2HIrh3RcWVNGi120sUGZ9dyZZQKrGDRiUbCz0FxTiHN3Dlv1_1RKkjhVqq6yGWashMfWPDdCuGAJX2OJZ7fCGTjGAQco-XZfM3VKtLUV7r-DIXffyvbzAnDmJsaAie5Glyocfja29Y31P9B3TD9worQpghk8ww"
+                             alt="Silver MacBook Pro M2 laptop"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-error-container text-on-error-container">Newly Lost</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#L-8941 • Computing Devices</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Silver MacBook Pro M2 Laptop</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-low px-2 py-1 rounded-md flex-shrink-0">45 min ago</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base text-primary">location_on</span>
+                                <span class="truncate">Hall B-204 • College of Computer Science</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">info</span>
+                                <span class="truncate">Grey sticker with the university coding club logo</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Reported by: Student</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-sm font-semibold transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                <span>I've Seen It</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lost Item 2 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX0v-mfDqjRgR1wIBGWsP4RHGBmMnbi3WZN5HyLrVqv0TD7W3Ri2-fJPkGRSMTr0J91yu1GPQmbUHAwEXWuzh3_TwhzWJBxm2WT98LtYyhiRh-7WjC2YXOZknbrHx0epp3FC7yV11BsO5JPxkbhXQjs8VZVylrnTmjmwLQV_zmfaFrsoi1Bv5kqpFDn84r1Fr9vXXmbvG1WoRpSt7uti7IoywNyLukIbo-WO_yA1ChEaP1Nv6zXDacSQ"
+                             alt="Black leather wallet"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-accent-fixed text-accent">High Priority</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#L-8938 • Documents & Wallets</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Black Leather Wallet with University ID</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-low px-2 py-1 rounded-md flex-shrink-0">2 hours ago</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base text-primary">location_on</span>
+                                <span class="truncate">Central Library Lobby • 1st Floor near Elevators</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">badge</span>
+                                <span class="truncate">Contains ATM card, driving license, and student card</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-error font-medium">Security alert active</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-sm font-semibold transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                <span>I've Seen It</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lost Item 3 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCak7lL_1xbpr7SJp8RzX6DBsCYpZyN7FIm2AUiJ1S59-CSpvfxFkC8XR7ycFHjIPT5qpxyIOcJbP903UYM5FzxtQQnnR-b6NedSu6LDCx2T9hvkcRnjaFBZ08oSODvaai6Gd3SuAezRf5qPKoUT7WbI_nEI8X54CwhgnG2waHcTK0a72GFm2sPy7hQruHRwTbZ1qEni9Fky1hdCIh2PA39Qsh7YEPTxpo_uCi0nuAdd50gT3U7TZKDog"
+                             alt="White AirPods Pro"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-surface-variant text-on-surface">Electronics</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#L-8930 • Personal Electronics</span>
+                                <h3 class="text-lg font-bold text-primary truncate">White Apple AirPods Pro</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-low px-2 py-1 rounded-md flex-shrink-0">Today 11:30 AM</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base text-primary">location_on</span>
+                                <span class="truncate">Student Center Cafeteria • Building 7, Table 14</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">info</span>
+                                <span class="truncate">Case missing protective cover, small scratch on base</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Reported by: Freshman Student</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-sm font-semibold transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                <span>I've Seen It</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lost Item 4 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJYoc8DJmTBj8yqqn7hH6Br14qkbI9mxaa1S5eWQ4eTpcBtGbg6EHuQMslFJwe_MR-wOTHBqzGWK_sFYgRYRC-klQG3SqeoW2pMGcVRtX6_LGNkgzPWz_3i7i_5sZb_15q9jKbIhGGWr1m35vBmNeN6D9Csy4Ws_cgj3tYgcI4WnnMlqyuu5G0k4IJkKui7yRHLo0YrDqXw4lPLGq-9qb-c4qo6-KvF9yJj9Xnw8ebrmX4oseM5hUm2g"
+                             alt="Car key with blue lanyard"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-secondary">Personal Items</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#L-8924 • Keys & Vehicles</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Car Keys with Blue Keychain</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-low px-2 py-1 rounded-md flex-shrink-0">Today 09:15 AM</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base text-primary">location_on</span>
+                                <span class="truncate">South Parking • Gate #3</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">key</span>
+                                <span class="truncate">Toyota car remote with official university logo medal</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Reported by: Faculty Member</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-sm font-semibold transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                <span>I've Seen It</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── RECENT FOUND ITEMS ─────────── -->
+    <section class="w-full py-12 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 space-y-8">
+
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-4">
+                    <div class="w-1 h-8 bg-secondary rounded-full"></div>
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-2xl lg:text-3xl font-bold text-primary">Recently Found Items</h2>
+                            <span class="inline-flex items-center gap-1 text-xs font-medium bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">
+                                <span class="material-symbols-outlined text-sm">lock</span>
+                                Secured in Custody
+                            </span>
+                        </div>
+                        <p class="text-sm text-secondary mt-1">
+                            Items officially logged and available for claim after proof of ownership
+                        </p>
+                    </div>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-primary transition-colors">
+                    <span>Browse all found items</span>
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- Found Item 1 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVomfYU848SrkOK2OPbZGFAOKGyxZs08TWS7ApG-OIdu_W51Ai3ZHNyFVtHRRlGwxt3XFxOFe-94pJGFZXcZ1N9iIiIQRRw76xoeAeVobSL23UCqbN-FLFeIwf2HF1CnWuTpTeduta14U215j8QWs3CithW6a7G3wvzHvMVfIYoH2dZxiDR98f2oenW4d9bzYnl2txVDLFfVIvwsKY9Hy4PH5u19gpgf1bqn4sUzxYrMxFYpncQglS6g"
+                             alt="Apple Watch with grey band"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-white text-primary shadow-sm">In Custody</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#F-4102 • Personal Electronics</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Apple Watch with Grey Sport Band</h3>
+                            </div>
+                            <span class="text-xs font-semibold text-primary bg-surface-container-high px-2 py-1 rounded-md flex-shrink-0">44mm</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">pin_drop</span>
+                                <span class="truncate">Found at: Gym • Olympic Complex</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-primary text-xs font-semibold">
+                                <span class="material-symbols-outlined text-base text-accent">warehouse</span>
+                                <span class="truncate">Custody: Campus Security Office - Bldg 12</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Status: PIN locked</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-accent hover:bg-accent/90 text-white text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
+                                <span class="material-symbols-outlined text-base">how_to_reg</span>
+                             <a href="submit claim2.html">  <span>Claim This Item</span> </a> 
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Found Item 2 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbb2ivp61TmbV9ZaeQ5vkdLatEnlR4AYWuuh-o8O3GMukcUqwLpEHzsAx02JzEKzqlnEC5uARwkmGJD9kIaS_hoVsi-I_JLmmZwIzrHWNHz1R2o08so6LSrkJsryZ12XPaVv6r8XYQ__oCUSVrCdBz1tgLN8tDFEojjkQGrf1vBWRuUAKeFZ8fLlrbwANsxQ0o1JSeAOByUBwXgWLv_ph5Wj2hizatNpkwPazShR4dwiifunA9Zu93Ww"
+                             alt="Navy North Face backpack"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-white text-primary shadow-sm">In Custody</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#F-4098 • Bags & Accessories</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Navy The North Face Backpack</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-high px-2 py-1 rounded-md flex-shrink-0">Books & Notes</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">pin_drop</span>
+                                <span class="truncate">Found at: Lecture Hall 3 • College of Medicine</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-primary text-xs font-semibold">
+                                <span class="material-symbols-outlined text-base text-accent">warehouse</span>
+                                <span class="truncate">Custody: Student Affairs Office - Bldg 2</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Contains anatomy notes</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
+                                <span class="material-symbols-outlined text-base">how_to_reg</span>
+                               <a href="submit claim2.html"> <span>Claim This Item</span> </a>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Found Item 3 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUWpucfKMhAmnAx_du37H5EfqP2n1-JH9ZLaXIPdSE2PmaV0bHSUXr-z2en7mNFqiTtszh4ON4E7ff4BQi5EtRzjvhdkLTut7aXMartJ-2Si7JxSWwy2xhchv1V7e1dpEYt8DXl1Itqrs3W6pHtydEt0RJXN89fHSW-sPvOq6Emq1GScxO8zas4CWNCO5EdLJvtsFLk6WXc1KJNP033Q0vW-S_DOOQjmKwFkREOqI5ngizjSsCvntIHg"
+                             alt="Black Ray-Ban glasses"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-white text-primary shadow-sm">In Custody</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#F-4085 • Eyewear & Personal</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Black Ray-Ban Prescription Glasses</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-high px-2 py-1 rounded-md flex-shrink-0">With Case</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">pin_drop</span>
+                                <span class="truncate">Found at: General Physics Lab • Science Bldg 4</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-primary text-xs font-semibold">
+                                <span class="material-symbols-outlined text-base text-accent">warehouse</span>
+                                <span class="truncate">Custody: Safety & Security Office - Bldg 4</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Classic black frame</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
+                                <span class="material-symbols-outlined text-base">how_to_reg</span>
+                               <a href="submit claim2.html"> <span>Claim This Item</span> </a>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Found Item 4 -->
+                <article class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-center gap-4">
+                    <div class="relative w-full sm:w-40 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                        <img class="w-full h-full object-cover"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbTi7PJuDTPzhtR4sTPGHLDyHQmHVs9XSBVwaBN_LJWnSfdaPqENaDkYKnWbB3wBY95NFDhuSuElrPsMXvcIPEJtXyHxgDOcOixBG-BOJxVSPLektep__mR6knmZiEuu8VwlYVNNK67icnblRMMfTSACVfAcud1HyCwoVy-e4Pp2W5k5Tq2AX33eooCZ2Gyxvzp1NSH7RHdV8QFCJaDG7k9ptK-njayroKeNbU7KZcZWB0tz9V7t5ItA"
+                             alt="Texas Instruments calculator"/>
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-white text-primary shadow-sm">In Custody</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full flex flex-col justify-between h-full space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-secondary block">#F-4079 • Educational Tools</span>
+                                <h3 class="text-lg font-bold text-primary truncate">Texas Instruments Scientific Calculator</h3>
+                            </div>
+                            <span class="text-xs text-secondary bg-surface-container-high px-2 py-1 rounded-md flex-shrink-0">TI-84 Series</span>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2 text-secondary text-xs">
+                                <span class="material-symbols-outlined text-base">pin_drop</span>
+                                <span class="truncate">Found at: Engineering Garden Seating Area</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-primary text-xs font-semibold">
+                                <span class="material-symbols-outlined text-base text-accent">warehouse</span>
+                                <span class="truncate">Custody: Engineering Lost & Found - Office 108</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 flex items-center justify-between">
+                            <span class="text-xs text-secondary">Condition: Excellent with cover</span>
+                            <button class="px-4 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
+                                <span class="material-symbols-outlined text-base">how_to_reg</span>
+                               <a href="submit claim2.html"> <span>Claim This Item</span> </a>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+
+            <!-- Brand -->
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved<br/>
+                <span class="text-[11px] opacity-70">Deanship of E-Transactions & Smart Campus</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

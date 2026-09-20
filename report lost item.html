@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Lost Item — Athar</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        /* Brand */
+                        primary:            "#1a3263",
+                        "primary-dark":     "#122447",
+                        "primary-fixed":    "#d9e2ff",
+                        secondary:          "#3f627c",
+                        "secondary-container": "#badefd",
+                        "on-secondary-container": "#40637d",
+                        /* Surfaces */
+                        surface:                     "#f8f9ff",
+                        "surface-container-lowest":  "#ffffff",
+                        "surface-container-low":     "#eff4ff",
+                        "surface-container":         "#e5eeff",
+                        "surface-container-high":    "#dce9ff",
+                        "surface-variant":           "#d3e4fe",
+                        /* Text */
+                        "on-surface":         "#0b1c30",
+                        "on-surface-variant": "#44464f",
+                        outline:              "#757780",
+                        /* Status */
+                        error:                "#ba1a1a",
+                        "error-container":    "#ffdad6",
+                        "on-error-container": "#93000a",
+                        /* Accent */
+                        accent:               "#cd911a",
+                        "accent-fixed":       "#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+
+        /* Custom date input reset */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Active color button */
+        .color-btn.active-color {
+            background-color: #dce9ff;
+            box-shadow: 0 0 0 2px rgba(26, 50, 99, 0.2);
+        }
+        .color-btn.active-color span:last-child {
+            color: #1a3263;
+            font-weight: 700;
+        }
+
+        /* Active date preset */
+        .date-preset-btn.active-date {
+            background-color: #dce9ff;
+            color: #1a3263;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <!-- Primary Nav -->
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="home.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Home</a>
+            <a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Lost Items</a>
+            <a href="Report Found Item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
+            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>
+            <a href="myReorts.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Reports</a>
+            <a href="My Claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Claims</a>
+        
+        </nav>
+
+        <!-- User Actions -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="notification.html">
+                <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" aria-label="Notifications" >
+               <span class="material-symbols-outlined text-2xl" >notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+                </button>
+            </a>
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
+                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
+            </button>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • Computer Science</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── HERO BANNER ─────────── -->
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-l from-primary via-primary to-secondary p-6 lg:p-10 text-white shadow-md mb-8">
+            <div class="relative z-10 max-w-3xl space-y-3">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-medium">
+                    <span class="material-symbols-outlined text-base text-accent-fixed">search_insights</span>
+                    Lost Item Investigation & Recovery Form
+                </div>
+                <h1 class="text-2xl lg:text-4xl font-bold tracking-tight">
+                    Report a Lost Item
+                </h1>
+                <p class="text-sm lg:text-base text-white/80 max-w-2xl leading-relaxed">
+                    Provide the details of your lost property. Our smart matching algorithm will immediately
+                    notify campus security and custody officers across all colleges and facilities.
+                </p>
+            </div>
+            <!-- Decorative graphic -->
+            <div class="absolute -left-12 -bottom-16 w-72 h-72 rounded-full bg-white/5 blur-2xl pointer-events-none"></div>
+            <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:block opacity-10">
+                <span class="material-symbols-outlined text-[180px]">radar</span>
+            </div>
+        </div>
+
+        <!-- ─────────── FORM + SIDEBAR ─────────── -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- ▬▬▬▬▬▬ PRIMARY FORM (8 cols) ▬▬▬▬▬▬ -->
+            <form id="lostReportForm" class="lg:col-span-8 flex flex-col gap-6" onsubmit="submitReport(event)">
+
+                <!-- ─────────── Section 1: Item Identity ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">category</span>
+                        </div>
+                        <h2 class="text-lg font-semibold text-primary">Basic Information</h2>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Title -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-2" for="itemTitle">
+                                Item Title <span class="text-error">*</span>
+                            </label>
+                            <div class="relative">
+                                <input id="itemTitle" type="text" required
+                                       placeholder="Example: 14-inch Space Gray MacBook Pro, or a brown leather wallet"
+                                       class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                                <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl">label</span>
+                            </div>
+                        </div>
+
+                        <!-- Category + Brand -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-on-surface mb-2" for="itemCategory">
+                                    Category <span class="text-error">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select id="itemCategory" required
+                                            class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                        <option disabled selected value="">Select category...</option>
+                                        <option value="electronics">Electronic devices and laptops</option>
+                                        <option value="smartphones">Smartphones and tablets</option>
+                                        <option value="wallets_docs">Wallets, cards, and official documents</option>
+                                        <option value="keys">Vehicle keys and remotes</option>
+                                        <option value="bags">Backpacks and personal belongings</option>
+                                        <option value="optics">Sunglasses and prescription eyewear</option>
+                                        <option value="academic">Books, notebooks, and study supplies</option>
+                                        <option value="apparel">Clothing, accessories, and watches</option>
+                                        <option value="other">Other (unclassified)</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-on-surface mb-2" for="itemBrand">
+                                    Brand
+                                </label>
+                                <div class="relative">
+                                    <input id="itemBrand" type="text"
+                                           placeholder="Example: Apple, Dell, Sony, Tommy Hilfiger..."
+                                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl">branding_watermark</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Color -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-sm font-semibold text-on-surface">
+                                    Color <span class="text-error">*</span>
+                                </label>
+                                <span id="selectedColorDisplay" class="text-xs text-secondary">Selected: Navy Blue</span>
+                            </div>
+
+                            <div class="grid grid-cols-4 sm:grid-cols-8 gap-2">
+                                <button type="button" onclick="selectColor(this, 'Black')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-neutral-900 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Black</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Silver')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-slate-300 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Silver</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Navy Blue')"
+                                        class="color-btn active-color flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-[#1A3263] ring-2 ring-primary/40 shadow-inner"></span>
+                                    <span class="text-[11px] font-bold text-primary">Navy Blue</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Brown')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-amber-800 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Brown</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'White')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-white border border-slate-200 shadow"></span>
+                                    <span class="text-[11px] text-on-surface">White</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Golden')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-amber-400 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Golden</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Red')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-rose-700 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Red</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Multicolor')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-400 via-indigo-500 to-amber-300 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Multi</span>
+                                </button>
+                            </div>
+                            <input id="colorInput" type="hidden" value="Navy Blue"/>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 2: Location & Time ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">pin_drop</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-primary">Location & Timing</h2>
+                            <p class="text-xs text-secondary">Where and when did you last have the item?</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Location -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-2" for="lostLocation">
+                                Potential Location of Loss <span class="text-error">*</span>
+                            </label>
+                            <div class="relative">
+                                <select id="lostLocation" required
+                                        class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                    <option disabled selected value="">Select the university building or facility...</option>
+                                    <option value="central_lib">Central Library — Reading Rooms</option>
+                                    <option value="ccis">College of Computer & Information Sciences (Building B)</option>
+                                    <option value="engineering">Faculty of Engineering & Architecture</option>
+                                    <option value="business">College of Business Administration</option>
+                                    <option value="sports_complex">Sports Hall & Complex</option>
+                                    <option value="food_court">Restaurant & Central Cafeteria</option>
+                                    <option value="parking">South / North Multi-level Car Parks</option>
+                                    <option value="auditorium">Main University Theater & Conference Building</option>
+                                    <option value="other_custom">Other (I'll specify below)</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-3">
+                                Estimated Date & Time of Loss <span class="text-error">*</span>
+                            </label>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+                                <button type="button" onclick="setDateOption(this, 'today')"
+                                        class="date-preset-btn active-date py-2.5 px-3 rounded-lg text-sm font-medium transition-all">
+                                    Today
+                                </button>
+                                <button type="button" onclick="setDateOption(this, 'yesterday')"
+                                        class="date-preset-btn py-2.5 px-3 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-all text-sm font-medium">
+                                    Yesterday
+                                </button>
+                                <button type="button" onclick="setDateOption(this, 'custom')"
+                                        class="date-preset-btn py-2.5 px-3 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-all text-sm font-medium">
+                                    Custom Date
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="relative">
+                                    <input id="datePicker" type="date"
+                                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"/>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">calendar_month</span>
+                                </div>
+                                <div class="relative">
+                                    <select id="timeEstimate"
+                                            class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                        <option value="morning">Early morning (8:00 AM – 11:00 AM)</option>
+                                        <option value="midday" selected>Midday & Lectures (11:00 AM – 2:00 PM)</option>
+                                        <option value="afternoon">Afternoon (2:00 PM – 5:00 PM)</option>
+                                        <option value="evening">Evening (5:00 PM onwards)</option>
+                                        <option value="unknown">Not sure of the exact time</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 3: Description ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">fingerprint</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-primary">Detailed Description</h2>
+                            <p class="text-xs text-secondary">The markers that verify ownership and prevent incorrect matching.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-sm font-semibold text-on-surface" for="itemDescription">
+                                    Item Details & Distinguishing Marks <span class="text-error">*</span>
+                                </label>
+                                <span class="text-xs text-secondary">Minimum of 30 characters</span>
+                            </div>
+                            <textarea id="itemDescription" required rows="4"
+                                      placeholder="Describe the item precisely: a specific sticker, a scratch in the corner, an engraved name, a protective case, the serial number, or contents of an inner wallet..."
+                                      class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg p-4 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline leading-relaxed"></textarea>
+                        </div>
+
+                        <!-- Security tip -->
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-low">
+                            <span class="material-symbols-outlined text-primary text-2xl shrink-0">security_update_good</span>
+                            <div class="space-y-1">
+                                <p class="text-sm font-semibold text-primary">Smart ownership verification</p>
+                                <p class="text-xs leading-relaxed text-on-surface-variant">
+                                    Provide a unique feature known only to you (e.g., lock screen wallpaper, internal passcode, or a faint inconspicuous scratch).
+                                    This information stays private and is used by custody officers during handover.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 4: Photos ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-semibold text-primary">Illustrative Images</h2>
+                                <p class="text-xs text-secondary">Upload up to 3 images (JPG, PNG — max 5MB each)</p>
+                            </div>
+                        </div>
+                        <span class="hidden sm:inline-block text-xs text-secondary bg-surface-container-low px-3 py-1 rounded-full">
+                            Max 3 photos
+                        </span>
+                    </div>
+
+                    <!-- Dropzone -->
+                    <label class="group relative rounded-xl bg-surface-container-low hover:bg-surface-container p-6 text-center cursor-pointer transition-all duration-200 block border-2 border-dashed border-transparent hover:border-primary/20">
+                        <input type="file" id="photoUpload" accept="image/png, image/jpeg, image/webp" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"/>
+                        <div class="flex flex-col items-center justify-center gap-2 pointer-events-none">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-105 transition-transform">
+                                <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                            </div>
+                            <div class="space-y-1 mt-1">
+                                <span class="text-sm font-semibold text-primary">Drag & drop images here, or click to browse</span>
+                                <p class="text-xs text-secondary">A matching image accelerates the matching process by up to 80%.</p>
+                            </div>
+                        </div>
+                    </label>
+                </section>
+
+                <!-- ─────────── Section 5: Submit ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-2 text-secondary text-xs">
+                            <span class="material-symbols-outlined text-accent text-xl">encrypted</span>
+                            <span>All submitted data is encrypted under the Student Affairs security policy.</span>
+                        </div>
+                        <button type="submit"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95">
+                            <span class="material-symbols-outlined text-xl">send_and_archive</span>
+                            <span>Submit Report</span>
+                        </button>
+                    </div>
+                </section>
+            </form>
+
+            <!-- ▬▬▬▬▬▬ SIDEBAR (4 cols) ▬▬▬▬▬▬ -->
+            <aside class="lg:col-span-4 flex flex-col gap-6">
+
+                <!-- Tips Card -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">lightbulb</span>
+                        </div>
+                        <h3 class="text-base font-semibold text-primary">Increase Recovery Chances</h3>
+                    </div>
+
+                    <p class="text-xs text-secondary mb-4 leading-relaxed">
+                        Our algorithm compares your report against items logged by security officers across campus.
+                    </p>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-xs font-bold shrink-0">1</div>
+                            <div>
+                                <strong class="text-sm text-on-surface block mb-0.5">Precision in details:</strong>
+                                <span class="text-xs text-secondary">Mention scratches, damaged corners, or included accessories.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-xs font-bold shrink-0">2</div>
+                            <div>
+                                <strong class="text-sm text-on-surface block mb-0.5">Last confirmed location:</strong>
+                                <span class="text-xs text-secondary">Specifying the exact building reduces fieldwork time for security.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-xs font-bold shrink-0">3</div>
+                            <div>
+                                <strong class="text-sm text-on-surface block mb-0.5">Add real photos:</strong>
+                                <span class="text-xs text-secondary">A similar product photo can boost matching accuracy.</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Confidence gauge -->
+                    <div class="mt-6 p-4 rounded-xl bg-surface-container-low">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="text-primary flex items-center gap-1 font-medium">
+                                <span class="material-symbols-outlined text-base text-accent">auto_awesome</span>
+                                Expected match rate
+                            </span>
+                            <span class="text-primary font-bold">96%</span>
+                        </div>
+                        <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+                            <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 96%"></div>
+                        </div>
+                        <span class="text-[11px] text-secondary mt-2 block">Based on current semester statistics</span>
+                    </div>
+                </div>
+
+                <!-- Custody Centers -->
+                <div class="bg-white rounded-xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">contact_phone</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold text-primary">Custody Centers</h3>
+                            <span class="text-xs text-secondary">Direct contact for emergencies</span>
+                        </div>
+                    </div>
+
+                    <!-- Warning -->
+                    <div class="p-3 rounded-lg bg-error-container/40 text-on-error-container flex items-start gap-2 text-xs leading-snug">
+                        <span class="material-symbols-outlined text-error text-lg shrink-0">report_problem</span>
+                        <span>For critical documents (ID, bank cards, apartment keys), please visit the security office immediately.</span>
+                    </div>
+
+                    <!-- Center 1 -->
+                    <div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold text-primary">Central Lost & Found (Bldg 17)</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-surface-container-high text-primary">Open</span>
+                        </div>
+                        <p class="text-xs text-secondary">Deanship of Student Affairs Lobby — Ground Floor</p>
+                        <div class="flex items-center gap-4 pt-1 text-[11px] text-secondary">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">call</span> Ext. 2401
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span> 8 AM – 4 PM
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Center 2 -->
+                    <div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold text-primary">University Security Room</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-error-container text-error font-semibold">24 / 7</span>
+                        </div>
+                        <p class="text-xs text-secondary">Gate 3 — Field Safety Building</p>
+                        <div class="pt-1 text-[11px]">
+                            <span class="flex items-center gap-1 text-error font-semibold">
+                                <span class="material-symbols-outlined text-sm">emergency</span> 0594-677-777
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved<br/>
+                <span class="text-[11px] opacity-70">Deanship of E-Transactions & Smart Campus</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    /* ─────────── Color Selection ─────────── */
+    function selectColor(element, colorName) {
+        // Reset all
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.classList.remove('active-color', 'bg-surface-container-high');
+            btn.classList.add('bg-surface-container-low');
+            const label = btn.querySelector('span:last-child');
+            if (label) label.classList.remove('font-bold', 'text-primary');
+        });
+
+        // Activate clicked
+        element.classList.remove('bg-surface-container-low');
+        element.classList.add('bg-surface-container-high', 'active-color');
+        const activeLabel = element.querySelector('span:last-child');
+        if (activeLabel) activeLabel.classList.add('font-bold', 'text-primary');
+
+        document.getElementById('colorInput').value = colorName;
+        document.getElementById('selectedColorDisplay').textContent = 'Selected: ' + colorName;
+    }
+
+    /* ─────────── Date Preset Selection ─────────── */
+    function setDateOption(element, option) {
+        document.querySelectorAll('.date-preset-btn').forEach(btn => {
+            btn.classList.remove('active-date', 'bg-surface-container-high', 'text-primary');
+            btn.classList.add('bg-surface-container-low', 'text-on-surface');
+        });
+        element.classList.remove('bg-surface-container-low', 'text-on-surface');
+        element.classList.add('active-date');
+
+        const dateInput = document.getElementById('datePicker');
+        const now = new Date();
+
+        if (option === 'today') {
+            dateInput.value = now.toISOString().split('T')[0];
+        } else if (option === 'yesterday') {
+            const yesterday = new Date(now);
+            yesterday.setDate(now.getDate() - 1);
+            dateInput.value = yesterday.toISOString().split('T')[0];
+        } else {
+            dateInput.focus();
+            dateInput.showPicker && dateInput.showPicker();
+        }
+    }
+
+    /* ─────────── Report Submission ─────────── */
+    function submitReport(event) {
+        event.preventDefault();
+
+        const title    = document.getElementById('itemTitle').value.trim();
+        const category = document.getElementById('itemCategory').value;
+        const location = document.getElementById('lostLocation').value;
+        const desc     = document.getElementById('itemDescription').value.trim();
+
+        // Basic validation
+        if (!title || !category || !location || !desc) {
+            alert('Please fill in all mandatory fields marked with (*).');
+            return;
+        }
+
+        if (desc.length < 30) {
+            alert('The item description must be at least 30 characters long.');
+            return;
+        }
+
+        // Generate reference number
+        const refNumber = 'ATH-' + Math.floor(100000 + Math.random() * 900000);
+
+        // Simulate success
+        alert(
+            'Your report has been successfully received!\n\n' +
+            'Reference Number: ' + refNumber + '\n\n' +
+            'The smart matching algorithm has been activated and campus security has been notified.'
+        );
+
+        // Optional: reset form
+        // document.getElementById('lostReportForm').reset();
+    }
+
+    /* ─────────── Initialize date input with today ─────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('datePicker').value = today;
+    });
+</script>
+
+</body>
+</html>

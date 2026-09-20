@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Found Item — Athar</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary:            "#1a3263",
+                        "primary-dark":     "#122447",
+                        "primary-fixed":    "#d9e2ff",
+                        secondary:          "#3f627c",
+                        "secondary-container": "#badefd",
+                        "on-secondary-container": "#40637d",
+                        /* Surfaces */
+                        surface:                     "#f8f9ff",
+                        "surface-container-lowest":  "#ffffff",
+                        "surface-container-low":     "#eff4ff",
+                        "surface-container":         "#e5eeff",
+                        "surface-container-high":    "#dce9ff",
+                        "surface-variant":           "#d3e4fe",
+                        /* Text */
+                        "on-surface":         "#0b1c30",
+                        "on-surface-variant": "#44464f",
+                        outline:              "#757780",
+                        /* Status */
+                        error:                "#ba1a1a",
+                        "error-container":    "#ffdad6",
+                        "on-error-container": "#93000a",
+                        accent:               "#cd911a",
+                        "accent-fixed":       "#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .color-btn.active-color {
+            background-color: #dce9ff;
+            box-shadow: 0 0 0 2px rgba(26, 50, 99, 0.2);
+        }
+        .color-btn.active-color span:last-child {
+            color: #1a3263;
+            font-weight: 700;
+        }
+
+        .date-preset-btn.active-date {
+            background-color: #dce9ff;
+            color: #1a3263;
+            font-weight: 600;
+        }
+
+        /* Soft pulse for the security warning */
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(205, 145, 26, 0.3); }
+            50%      { box-shadow: 0 0 0 6px rgba(205, 145, 26, 0); }
+        }
+        .warning-pulse {
+            animation: softPulse 2.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <a href="#" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="home.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Home</a>
+            <a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
+            <a href="Report Found Item.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Found Items</a>
+            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>
+            <a href="myReorts.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Reports</a>
+            <a href="My Claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">My Claims</a>
+        
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="notification.html">
+                <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" aria-label="Notifications" >
+               <span class="material-symbols-outlined text-2xl" >notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+                </button>
+            </a>
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
+                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
+            </button>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • Computer Science</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── HERO BANNER (blue) ─────────── -->
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-l from-primary via-primary to-secondary p-6 lg:p-10 text-white shadow-md mb-8">
+            <div class="relative z-10 max-w-3xl space-y-3">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-medium">
+                    <span class="material-symbols-outlined text-base text-accent-fixed">volunteer_activism</span>
+                    Found Item Reporting Form
+                </div>
+                <h1 class="text-2xl lg:text-4xl font-bold tracking-tight">
+                    Report a Found Item
+                </h1>
+                <p class="text-sm lg:text-base text-white/80 max-w-2xl leading-relaxed">
+                    Thank you for helping return lost property to its owner. Please provide only the basic
+                    information — the real owner will be asked to verify the private details themselves.
+                </p>
+            </div>
+            <div class="absolute -left-12 -bottom-16 w-72 h-72 rounded-full bg-white/5 blur-2xl pointer-events-none"></div>
+            <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:block opacity-10">
+                <span class="material-symbols-outlined text-[180px]">handshake</span>
+            </div>
+        </div>
+
+        <!-- ─────────── MAIN PROMINENT SECURITY NOTICE ─────────── -->
+        <div class="warning-pulse mb-8 rounded-2xl bg-accent-fixed/40 border-2 border-accent/40 p-5 lg:p-6 flex items-start gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-accent flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-white text-2xl">shield_lock</span>
+            </div>
+            <div class="flex-1 space-y-2">
+                <h2 class="text-base lg:text-lg font-bold text-on-surface">
+                    Do NOT include any confidential or identifying details
+                </h2>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                    Please do <strong>not</strong> mention any private characteristics of the item —
+                    such as a lock screen wallpaper, an internal passcode, engraved names, contents of a wallet,
+                    or any hidden mark. These details will be requested privately from the owner
+                    <strong>after they prove ownership</strong> at the custody center.
+                </p>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 pt-1 text-xs text-on-surface-variant">
+                    <li class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        Describe only generic appearance (color, shape, brand)
+                    </li>
+                    <li class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                        State where and when you found it
+                    </li>
+                    <li class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-error text-base">cancel</span>
+                        Do NOT reveal serial numbers or passwords
+                    </li>
+                    <li class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-error text-base">cancel</span>
+                        Do NOT describe inner contents or private marks
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ─────────── FORM + SIDEBAR ─────────── -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- ▬▬▬▬▬▬ PRIMARY FORM (8 cols) ▬▬▬▬▬▬ -->
+            <form id="foundReportForm" class="lg:col-span-8 flex flex-col gap-6" onsubmit="submitReport(event)">
+
+                <!-- ─────────── Section 1: Item Identity ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">category</span>
+                        </div>
+                        <h2 class="text-lg font-semibold text-primary">Basic Information</h2>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Title -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-2" for="itemTitle">
+                                Item Title <span class="text-error">*</span>
+                            </label>
+                            <div class="relative">
+                                <input id="itemTitle" type="text" required
+                                       placeholder="Example: Black leather wallet found near the library"
+                                       class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                                <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl">label</span>
+                            </div>
+                        </div>
+
+                        <!-- Category + Brand -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-on-surface mb-2" for="itemCategory">
+                                    Category <span class="text-error">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select id="itemCategory" required
+                                            class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                        <option disabled selected value="">Select category...</option>
+                                        <option value="electronics">Electronic devices and laptops</option>
+                                        <option value="smartphones">Smartphones and tablets</option>
+                                        <option value="wallets_docs">Wallets, cards, and official documents</option>
+                                        <option value="keys">Vehicle keys and remotes</option>
+                                        <option value="bags">Backpacks and personal belongings</option>
+                                        <option value="optics">Sunglasses and prescription eyewear</option>
+                                        <option value="academic">Books, notebooks, and study supplies</option>
+                                        <option value="apparel">Clothing, accessories, and watches</option>
+                                        <option value="other">Other (unclassified)</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-on-surface mb-2" for="itemBrand">
+                                    Brand
+                                </label>
+                                <div class="relative">
+                                    <input id="itemBrand" type="text"
+                                           placeholder="Example: Apple, Dell, Sony..."
+                                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl">branding_watermark</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Color -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-sm font-semibold text-on-surface">
+                                    Color <span class="text-error">*</span>
+                                </label>
+                                <span id="selectedColorDisplay" class="text-xs text-secondary">Selected: Black</span>
+                            </div>
+
+                            <div class="grid grid-cols-4 sm:grid-cols-8 gap-2">
+                                <button type="button" onclick="selectColor(this, 'Black')"
+                                        class="color-btn active-color flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-neutral-900 shadow-inner"></span>
+                                    <span class="text-[11px] font-bold text-primary">Black</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Silver')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-slate-300 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Silver</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Navy Blue')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-[#1A3263] shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Navy</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Brown')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-amber-800 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Brown</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'White')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-white border border-slate-200 shadow"></span>
+                                    <span class="text-[11px] text-on-surface">White</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Golden')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-amber-400 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Golden</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Red')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-rose-700 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Red</span>
+                                </button>
+                                <button type="button" onclick="selectColor(this, 'Multicolor')"
+                                        class="color-btn flex flex-col items-center gap-1.5 p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+                                    <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-400 via-indigo-500 to-amber-300 shadow-inner"></span>
+                                    <span class="text-[11px] text-on-surface">Multi</span>
+                                </button>
+                            </div>
+                            <input id="colorInput" type="hidden" value="Black"/>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 2: Location & Time Found ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">pin_drop</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-primary">Where & When You Found It</h2>
+                            <p class="text-xs text-secondary">The exact location helps owners find their item faster.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Location Found -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-2" for="foundLocation">
+                                Location Where Found <span class="text-error">*</span>
+                            </label>
+                            <div class="relative">
+                                <select id="foundLocation" required
+                                        class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                    <option disabled selected value="">Select the university building or facility...</option>
+                                    <option value="central_lib">Central Library — Reading Rooms</option>
+                                    <option value="ccis">College of Computer & Information Sciences (Building B)</option>
+                                    <option value="engineering">Faculty of Engineering & Architecture</option>
+                                    <option value="business">College of Business Administration</option>
+                                    <option value="sports_complex">Sports Hall & Complex</option>
+                                    <option value="food_court">Restaurant & Central Cafeteria</option>
+                                    <option value="parking">South / North Multi-level Car Parks</option>
+                                    <option value="auditorium">Main University Theater & Conference Building</option>
+                                    <option value="other_custom">Other (I'll specify below)</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div>
+                            <label class="block text-sm font-semibold text-on-surface mb-3">
+                                Estimated Date & Time Found <span class="text-error">*</span>
+                            </label>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+                                <button type="button" onclick="setDateOption(this, 'today')"
+                                        class="date-preset-btn active-date py-2.5 px-3 rounded-lg text-sm font-medium transition-all">
+                                    Today
+                                </button>
+                                <button type="button" onclick="setDateOption(this, 'yesterday')"
+                                        class="date-preset-btn py-2.5 px-3 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-all text-sm font-medium">
+                                    Yesterday
+                                </button>
+                                <button type="button" onclick="setDateOption(this, 'custom')"
+                                        class="date-preset-btn py-2.5 px-3 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-all text-sm font-medium">
+                                    Custom Date
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="relative">
+                                    <input id="datePicker" type="date"
+                                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"/>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">calendar_month</span>
+                                </div>
+                                <div class="relative">
+                                    <select id="timeEstimate"
+                                            class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-4 py-3 pr-11 appearance-none focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer">
+                                        <option value="morning">Early morning (8:00 AM – 11:00 AM)</option>
+                                        <option value="midday" selected>Midday & Lectures (11:00 AM – 2:00 PM)</option>
+                                        <option value="afternoon">Afternoon (2:00 PM – 5:00 PM)</option>
+                                        <option value="evening">Evening (5:00 PM onwards)</option>
+                                        <option value="unknown">Not sure of the exact time</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 3: Public Description (Safe) ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">description</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-primary">Public Description</h2>
+                            <p class="text-xs text-secondary">Only describe what anyone could see from the outside.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-sm font-semibold text-on-surface" for="itemDescription">
+                                    Visible Details <span class="text-error">*</span>
+                                </label>
+                                <span class="text-xs text-secondary">Minimum 30 characters</span>
+                            </div>
+                            <textarea id="itemDescription" required rows="4"
+                                      placeholder="Describe only the outside appearance: general color, size, brand logo, protective case (if visible). DO NOT mention contents or private marks."
+                                      class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg p-4 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline leading-relaxed"></textarea>
+                        </div>
+
+                        <!-- Inline Security Reminder (accent color, kept for emphasis) -->
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-accent-fixed/30 border border-accent/30">
+                            <span class="material-symbols-outlined text-accent text-2xl shrink-0">visibility_off</span>
+                            <div class="space-y-1">
+                                <p class="text-sm font-semibold text-on-surface">Keep it generic</p>
+                                <p class="text-xs leading-relaxed text-on-surface-variant">
+                                    Do not reveal serial numbers, inner contents, passwords, or any detail that
+                                    only the real owner could know. The owner will prove ownership privately
+                                    at the custody center before receiving the item.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 4: Custody Option ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-primary">Where Is the Item Now?</h2>
+                            <p class="text-xs text-secondary">Choose how you'll hand over the item.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="custody" value="security_office" class="peer sr-only" checked/>
+                            <div class="p-4 rounded-xl border-2 border-surface-container-high bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed/40 transition-all">
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-primary text-2xl shrink-0">local_police</span>
+                                    <div>
+                                        <span class="block text-sm font-semibold text-on-surface">Hand it to Campus Security</span>
+                                        <span class="block text-xs text-secondary mt-0.5">Recommended — Bldg 12, 24/7 available.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer">
+                            <input type="radio" name="custody" value="with_me" class="peer sr-only"/>
+                            <div class="p-4 rounded-xl border-2 border-surface-container-high bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed/40 transition-all">
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-accent text-2xl shrink-0">home_storage</span>
+                                    <div>
+                                        <span class="block text-sm font-semibold text-on-surface">Keep It Safely With Me</span>
+                                        <span class="block text-xs text-secondary mt-0.5">You'll be contacted when the owner verifies.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- ─────────── Section 5: Photos ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-semibold text-primary">Photo of the Item</h2>
+                                <p class="text-xs text-secondary">Upload up to 3 images — outside view only</p>
+                            </div>
+                        </div>
+                        <span class="hidden sm:inline-block text-xs text-secondary bg-surface-container-low px-3 py-1 rounded-full">
+                            Max 3 photos
+                        </span>
+                    </div>
+
+                    <label class="group relative rounded-xl bg-surface-container-low hover:bg-surface-container p-6 text-center cursor-pointer transition-all duration-200 block border-2 border-dashed border-transparent hover:border-primary/20">
+                        <input type="file" id="photoUpload" accept="image/png, image/jpeg, image/webp" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"/>
+                        <div class="flex flex-col items-center justify-center gap-2 pointer-events-none">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-105 transition-transform">
+                                <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                            </div>
+                            <div class="space-y-1 mt-1">
+                                <span class="text-sm font-semibold text-primary">Drag & drop images here, or click to browse</span>
+                                <p class="text-xs text-secondary">Take a photo from the outside only — do not open the item.</p>
+                            </div>
+                        </div>
+                    </label>
+                </section>
+
+                <!-- ─────────── Section 6: Submit ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <label class="flex items-start gap-3 mb-5 cursor-pointer">
+                        <input type="checkbox" id="confirmOwnership" required
+                               class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary/40 cursor-pointer"/>
+                        <span class="text-xs text-on-surface-variant leading-relaxed">
+                            I confirm I have <strong>not</strong> included any private, identifying, or
+                            confidential details in this report. I understand that ownership must be verified
+                            by the claimant at the custody center before handover.
+                        </span>
+                    </label>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-surface-container">
+                        <div class="flex items-center gap-2 text-secondary text-xs">
+                            <span class="material-symbols-outlined text-accent text-xl">encrypted</span>
+                            <span>Data encrypted under the Student Affairs security policy.</span>
+                        </div>
+                        <button type="submit"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95">
+                            <span class="material-symbols-outlined text-xl">volunteer_activism</span>
+                            <span>Submit Found Report</span>
+                        </button>
+                    </div>
+                </section>
+            </form>
+
+            <!-- ▬▬▬▬▬▬ SIDEBAR (4 cols) ▬▬▬▬▬▬ -->
+            <aside class="lg:col-span-4 flex flex-col gap-6">
+
+                <!-- Security Guidelines Card (blue) -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">shield_lock</span>
+                        </div>
+                        <h3 class="text-base font-semibold text-primary">Reporting Do's & Don'ts</h3>
+                    </div>
+
+                    <p class="text-xs text-secondary mb-4 leading-relaxed">
+                        Your role is to help return the item — <strong>not</strong> to decide who the owner is.
+                    </p>
+
+                    <!-- Do -->
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wide">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Do
+                        </div>
+                        <ul class="space-y-1.5 pl-6 text-xs text-secondary">
+                            <li class="relative">
+                                <span class="absolute -left-4 text-primary">•</span>
+                                Describe generic appearance
+                            </li>
+                            <li class="relative">
+                                <span class="absolute -left-4 text-primary">•</span>
+                                Specify exact location & time
+                            </li>
+                            <li class="relative">
+                                <span class="absolute -left-4 text-primary">•</span>
+                                Hand it to the nearest security office
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Don't -->
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 text-xs font-bold text-error uppercase tracking-wide">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Don't
+                        </div>
+                        <ul class="space-y-1.5 pl-6 text-xs text-secondary">
+                            <li class="relative">
+                                <span class="absolute -left-4 text-error">•</span>
+                                Reveal internal contents
+                            </li>
+                            <li class="relative">
+                                <span class="absolute -left-4 text-error">•</span>
+                                Mention passwords or PINs
+                            </li>
+                            <li class="relative">
+                                <span class="absolute -left-4 text-error">•</span>
+                                Share serial numbers publicly
+                            </li>
+                            <li class="relative">
+                                <span class="absolute -left-4 text-error">•</span>
+                                Hand the item to a "claimer" without verification
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recognition Card (blue) -->
+                <div class="bg-gradient-to-br from-primary to-primary-dark rounded-xl p-6 shadow-sm text-white">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-white/15 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+                        </div>
+                        <h3 class="text-base font-semibold">Recognition Program</h3>
+                    </div>
+                    <p class="text-xs text-white/85 leading-relaxed mb-3">
+                        Every verified report earns you campus reward points. Top helpers receive
+                        an appreciation certificate from the Deanship of Student Affairs.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs font-medium">
+                        <span class="material-symbols-outlined text-base text-accent-fixed">stars</span>
+                        <span>+50 points for verified reports</span>
+                    </div>
+                </div>
+
+                <!-- Custody Centers -->
+                <div class="bg-white rounded-xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">contact_phone</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold text-primary">Drop-off Centers</h3>
+                            <span class="text-xs text-secondary">Where to hand over the item</span>
+                        </div>
+                    </div>
+
+                    <!-- Center 1 -->
+                    <div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold text-primary">Central Lost & Found (Bldg 17)</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold">Recommended</span>
+                        </div>
+                        <p class="text-xs text-secondary">Deanship of Student Affairs Lobby — Ground Floor</p>
+                        <div class="flex items-center gap-4 pt-1 text-[11px] text-secondary">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">call</span> Ext. 2401
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span> 8 AM – 4 PM
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Center 2 -->
+                    <div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold text-primary">University Security Room</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-error-container text-error font-semibold">24 / 7</span>
+                        </div>
+                        <p class="text-xs text-secondary">Gate 3 — Field Safety Building</p>
+                        <div class="pt-1 text-[11px]">
+                            <span class="flex items-center gap-1 text-error font-semibold">
+                                <span class="material-symbols-outlined text-sm">emergency</span> 0594-677-777
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved<br/>
+                <span class="text-[11px] opacity-70">Deanship of E-Transactions & Smart Campus</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    /* ─────────── Color Selection ─────────── */
+    function selectColor(element, colorName) {
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.classList.remove('active-color', 'bg-surface-container-high');
+            btn.classList.add('bg-surface-container-low');
+            const label = btn.querySelector('span:last-child');
+            if (label) label.classList.remove('font-bold', 'text-primary');
+        });
+
+        element.classList.remove('bg-surface-container-low');
+        element.classList.add('bg-surface-container-high', 'active-color');
+        const activeLabel = element.querySelector('span:last-child');
+        if (activeLabel) activeLabel.classList.add('font-bold', 'text-primary');
+
+        document.getElementById('colorInput').value = colorName;
+        document.getElementById('selectedColorDisplay').textContent = 'Selected: ' + colorName;
+    }
+
+    /* ─────────── Date Preset Selection ─────────── */
+    function setDateOption(element, option) {
+        document.querySelectorAll('.date-preset-btn').forEach(btn => {
+            btn.classList.remove('active-date', 'bg-surface-container-high', 'text-primary');
+            btn.classList.add('bg-surface-container-low', 'text-on-surface');
+        });
+        element.classList.remove('bg-surface-container-low', 'text-on-surface');
+        element.classList.add('active-date');
+
+        const dateInput = document.getElementById('datePicker');
+        const now = new Date();
+
+        if (option === 'today') {
+            dateInput.value = now.toISOString().split('T')[0];
+        } else if (option === 'yesterday') {
+            const yesterday = new Date(now);
+            yesterday.setDate(now.getDate() - 1);
+            dateInput.value = yesterday.toISOString().split('T')[0];
+        } else {
+            dateInput.focus();
+            dateInput.showPicker && dateInput.showPicker();
+        }
+    }
+
+    /* ─────────── Report Submission ─────────── */
+    function submitReport(event) {
+        event.preventDefault();
+
+        const title    = document.getElementById('itemTitle').value.trim();
+        const category = document.getElementById('itemCategory').value;
+        const location = document.getElementById('foundLocation').value;
+        const desc     = document.getElementById('itemDescription').value.trim();
+        const confirm  = document.getElementById('confirmOwnership').checked;
+
+        if (!title || !category || !location || !desc) {
+            alert('Please fill in all mandatory fields marked with (*).');
+            return;
+        }
+
+        if (desc.length < 30) {
+            alert('The public description must be at least 30 characters long.');
+            return;
+        }
+
+        if (!confirm) {
+            alert('Please confirm that you have not included any private or identifying details.');
+            return;
+        }
+
+        const refNumber = 'ATH-F-' + Math.floor(100000 + Math.random() * 900000);
+
+        alert(
+            'Thank you for reporting this found item!\n\n' +
+            'Reference Number: ' + refNumber + '\n\n' +
+            'The owner will be asked to verify ownership at the custody center before receiving the item.'
+        );
+    }
+
+    /* ─────────── Init date ─────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('datePicker').value = today;
+    });
+</script>
+
+</body>
+</html>

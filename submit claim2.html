@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Submit Claim — Athar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary:            "#1a3263",
+                        "primary-dark":     "#122447",
+                        "primary-fixed":    "#d9e2ff",
+                        secondary:          "#3f627c",
+                        "secondary-container": "#badefd",
+                        "on-secondary-container": "#40637d",
+                        "secondary-fixed":  "#cae6ff",
+                        "on-secondary-fixed": "#001e2f",
+                        success:            "#2e7d5b",
+                        "success-container":"#c8f0dd",
+                        "on-success-container":"#0f3f2a",
+                        surface:                     "#f8f9ff",
+                        "surface-container-lowest":  "#ffffff",
+                        "surface-container-low":     "#eff4ff",
+                        "surface-container":         "#e5eeff",
+                        "surface-container-high":    "#dce9ff",
+                        "surface-variant":           "#d3e4fe",
+                        "on-surface":         "#0b1c30",
+                        "on-surface-variant": "#44464f",
+                        outline:              "#757780",
+                        error:                "#ba1a1a",
+                        "error-container":    "#ffdad6",
+                        "on-error-container": "#93000a",
+                        accent:               "#cd911a",
+                        "accent-fixed":       "#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<!--<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <a href="#" class="flex items-center gap-2 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Lost & Found</span>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Home</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Inventory</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Campus Map</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Support</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" aria-label="Notifications">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span>
+            </button>
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
+                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
+            </button>
+            <div class="flex items-center gap-2 pl-2">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-xs text-secondary">Student • Computer Science</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </div> 
+</header> -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── PAGE HEADER BANNER ─────────── -->
+        <header class="relative mb-10 p-6 rounded-xl bg-surface-container-low shadow-sm overflow-hidden">
+            <div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-surface-container-high/60 pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-2 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary text-white text-xs font-medium shadow-sm">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">verified_user</span>
+                        <span>Encrypted Security Protocol • Verified Digital & Paper Audit</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        <span class="text-white/80 font-mono">ISO/IEC 27001</span>
+                    </div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">
+                        Submit Claim & Ownership Verification
+                    </h1>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Under the Campus Property Protection Policy, all claims undergo immediate review by
+                        certified custody officers to precisely match distinguishing marks — ensuring each
+                        item reaches its rightful owner quickly and privately.
+                    </p>
+                </div>
+
+                <div class="flex-shrink-0 flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
+                    <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-2xl">timer</span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-[11px] text-on-surface-variant block">Average Processing Time</span>
+                        <span class="text-base font-bold text-primary">Under 2 hours</span>
+                        <span class="text-[11px] text-secondary block">During working hours</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ─────────── LAYOUT: FORM + SIDEBAR ─────────── -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- ▬▬▬▬▬▬ MAIN FORM (8 cols) ▬▬▬▬▬▬ -->
+            <div class="lg:col-span-8 space-y-6">
+
+                <!-- ─────────── SELECTED ITEM SUMMARY ─────────── -->
+                <section class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between pb-3 mb-4 border-b border-surface-container">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+                            <h2 class="text-base font-semibold text-primary">Item to be Claimed</h2>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success-container text-on-success-container text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                            <span>Found & Secured in Central Locker</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 bg-surface-container-low rounded-lg p-4">
+                        <div class="sm:col-span-4 relative rounded-lg overflow-hidden h-44 sm:h-auto bg-surface-container-high">
+                            <img class="w-full h-full object-cover"
+                                 alt="Navy leather wallet"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5osFAf76y0MwuF4MprdIwintuayMQD2XKxlT7lWt4gCEfTVFpC_60DuWPmSuVjVGEGo2S0UbzH8sFsYyS3WDS_OdXf6LD5tWRZysxaH37StOPY2jBnnvxNTix1aP-K8uMMLhob3f_xiyGUbzLxYiK0a3UjOA36Ay7awZ8vlv8OIIneXJKiVCx6AkCtFrTIZzVCY5CVTACe0z-Q5Tr7csLRC7wsodaGruqTsQIjUpDsbp9doovCgm2JQ"/>
+                            <div class="absolute bottom-2 right-2 bg-primary/80 backdrop-blur-md px-2 py-0.5 rounded text-white font-mono text-[11px]">
+                                ATH-8840
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-8 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-[11px] font-medium">Wallets & Documents</span>
+                                    <span class="text-outline text-xs">•</span>
+                                    <span class="text-xs text-secondary">Deposit ID: ATH-8840-2025</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Navy Leather Wallet with ID & License</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-snug">
+                                    Found in the Central Library. Navy bi-fold wallet with a small silver brand logo
+                                    in the corner. Contains a national ID card, valid driver's license, bank card,
+                                    and paper receipts.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 pt-1 bg-white/70 p-3 rounded-lg">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg text-secondary">location_on</span>
+                                    <div class="flex flex-col min-w-0">
+                                        <span class="text-[11px] text-outline truncate">Location Found</span>
+                                        <span class="text-xs font-semibold text-on-surface truncate">Central Library — 2nd Floor</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg text-secondary">calendar_clock</span>
+                                    <div class="flex flex-col min-w-0">
+                                        <span class="text-[11px] text-outline truncate">Date Logged</span>
+                                        <span class="text-xs font-semibold text-on-surface truncate">Yesterday, 2:45 PM</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 col-span-2">
+                                    <span class="material-symbols-outlined text-lg text-primary">security</span>
+                                    <div class="flex flex-col min-w-0">
+                                        <span class="text-[11px] text-outline truncate">Current Custody Office</span>
+                                        <span class="text-xs font-semibold text-primary truncate">Central Custody — Student Affairs Lobby (Bldg 17)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─────────── CLAIM FORM ─────────── -->
+                <form id="ownership-claim-form" class="space-y-6" onsubmit="submitClaim(event)">
+
+                    <!-- Section 1: Verification Marks -->
+                    <section class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">1</span>
+                                    <h2 class="text-base font-semibold text-primary">Ownership Marks & Secret Verification</h2>
+                                </div>
+                                <p class="text-xs text-secondary mt-1 ml-8">
+                                    Describe contents and unpublicized features precisely. This information stays
+                                    fully confidential and is viewed only by the custody investigator.
+                                </p>
+                            </div>
+                            <span class="material-symbols-outlined text-2xl text-accent flex-shrink-0">lock</span>
+                        </div>
+
+                        <!-- Guided hint pills -->
+                        <div class="ml-8 flex flex-wrap gap-1.5 pt-1">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant text-xs">
+                                <span class="material-symbols-outlined text-sm text-primary">lightbulb</span>
+                                Full name on cards
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant text-xs">
+                                Card type & issuing bank
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant text-xs">
+                                Cash amounts or specific denominations
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant text-xs">
+                                Scratches, lining color, or private engraving
+                            </span>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="ml-8 space-y-2">
+                            <textarea id="verification-notes" rows="4" maxlength="600" required
+                                      oninput="document.getElementById('char-count').innerText = this.value.length"
+                                      placeholder="Example: Wallet contains a driver's license under Ahmed Al-Ghamdi, a Mada card from palestine Bank ending in 4190, and a hidden back pocket holding a small key and a short receipt from the Engineering cafeteria..."
+                                      class="w-full bg-surface-container-low rounded-lg p-4 text-sm text-on-surface placeholder:text-outline focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all leading-relaxed"></textarea>
+
+                            <div class="flex items-center justify-between text-xs text-outline">
+                                <span class="flex items-center gap-1 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-sm text-success">check_circle</span>
+                                    Mention at least two clear distinguishing marks
+                                </span>
+                                <span>
+                                    <span id="char-count" class="font-mono text-primary font-semibold">0</span> / 600 characters
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Optional serial / color -->
+                        <div class="ml-8 grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                            <div>
+                                <label class="block text-xs font-semibold text-on-surface mb-1" for="serial-number">
+                                    Serial Number or Last 4 Digits (Optional)
+                                </label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-lg">credit_card</span>
+                                    <input id="serial-number" type="text"
+                                           placeholder="Example: 4190 or a certified ID number"
+                                           class="w-full bg-surface-container-low rounded-lg pr-10 pl-4 py-2.5 text-xs text-on-surface focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-on-surface mb-1" for="color-accent">
+                                    Distinguishing Mark on Lining
+                                </label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-lg">palette</span>
+                                    <input id="color-accent" type="text"
+                                           placeholder="Example: Navy fabric lining with grey stripes"
+                                           class="w-full bg-surface-container-low rounded-lg pr-10 pl-4 py-2.5 text-xs text-on-surface focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: Upload Documents -->
+                    <section class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">2</span>
+                                    <h2 class="text-base font-semibold text-primary">Supporting Documents & Photos</h2>
+                                </div>
+                                <p class="text-xs text-secondary mt-1 ml-8">
+                                    Speed up verification by attaching supporting documents (purchase receipt,
+                                    previous photo of the item, bank notification, or a photo of your original report).
+                                </p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold">Recommended</span>
+                        </div>
+
+                        <!-- Upload dropzone -->
+                        <div class="ml-8">
+                            <label class="relative group cursor-pointer p-6 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center block">
+                                <input type="file" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"/>
+                                <div class="flex flex-col items-center justify-center gap-2 pointer-events-none">
+                                    <div class="w-14 h-14 rounded-full bg-surface-container-high group-hover:scale-105 transition-transform flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                                    </div>
+                                    <div class="space-y-0.5">
+                                        <span class="text-sm font-semibold text-primary block">
+                                            Drag & drop documents here, or click to browse
+                                        </span>
+                                        <span class="text-xs text-secondary block">
+                                            Supports PDF, JPG, PNG — max 15 MB per file
+                                        </span>
+                                    </div>
+                                    <button type="button"
+                                            class="mt-2 px-4 py-1.5 rounded-lg bg-surface-container-high text-primary text-xs font-semibold hover:bg-primary hover:text-white transition-colors">
+                                        Browse Files
+                                    </button>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Pre-loaded attachments -->
+                        <div class="ml-8 space-y-2 pt-1">
+                            <span class="text-xs text-on-surface-variant font-semibold block">Ready for pre-review (2 attachments):</span>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- File 1 -->
+                                <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <div class="w-10 h-10 rounded-md bg-secondary-container flex items-center justify-center text-primary flex-shrink-0">
+                                            <span class="material-symbols-outlined text-xl">picture_as_pdf</span>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-xs font-semibold text-on-surface truncate">National_ID_Card_Copy.pdf</p>
+                                            <span class="text-[11px] text-secondary block font-mono">1.2 MB • Ready for review</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-success text-lg">verified</span>
+                                        <button type="button" title="Remove file"
+                                                class="p-1 text-outline hover:text-error transition-colors">
+                                            <span class="material-symbols-outlined text-lg">close</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- File 2 -->
+                                <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <div class="w-10 h-10 rounded-md bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+                                            <span class="material-symbols-outlined text-xl">image</span>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-xs font-semibold text-on-surface truncate">Wallet_Purchase_Invoice.jpg</p>
+                                            <span class="text-[11px] text-secondary block font-mono">2.8 MB • Dated invoice</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-success text-lg">verified</span>
+                                        <button type="button" title="Remove file"
+                                                class="p-1 text-outline hover:text-error transition-colors">
+                                            <span class="material-symbols-outlined text-lg">close</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 3: Identity & Pickup -->
+                    <section class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">3</span>
+                            <h2 class="text-base font-semibold text-primary">Claimant Identity & Preferred Pickup</h2>
+                        </div>
+
+                        <!-- Verified identity card -->
+                        <div class="ml-8 p-4 rounded-lg bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">A</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-bold text-on-surface">Ahmed bin Turki Al-Ghamdi</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-success-container text-on-success-container text-[11px] font-semibold flex items-center gap-0.5">
+                                            <span class="material-symbols-outlined text-sm">check</span>
+                                            Verified via Nafath ID
+                                        </span>
+                                    </div>
+                                    <span class="text-xs text-secondary">
+                                        Regular Student • Computer Science College (ID: 442019823)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="text-left sm:text-right font-mono text-[11px] text-secondary bg-white px-3 py-1.5 rounded">
+                                a.alghamdi@ksu.edu.sa
+                            </div>
+                        </div>
+
+                        <!-- Pickup selection -->
+                        <div class="ml-8 space-y-3">
+                            <label class="block text-xs font-bold text-primary">Select preferred pickup desk:</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <label class="relative flex items-start gap-3 p-4 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-surface-container-high has-[:checked]:ring-2 has-[:checked]:ring-primary/30">
+                                    <input type="radio" name="pickup-station" value="main-security" checked class="mt-1 accent-primary w-4 h-4 cursor-pointer"/>
+                                    <div class="space-y-1">
+                                        <span class="text-sm font-bold text-primary block">Central Custody Office (Bldg 17)</span>
+                                        <p class="text-xs text-secondary leading-snug">
+                                            Student Affairs Lobby — shared services hall, open until 4:00 PM.
+                                        </p>
+                                        <span class="inline-block text-[11px] text-success font-semibold">
+                                            Current item location (immediate release after approval)
+                                        </span>
+                                    </div>
+                                </label>
+
+                                <label class="relative flex items-start gap-3 p-4 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-surface-container-high has-[:checked]:ring-2 has-[:checked]:ring-primary/30">
+                                    <input type="radio" name="pickup-station" value="library-center" class="mt-1 accent-primary w-4 h-4 cursor-pointer"/>
+                                    <div class="space-y-1">
+                                        <span class="text-sm font-bold text-primary block">Central Library Custody Point (1st Floor)</span>
+                                        <p class="text-xs text-secondary leading-snug">
+                                            Next to the main gate — requires custody transfer (adds ~3 hours).
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Integrity pledge -->
+                        <div class="ml-8 pt-1">
+                            <label class="flex items-start gap-3 p-4 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer">
+                                <input type="checkbox" required class="mt-1 accent-primary w-5 h-5 rounded cursor-pointer flex-shrink-0"/>
+                                <span class="text-xs text-on-surface leading-relaxed">
+                                    <strong>Integrity & Legal Responsibility Pledge:</strong> I confirm, in my official
+                                    capacity, that all information and marks provided to prove ownership are accurate.
+                                    I understand that filing a false claim exposes the offender to administrative
+                                    investigation under university disciplinary regulations and property-protection laws.
+                                </span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <!-- Submit Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <button type="submit"
+                                class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+                            <span class="material-symbols-outlined text-xl">send_time_extension</span>
+                            <span>Submit Claim & Verify Ownership</span>
+                        </button>
+                        <button type="button" onclick="window.history.back()"
+                                class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface text-sm transition-colors text-center">
+                            Cancel & Return to Inventory
+                        </button>
+                    </div>
+
+                    <!-- Success Banner (hidden) -->
+                    <div id="success-toast" class="hidden p-4 rounded-xl bg-success-container text-on-success-container shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-2xl">task_alt</span>
+                            <div>
+                                <h4 class="text-sm font-bold">Claim submitted successfully! Reference: #CLM-2025-992</h4>
+                                <p class="text-xs mt-0.5">
+                                    A custody officer at Bldg 17 is matching your data. You'll receive an
+                                    instant notification and pickup QR code via the app and your university email.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ▬▬▬▬▬▬ SIDEBAR (4 cols) ▬▬▬▬▬▬ -->
+            <aside class="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
+
+                <!-- Workflow Card -->
+                <div class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-xl">alt_route</span>
+                        <h3 class="text-base font-bold">Recovery Workflow</h3>
+                    </div>
+
+                    <div class="space-y-4 relative pl-4">
+                        <!-- Timeline line -->
+                        <div class="absolute left-2 top-2 bottom-2 w-0.5 bg-surface-container-high"></div>
+
+                        <div class="relative flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold z-10 -ml-2.5">1</div>
+                            <div class="space-y-0.5 ml-2">
+                                <span class="text-xs font-bold text-primary block">Evidence review & matching</span>
+                                <p class="text-xs text-secondary">
+                                    The investigator compares your secret description against the item's actual record within 120 working minutes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-[10px] font-bold z-10 -ml-2.5">2</div>
+                            <div class="space-y-0.5 ml-2">
+                                <span class="text-xs font-bold text-on-surface block">Digital release permit issued</span>
+                                <p class="text-xs text-secondary">
+                                    An encrypted QR code is issued with the release authorization and pickup window.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-[10px] font-bold z-10 -ml-2.5">3</div>
+                            <div class="space-y-0.5 ml-2">
+                                <span class="text-xs font-bold text-on-surface block">Physical handover & live check</span>
+                                <p class="text-xs text-secondary">
+                                    Visit the Bldg 17 custody office with your university ID or Nafath app to receive the item.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-2">
+                        <span class="material-symbols-outlined text-lg text-primary flex-shrink-0">verified_user</span>
+                        <span class="text-xs text-on-surface-variant">
+                            All items are tracked by central surveillance cameras at the handover office to protect everyone's rights.
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Custody Office Contacts -->
+                <div class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-xl">contact_phone</span>
+                        <h3 class="text-base font-bold">Custody Handover Office</h3>
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                            <span class="text-secondary">Location:</span>
+                            <span class="font-semibold text-primary">Bldg 17 — Student Lobby</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                            <span class="text-secondary">Working hours:</span>
+                            <span class="text-on-surface">8:00 AM – 4:00 PM (Sun–Thu)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                            <span class="text-secondary">Direct phone:</span>
+                            <span class="font-mono font-bold text-primary">011-467-2401</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                            <span class="text-secondary">Security hotline:</span>
+                            <span class="font-mono font-bold text-error">011-4677777</span>
+                        </div>
+                    </div>
+
+                    <!-- Map thumbnail -->
+                    <div class="space-y-1.5 pt-1">
+                        <span class="text-xs text-on-surface-variant font-semibold block">Office location on campus map:</span>
+                        <div class="w-full h-36 rounded-lg bg-surface-container-high flex items-end p-2 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-5xl text-secondary/40">map</span>
+                            </div>
+                            <div class="relative bg-primary/90 text-white backdrop-blur-md px-2.5 py-1 rounded text-[11px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">pin_drop</span>
+                                <span>Bldg 17 • Ground Floor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <a href="#" class="text-xs text-secondary hover:text-primary transition-colors flex items-center justify-center gap-1">
+                            <span>Browse the lost property policy guide</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FAQ mini -->
+                <div class="bg-surface-container-low rounded-xl p-4 space-y-2">
+                    <div class="flex items-center gap-2 text-on-surface">
+                        <span class="material-symbols-outlined text-lg text-secondary">help_outline</span>
+                        <span class="text-xs font-bold">What if the description doesn't match?</span>
+                    </div>
+                    <p class="text-xs text-secondary leading-relaxed">
+                        If ownership cannot be proven remotely, you'll be asked to visit the custody officer in
+                        person to provide additional on-site evidence before sealed contents are opened.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-primary">Athar</h3>
+                <p class="text-xs text-secondary mt-1">University Lost & Found Platform</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Terms</a>
+                <a href="#" class="text-sm text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <p class="text-xs text-secondary text-center md:text-right">
+                © 2026 Athar Platform • All Rights Reserved<br/>
+                <span class="text-[11px] opacity-70">Deanship of E-Transactions & Smart Campus</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    function submitClaim(event) {
+        event.preventDefault();
+
+        const notes    = document.getElementById("verification-notes").value.trim();
+        const checkbox = event.target.querySelector('input[type="checkbox"]');
+
+        if (!notes) {
+            alert("Please describe at least two distinguishing marks.");
+            return;
+        }
+
+        if (notes.length < 30) {
+            alert("The description must be at least 30 characters long.");
+            return;
+        }
+
+        if (!checkbox.checked) {
+            alert("Please accept the Integrity & Legal Responsibility Pledge.");
+            return;
+        }
+
+        // Generate mock reference
+        const refNumber = "CLM-" + new Date().getFullYear() + "-" + Math.floor(100 + Math.random() * 900);
+
+        // Update the reference in the success toast
+        const toast = document.getElementById("success-toast");
+        toast.querySelector("h4").textContent =
+            "Claim submitted successfully! Reference: #" + refNumber;
+        toast.classList.remove("hidden");
+
+        // Scroll to toast
+        toast.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // Optional: disable submit button
+        event.target.querySelector('button[type="submit"]').disabled = true;
+        event.target.querySelector('button[type="submit"]').classList.add("opacity-60", "cursor-not-allowed");
+    }
+</script>
+
+</body>
+</html>
