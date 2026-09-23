@@ -60,58 +60,7 @@
 </head>
 
 <body class="bg-surface text-on-surface font-sans antialiased">
-
-<!-- ══════════════════════════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════════════════════════ -->
-<!--<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
-
-        <a href="#" class="flex items-center gap-2 shrink-0">
-            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
-            </div>
-            <div class="hidden sm:flex flex-col leading-tight">
-                <span class="text-lg font-bold text-primary">Athar</span>
-                <span class="text-[11px] text-secondary">Lost & Found</span>
-            </div>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Home</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Inventory</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Campus Map</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Support</a>
-        </nav>
-
-        <div class="flex items-center gap-2 sm:gap-4">
-            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" aria-label="Notifications">
-                <span class="material-symbols-outlined text-2xl">notifications</span>
-                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span>
-            </button>
-            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
-                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
-                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
-            </button>
-            <div class="flex items-center gap-2 pl-2">
-                <div class="hidden md:flex flex-col text-right">
-                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
-                    <span class="text-xs text-secondary">Student • Computer Science</span>
-                </div>
-                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white text-lg">person</span>
-                </div>
-            </div>
-        </div>
-    </div> 
-</header> -->
-
-<!-- ══════════════════════════════════════════════════════════════
-     MAIN
-══════════════════════════════════════════════════════════════ -->
-<main class="w-full pt-20 bg-surface">
+<main class="w-full pt-15 bg-surface">
     <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
 
         <!-- ─────────── PAGE HEADER BANNER ─────────── -->
@@ -183,7 +132,7 @@
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-[11px] font-medium">Wallets & Documents</span>
                                     <span class="text-outline text-xs">•</span>
-                                    <span class="text-xs text-secondary">Deposit ID: ATH-8840-2025</span>
+                                    <span class="text-xs text-secondary">Deposit ID: ATH-8840-2026</span>
                                 </div>
                                 <h3 class="text-base font-bold text-primary">Navy Leather Wallet with ID & License</h3>
                                 <p class="text-xs text-on-surface-variant mt-1 leading-snug">
@@ -260,7 +209,7 @@
                         <div class="ml-8 space-y-2">
                             <textarea id="verification-notes" rows="4" maxlength="600" required
                                       oninput="document.getElementById('char-count').innerText = this.value.length"
-                                      placeholder="Example: Wallet contains a driver's license under Ahmed Al-Ghamdi, a Mada card from palestine Bank ending in 4190, and a hidden back pocket holding a small key and a short receipt from the Engineering cafeteria..."
+                                      placeholder="Example: Wallet contains a driver's license under Ahmed Ali, a Mada card from palestine Bank ending in 4190, and a hidden back pocket holding a small key and a short receipt from the Engineering cafeteria..."
                                       class="w-full bg-surface-container-low rounded-lg p-4 text-sm text-on-surface placeholder:text-outline focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all leading-relaxed"></textarea>
 
                             <div class="flex items-center justify-between text-xs text-outline">
@@ -274,19 +223,8 @@
                             </div>
                         </div>
 
-                        <!-- Optional serial / color -->
                         <div class="ml-8 grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-                            <div>
-                                <label class="block text-xs font-semibold text-on-surface mb-1" for="serial-number">
-                                    Serial Number or Last 4 Digits (Optional)
-                                </label>
-                                <div class="relative">
-                                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-lg">credit_card</span>
-                                    <input id="serial-number" type="text"
-                                           placeholder="Example: 4190 or a certified ID number"
-                                           class="w-full bg-surface-container-low rounded-lg pr-10 pl-4 py-2.5 text-xs text-on-surface focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"/>
-                                </div>
-                            </div>
+                            
                             <div>
                                 <label class="block text-xs font-semibold text-on-surface mb-1" for="color-accent">
                                     Distinguishing Mark on Lining
@@ -301,7 +239,6 @@
                         </div>
                     </section>
 
-                    <!-- Section 2: Upload Documents -->
                     <section class="bg-white rounded-xl p-6 shadow-sm space-y-5">
                         <div class="flex items-start justify-between gap-3">
                             <div>
@@ -317,7 +254,6 @@
                             <span class="px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold">Recommended</span>
                         </div>
 
-                        <!-- Upload dropzone -->
                         <div class="ml-8">
                             <label class="relative group cursor-pointer p-6 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center block">
                                 <input type="file" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"/>
@@ -366,7 +302,6 @@
                                     </div>
                                 </div>
 
-                                <!-- File 2 -->
                                 <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
                                     <div class="flex items-center gap-3 min-w-0">
                                         <div class="w-10 h-10 rounded-md bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
@@ -389,20 +324,18 @@
                         </div>
                     </section>
 
-                    <!-- Section 3: Identity & Pickup -->
                     <section class="bg-white rounded-xl p-6 shadow-sm space-y-5">
                         <div class="flex items-center gap-2">
                             <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">3</span>
                             <h2 class="text-base font-semibold text-primary">Claimant Identity & Preferred Pickup</h2>
                         </div>
 
-                        <!-- Verified identity card -->
                         <div class="ml-8 p-4 rounded-lg bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">A</div>
                                 <div>
                                     <div class="flex items-center gap-2">
-                                        <span class="text-sm font-bold text-on-surface">Ahmed bin Turki Al-Ghamdi</span>
+                                        <span class="text-sm font-bold text-on-surface">Ahmed Ali</span>
                                         <span class="px-2 py-0.5 rounded-full bg-success-container text-on-success-container text-[11px] font-semibold flex items-center gap-0.5">
                                             <span class="material-symbols-outlined text-sm">check</span>
                                             Verified via Nafath ID
@@ -414,11 +347,10 @@
                                 </div>
                             </div>
                             <div class="text-left sm:text-right font-mono text-[11px] text-secondary bg-white px-3 py-1.5 rounded">
-                                a.alghamdi@ksu.edu.sa
+                                a.ali@ksu.edu.sa
                             </div>
                         </div>
 
-                        <!-- Pickup selection -->
                         <div class="ml-8 space-y-3">
                             <label class="block text-xs font-bold text-primary">Select preferred pickup desk:</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -447,7 +379,6 @@
                             </div>
                         </div>
 
-                        <!-- Integrity pledge -->
                         <div class="ml-8 pt-1">
                             <label class="flex items-start gap-3 p-4 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer">
                                 <input type="checkbox" required class="mt-1 accent-primary w-5 h-5 rounded cursor-pointer flex-shrink-0"/>
@@ -461,25 +392,25 @@
                         </div>
                     </section>
 
-                    <!-- Submit Actions -->
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <button type="submit"
                                 class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
                             <span class="material-symbols-outlined text-xl">send_time_extension</span>
                             <span>Submit Claim & Verify Ownership</span>
                         </button>
+                       <a href="search inventory.html">
                         <button type="button" onclick="window.history.back()"
                                 class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface text-sm transition-colors text-center">
                             Cancel & Return to Inventory
                         </button>
+                        </a>
                     </div>
 
-                    <!-- Success Banner (hidden) -->
                     <div id="success-toast" class="hidden p-4 rounded-xl bg-success-container text-on-success-container shadow-lg">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-2xl">task_alt</span>
                             <div>
-                                <h4 class="text-sm font-bold">Claim submitted successfully! Reference: #CLM-2025-992</h4>
+                                <h4 class="text-sm font-bold">Claim submitted successfully! Reference: #CLM-2026-992</h4>
                                 <p class="text-xs mt-0.5">
                                     A custody officer at Bldg 17 is matching your data. You'll receive an
                                     instant notification and pickup QR code via the app and your university email.
@@ -490,10 +421,8 @@
                 </form>
             </div>
 
-            <!-- ▬▬▬▬▬▬ SIDEBAR (4 cols) ▬▬▬▬▬▬ -->
             <aside class="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
 
-                <!-- Workflow Card -->
                 <div class="bg-white rounded-xl p-6 shadow-sm space-y-5">
                     <div class="flex items-center gap-2 text-primary">
                         <span class="material-symbols-outlined text-xl">alt_route</span>
@@ -501,7 +430,6 @@
                     </div>
 
                     <div class="space-y-4 relative pl-4">
-                        <!-- Timeline line -->
                         <div class="absolute left-2 top-2 bottom-2 w-0.5 bg-surface-container-high"></div>
 
                         <div class="relative flex items-start gap-3">
@@ -569,7 +497,6 @@
                         </div>
                     </div>
 
-                    <!-- Map thumbnail -->
                     <div class="space-y-1.5 pt-1">
                         <span class="text-xs text-on-surface-variant font-semibold block">Office location on campus map:</span>
                         <div class="w-full h-36 rounded-lg bg-surface-container-high flex items-end p-2 relative overflow-hidden">
@@ -607,9 +534,6 @@
     </div>
 </main>
 
-<!-- ══════════════════════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════════════════════ -->
 <footer class="w-full bg-surface-container-low mt-12">
     <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">

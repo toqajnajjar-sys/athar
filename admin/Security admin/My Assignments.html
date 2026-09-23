@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Assigned Found Items — Athar Security</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                        secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                        "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                        success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                        surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                        "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                        "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                        "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                        error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                        accent:"#cd911a","accent-fixed":"#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+
+        @keyframes scanLine {
+            0%   { top: 10%; }
+            50%  { top: 90%; }
+            100% { top: 10%; }
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <a href="#" class="flex items-center gap-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Security Panel</span>
+            </div>
+            <span class="hidden md:inline-block ml-2 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wide">
+                Security
+            </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="Security Dashboard.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Dashboard</a>
+            <a href="My Assignments.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">My Assignments</a>
+            </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="security-notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2 border-l border-surface-container">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Sarah Al-Qahtani</span>
+                    <span class="text-xs text-secondary">Security Officer</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">shield_person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── PAGE HEADER ─────────── -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="security-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">Assigned Found Items</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">Assigned Found Items</h1>
+                    <p class="text-sm text-secondary mt-1">
+                        Items in your custody — confirm receipt and manage handovers.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="openQRScanner()" class="flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+                        <span>Scan QR</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── STATS ─────────── -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">Total Assigned</div>
+                <div class="text-2xl font-bold text-primary">5</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-accent">
+                <div class="text-xs text-secondary mb-1">Pending Receipt</div>
+                <div class="text-2xl font-bold text-accent">2</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">In My Custody</div>
+                <div class="text-2xl font-bold text-primary">3</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-success">
+                <div class="text-xs text-secondary mb-1">Handed Over</div>
+                <div class="text-2xl font-bold text-success">12</div>
+            </div>
+        </section>
+
+        <!-- ─────────── FILTERS + SEARCH ─────────── -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm flex flex-col lg:flex-row gap-3">
+
+                <!-- Search -->
+                <div class="relative flex-1">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">search</span>
+                    <input id="itemSearch" type="text" oninput="applyItemFilters()"
+                           placeholder="Search by ID, item name, or location..."
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+
+                <!-- Status Pills -->
+                <div class="flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-xl overflow-x-auto">
+                    <button id="if-all" onclick="filterItems('all')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap">
+                        All <span class="opacity-70">(5)</span>
+                    </button>
+                    <button id="if-pending" onclick="filterItems('pending')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-accent mr-1"></span>
+                        Pending <span class="opacity-70">(2)</span>
+                    </button>
+                    <button id="if-custody" onclick="filterItems('custody')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-primary mr-1"></span>
+                        In Custody <span class="opacity-70">(3)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── ITEMS LIST ─────────── -->
+        <section id="itemsList" class="space-y-4">
+
+            <!-- ═══ ITEM 1: PENDING RECEIPT (Urgent) ═══ -->
+            <article data-status="pending" data-search="ath-8850 macbook air space gray central library"
+                     class="item-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all ring-2 ring-accent/30">
+
+                <!-- Header bar -->
+                <div class="bg-gradient-to-r from-accent to-accent/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                        <div>
+                            <div class="text-sm font-bold">Item #ATH-8850</div>
+                            <div class="text-[11px] text-white/80">Assigned 2 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">priority_high</span>
+                        Awaiting Receipt
+                    </span>
+                </div>
+
+                <!-- Body -->
+                <div class="p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+
+                        <!-- Image -->
+                        <div class="shrink-0 w-full md:w-40 h-40 rounded-xl overflow-hidden bg-surface-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqHkVzz7xnT8fQWJEsQ7tIj24k29dRGhrybb4mrczHVPDqH7xx9wVm5z0ODUAxn5H-BMLaQSCwO7-Fx3KHk2zGbZeMCjNwgdr9sfvzHXX3H9fWzDXNZhwMyB_pdLVQka7Iopvkz6WEnfb9uPBZrUNJ_bxyHm21pmKMofH3JI5LDkTqIYKAMtBNSIkxzPSjn1wIaVzKQnLPVo9Dtd8giP24Ksc1FBjl8hU0wmgN1ZPNcqhHiV5pG4ONJw"
+                                 alt="MacBook" class="w-full h-full object-cover"/>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="flex-1 min-w-0 space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-primary-fixed text-primary text-[10px] font-bold uppercase">Electronics</span>
+                                    <span class="text-[11px] text-secondary">•</span>
+                                    <span class="text-[11px] text-secondary">Apple</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">MacBook Air M2 — Space Gray</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed line-clamp-2">
+                                    13-inch laptop with a clear protective case and a Hackathon 2024 sticker on the lid.
+                                </p>
+                            </div>
+
+                            <!-- Item Details Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">qr_code_2</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reference</div>
+                                        <div class="font-mono font-semibold text-primary">#ATH-8850</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Found at</div>
+                                        <div class="font-semibold text-on-surface truncate">Central Library — 2nd Floor</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">person</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reported by</div>
+                                        <div class="font-semibold text-on-surface truncate">Sarah Al-Otaibi</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">calendar_today</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Assignment date</div>
+                                        <div class="font-semibold text-on-surface">Mar 15, 2026 — 8:15 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Receipt Status Banner -->
+                    <div class="mt-4 p-3 rounded-xl bg-accent-fixed/20 border border-accent/30 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-accent text-xl shrink-0">schedule</span>
+                        <div class="flex-1">
+                            <div class="text-sm font-bold text-on-surface">Receipt Pending</div>
+                            <p class="text-xs text-on-surface-variant mt-0.5">
+                                Please collect this item from the found location and confirm receipt.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button onclick="confirmReceipt(this, 'ATH-8850')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Confirm Receipt
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Full Details
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">flag</span>
+                            Report Issue
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ ITEM 2: PENDING RECEIPT ═══ -->
+            <article data-status="pending" data-search="ath-8842 wallet blue leather central library"
+                     class="item-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+
+                <div class="bg-gradient-to-r from-accent to-accent/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                        <div>
+                            <div class="text-sm font-bold">Item #ATH-8842</div>
+                            <div class="text-[11px] text-white/80">Assigned 4 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide">Awaiting Receipt</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        <div class="shrink-0 w-full md:w-40 h-40 rounded-xl overflow-hidden bg-surface-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
+                                 alt="Wallet" class="w-full h-full object-cover"/>
+                        </div>
+
+                        <div class="flex-1 min-w-0 space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase">Wallets</span>
+                                    <span class="text-[11px] text-secondary">•</span>
+                                    <span class="text-[11px] text-secondary">Montblanc</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Blue Leather Wallet</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed line-clamp-2">
+                                    Navy bi-fold wallet with a small silver brand logo in the corner.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">qr_code_2</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reference</div>
+                                        <div class="font-mono font-semibold text-primary">#ATH-8842</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Found at</div>
+                                        <div class="font-semibold text-on-surface truncate">Central Library — 1st Floor</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">person</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reported by</div>
+                                        <div class="font-semibold text-on-surface truncate">Nouf Al-Harbi</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">calendar_today</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Assignment date</div>
+                                        <div class="font-semibold text-on-surface">Mar 15, 2026 — 6:30 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button onclick="confirmReceipt(this, 'ATH-8842')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Confirm Receipt
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Full Details
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ ITEM 3: IN CUSTODY ═══ -->
+            <article data-status="custody" data-search="ath-8770 apple watch grey band sports complex"
+                     class="item-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">inventory</span>
+                        <div>
+                            <div class="text-sm font-bold">Item #ATH-8770</div>
+                            <div class="text-[11px] text-white/80">In custody since Mar 5, 2026</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">verified</span>
+                        In Custody
+                    </span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        <div class="shrink-0 w-full md:w-40 h-40 rounded-xl overflow-hidden bg-surface-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVomfYU848SrkOK2OPbZGFAOKGyxZs08TWS7ApG-OIdu_W51Ai3ZHNyFVtHRRlGwxt3XFxOFe-94pJGFZXcZ1N9iIiIQRRw76xoeAeVobSL23UCqbN-FLFeIwf2HF1CnWuTpTeduta14U215j8QWs3CithW6a7G3wvzHvMVfIYoH2dZxiDR98f2oenW4d9bzYnl2txVDLFfVIvwsKY9Hy4PH5u19gpgf1bqn4sUzxYrMxFYpncQglS6g"
+                                 alt="Watch" class="w-full h-full object-cover"/>
+                        </div>
+
+                        <div class="flex-1 min-w-0 space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-primary-fixed text-primary text-[10px] font-bold uppercase">Electronics</span>
+                                    <span class="text-[11px] text-secondary">•</span>
+                                    <span class="text-[11px] text-secondary">Apple</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Apple Watch with Grey Band</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed line-clamp-2">
+                                    44mm Apple Watch with grey sport band, minor scratches on the screen.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">qr_code_2</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reference</div>
+                                        <div class="font-mono font-semibold text-primary">#ATH-8770</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Found at</div>
+                                        <div class="font-semibold text-on-surface truncate">Sports Complex — Gym</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">person</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Owner</div>
+                                        <div class="font-semibold text-on-surface truncate">Ahmed Al-Ghamdi</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">verified_user</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Claim approved</div>
+                                        <div class="font-semibold text-success">#CLM-2026-901</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Handover Ready Banner -->
+                    <div class="mt-4 p-3 rounded-xl bg-success-container/40 border border-success/30 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-success text-xl shrink-0">task_alt</span>
+                        <div class="flex-1">
+                            <div class="text-sm font-bold text-on-success-container">Ready for Handover</div>
+                            <p class="text-xs text-on-success-container/80 mt-0.5">
+                                Owner's claim approved. Scan the QR code when they arrive for pickup.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button onclick="openQRScanner('CLM-2026-901', this)"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+                            Scan & Handover
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Details
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">history</span>
+                            Timeline
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ ITEM 4: IN CUSTODY ═══ -->
+            <article data-status="custody" data-search="ath-8802 casio calculator engineering hall"
+                     class="item-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">inventory</span>
+                        <div>
+                            <div class="text-sm font-bold">Item #ATH-8802</div>
+                            <div class="text-[11px] text-white/80">In custody since Mar 5, 2026</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">verified</span>
+                        In Custody
+                    </span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        <div class="shrink-0 w-full md:w-40 h-40 rounded-xl overflow-hidden bg-surface-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJb4DVnMJWqJNvZHvys2fNno9IxlIc573fagKL6E_VA66mnDGft7CVsbBF3ZYqhioREv1sIxuYMzNg7F3zOGbRFP4oHhr4D06sohFsyJwVyx0AwZIUrgzDr_MqI442DYZOMs2AzZ8XbwtNiYTA7qb4EWgYbmP0DCghxqxORMOvQ54f2X925Hu42_XIB_p3eoW3iGpf9vqPPwLpBZWY6m8ZhLlI3U8siIyM-aucyV7STvIzfxjc8ZCzzw"
+                                 alt="Calculator" class="w-full h-full object-cover"/>
+                        </div>
+
+                        <div class="flex-1 min-w-0 space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-surface-container text-secondary text-[10px] font-bold uppercase">Academic</span>
+                                    <span class="text-[11px] text-secondary">•</span>
+                                    <span class="text-[11px] text-secondary">Casio</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Casio fx-991EX Scientific Calculator</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed line-clamp-2">
+                                    Advanced scientific calculator with a small sticker reading (A.S) on the back.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">qr_code_2</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reference</div>
+                                        <div class="font-mono font-semibold text-primary">#ATH-8802</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Found at</div>
+                                        <div class="font-semibold text-on-surface truncate">Engineering Hall — Room 3A</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">person</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reported by</div>
+                                        <div class="font-semibold text-on-surface truncate">Student</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">calendar_today</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Assignment date</div>
+                                        <div class="font-semibold text-on-surface">Mar 5, 2026 — 10:00 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Details
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">history</span>
+                            Timeline
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══ ITEM 5: IN CUSTODY ═══ -->
+            <article data-status="custody" data-search="ath-8839 airpods max silver sports"
+                     class="item-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">inventory</span>
+                        <div>
+                            <div class="text-sm font-bold">Item #ATH-8839</div>
+                            <div class="text-[11px] text-white/80">In custody since Mar 10, 2026</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">verified</span>
+                        In Custody
+                    </span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        <div class="shrink-0 w-full md:w-40 h-40 rounded-xl overflow-hidden bg-surface-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVQfxH-uOAXvWcI7lTmtfLJ8907gAerx7vdoLVVz_gPMZ1CimmkRuThna8poOS-_d4tklfzo01Gf9lSCmM-G9Xq_Q6ZYKCvIhD_5B51hWfjWVJNwPA2uUWq1vEmbmDkvDCMi-3l_Y4QoKVuqXeW99ZWd4zzVlbOCIbW2hwTfCXqr3k5s5nbUHGYyP_AHOZdDQq-e5ZG-_Eqwde0GXMvHV4gzP0BgnUav8B1Rr1XuDBHRLrRHcpUeSDSg"
+                                 alt="AirPods" class="w-full h-full object-cover"/>
+                        </div>
+
+                        <div class="flex-1 min-w-0 space-y-3">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-primary-fixed text-primary text-[10px] font-bold uppercase">Electronics</span>
+                                    <span class="text-[11px] text-secondary">•</span>
+                                    <span class="text-[11px] text-secondary">Apple</span>
+                                </div>
+                                <h3 class="text-base font-bold text-primary">Silver Apple AirPods Max</h3>
+                                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed line-clamp-2">
+                                    Wireless over-ear headphones inside the original magnetic Smart Case.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">qr_code_2</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reference</div>
+                                        <div class="font-mono font-semibold text-primary">#ATH-8839</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Found at</div>
+                                        <div class="font-semibold text-on-surface truncate">Sports Hall — Training Room 2</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">person</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Reported by</div>
+                                        <div class="font-semibold text-on-surface truncate">Staff</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs">
+                                    <span class="material-symbols-outlined text-secondary text-base">calendar_today</span>
+                                    <div>
+                                        <div class="text-[10px] text-secondary">Assignment date</div>
+                                        <div class="font-semibold text-on-surface">Mar 10, 2026 — 9:00 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Details
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">history</span>
+                            Timeline
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">inventory_2</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">No items found</h3>
+                <p class="text-xs text-secondary">Try a different filter or search term.</p>
+            </div>
+        </section>
+
+        <!-- ─────────── PAGINATION ─────────── -->
+        <section class="mt-6 bg-white rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs text-secondary">
+                Showing <strong class="text-primary">5</strong> of <strong class="text-primary">5</strong> items
+            </div>
+
+            <nav class="flex items-center gap-1.5">
+                <button disabled class="px-3 py-2 rounded-lg bg-surface-container-low text-secondary text-xs font-medium disabled:opacity-40">
+                    <span class="material-symbols-outlined text-base inline-block align-middle">chevron_left</span>
+                </button>
+                <button class="w-9 h-9 rounded-lg bg-primary text-white text-xs font-semibold">1</button>
+                <button disabled class="px-3 py-2 rounded-lg bg-surface-container-low text-secondary text-xs font-medium disabled:opacity-40">
+                    <span class="material-symbols-outlined text-base inline-block align-middle">chevron_right</span>
+                </button>
+            </nav>
+        </section>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     QR SCANNER MODAL
+══════════════════════════════════════════════════════════════ -->
+<div id="qrModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/70 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="qrBox" class="relative w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-all duration-300">
+
+        <div class="px-6 py-4 border-b border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">qr_code_scanner</span>
+                <div>
+                    <h3 class="text-base font-bold text-primary">Scan Pickup QR</h3>
+                    <p id="qrClaimId" class="text-[11px] text-secondary">Claim #CLM-2026-901</p>
+                </div>
+            </div>
+            <button onclick="closeQRScanner()" class="p-1.5 rounded-full text-secondary hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+
+        <div class="p-6">
+            <div class="relative w-full aspect-square max-w-xs mx-auto rounded-2xl bg-primary/95 overflow-hidden border-4 border-primary">
+                <div class="absolute top-3 left-3 w-8 h-8 border-t-4 border-l-4 border-success rounded-tl-lg"></div>
+                <div class="absolute top-3 right-3 w-8 h-8 border-t-4 border-r-4 border-success rounded-tr-lg"></div>
+                <div class="absolute bottom-3 left-3 w-8 h-8 border-b-4 border-l-4 border-success rounded-bl-lg"></div>
+                <div class="absolute bottom-3 right-3 w-8 h-8 border-b-4 border-r-4 border-success rounded-br-lg"></div>
+                <div class="absolute left-4 right-4 h-0.5 bg-success shadow-[0_0_15px_3px_rgba(46,125,91,0.8)]" style="animation: scanLine 2s ease-in-out infinite;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white/40 text-[120px]">qr_code_2</span>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-secondary mt-4">
+                Align the QR code within the frame
+            </p>
+
+            <div class="grid grid-cols-2 gap-2 mt-5">
+                <button onclick="simulateScanSuccess()" class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-base">check_circle</span>
+                    Simulate Success
+                </button>
+                <button onclick="simulateScanFail()" class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-base">cancel</span>
+                    Simulate Fail
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-base font-bold text-primary">Athar Security</h3>
+                <p class="text-[11px] text-secondary mt-0.5">Officer Portal v1.0</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Guidelines</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Policies</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Contact IT</a>
+            </div>
+            <p class="text-[11px] text-secondary text-center md:text-right">
+                © 2026 Athar Platform • Security v1.0
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    let currentFilter = "all";
+    let activeClaimId = null;
+    let activeHandoverCard = null;
+
+    /* ═══ Filter Items ═══ */
+    function filterItems(status) {
+        currentFilter = status;
+        applyItemFilters();
+        updateFilterPills(status);
+    }
+
+    function applyItemFilters() {
+        const search = document.getElementById("itemSearch").value.trim().toLowerCase();
+        const rows = document.querySelectorAll(".item-row");
+        let visible = 0;
+
+        rows.forEach(row => {
+            const matchStatus = (currentFilter === "all") || (row.dataset.status === currentFilter);
+            const searchData = (row.dataset.search || "").toLowerCase();
+            const matchSearch = !search || searchData.includes(search);
+
+            if (matchStatus && matchSearch) {
+                row.style.display = "";
+                visible++;
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        document.getElementById("emptyState").classList.toggle("hidden", visible > 0);
+    }
+
+    function updateFilterPills(status) {
+        ["all","pending","custody"].forEach(s => {
+            const btn = document.getElementById("if-" + s);
+            if (s === status) {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap";
+            } else {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap";
+            }
+        });
+    }
+
+    /* ═══ Confirm Receipt ═══ */
+    function confirmReceipt(btn, itemId) {
+        if (!confirm(`Confirm receipt for item ${itemId}?\n\nYou will become responsible for this item.`)) return;
+
+        const card = btn.closest(".item-row");
+
+        // Animate
+        card.style.transition = "all 0.4s ease";
+        card.style.opacity = "0";
+        card.style.transform = "translateX(-30px)";
+
+        setTimeout(() => {
+            card.remove();
+            applyItemFilters();
+            updateStats();
+        }, 400);
+
+        showToast(`✅ Receipt confirmed for ${itemId} — Item now in your custody`, "success");
+    }
+
+    /* ═══ Update Stats ═══ */
+    function updateStats() {
+        const rows = document.querySelectorAll(".item-row");
+        const pending = [...rows].filter(r => r.dataset.status === "pending").length;
+        const custody = [...rows].filter(r => r.dataset.status === "custody").length;
+
+        // Update stat cards
+        const stats = document.querySelectorAll(".grid.grid-cols-2.lg\\:grid-cols-4 > div");
+        if (stats.length >= 4) {
+            stats[0].querySelector(".text-2xl").textContent = rows.length;
+            stats[1].querySelector(".text-2xl").textContent = pending;
+            stats[2].querySelector(".text-2xl").textContent = custody;
+        }
+    }
+
+    /* ═══ QR Scanner ═══ */
+    function openQRScanner(claimId, cardElement) {
+        activeClaimId = claimId || null;
+        activeHandoverCard = cardElement || null;
+        document.getElementById("qrClaimId").textContent = claimId ? "Claim #" + claimId : "Scan any active QR";
+
+        const modal = document.getElementById("qrModal");
+        const box = document.getElementById("qrBox");
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100", "pointer-events-auto");
+        box.classList.remove("scale-95");
+        box.classList.add("scale-100");
+    }
+
+    function closeQRScanner() {
+        const modal = document.getElementById("qrModal");
+        const box = document.getElementById("qrBox");
+        modal.classList.add("opacity-0", "pointer-events-none");
+        modal.classList.remove("opacity-100", "pointer-events-auto");
+        box.classList.add("scale-95");
+        box.classList.remove("scale-100");
+    }
+
+    function simulateScanSuccess() {
+        closeQRScanner();
+
+        if (activeHandoverCard) {
+            const card = activeHandoverCard.closest(".item-row");
+            if (card) {
+                card.style.transition = "all 0.4s ease";
+                card.style.opacity = "0";
+                card.style.transform = "translateX(-30px)";
+                setTimeout(() => {
+                    card.remove();
+                    applyItemFilters();
+                    updateStats();
+                }, 400);
+            }
+            showToast(`✅ Item handed over successfully — Removed from your custody`, "success");
+        } else {
+            showToast(`✅ QR verified successfully`, "success");
+        }
+    }
+
+    function simulateScanFail() {
+        showToast(`❌ Invalid or expired QR code`, "error");
+    }
+
+    /* ═══ Toast ═══ */
+    function showToast(message, type = "info") {
+        const toast = document.createElement("div");
+        const bg = type === "success" ? "bg-success" : type === "error" ? "bg-error" : "bg-primary";
+        const icon = type === "success" ? "check_circle" : type === "error" ? "cancel" : "info";
+
+        toast.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-[60] flex items-center gap-3 slide-in`;
+        toast.innerHTML = `
+            <span class="material-symbols-outlined">${icon}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = "all 0.4s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px)";
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+    }
+
+    /* ═══ Escape ═══ */
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeQRScanner();
+    });
+
+    document.getElementById("qrModal")?.addEventListener("click", function(e) {
+        if (e.target === this) closeQRScanner();
+    });
+</script>
+
+</body>
+</html>

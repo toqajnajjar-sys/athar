@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Security Dashboard — Athar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                        secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                        "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                        success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                        surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                        "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                        "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                        "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                        error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                        accent:"#cd911a","accent-fixed":"#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <a href="#" class="flex items-center gap-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Security Panel</span>
+            </div>
+            <span class="hidden md:inline-block ml-2 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wide">
+                Security
+            </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="Security Dashboard.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Dashboard</a>
+            <a href="My Assignments.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Assignments</a>
+            </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="security-notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2 border-l border-surface-container">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Sarah Al-Qahtani</span>
+                    <span class="text-xs text-secondary">Security Officer</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">shield_person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── WELCOME ─────────── -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="#" class="hover:text-primary transition-colors">Security</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">Dashboard</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">
+                        Welcome back, Officer Sarah 👋
+                    </h1>
+                    <p class="text-sm text-secondary mt-1">
+                        You have <span class="font-semibold text-accent">5 pending tasks</span> that need your attention.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="openQRScanner()" class="flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+                        <span>Scan QR</span>
+                    </button>
+                    <button class="flex items-center gap-1.5 bg-white hover:bg-surface-container-low text-secondary text-xs font-semibold px-4 py-2.5 rounded-xl border border-surface-container transition-all">
+                        <span class="material-symbols-outlined text-lg">refresh</span>
+                        <span>Refresh</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── STATS CARDS ─────────── -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+            <!-- Need Confirmation -->
+            <a href="security-assignments.html" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 border-l-accent">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-11 h-11 rounded-xl bg-accent-fixed flex items-center justify-center text-accent">
+                        <span class="material-symbols-outlined text-2xl">pending_actions</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-accent transition-colors">arrow_forward</span>
+                </div>
+                <div class="text-3xl font-bold text-primary mb-1">2</div>
+                <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wide">Need Confirmation</div>
+                <div class="text-[11px] text-accent mt-1 flex items-center gap-1 font-semibold">
+                    <span class="material-symbols-outlined text-sm">priority_high</span>
+                    Action required now
+                </div>
+            </a>
+
+            <!-- Awaiting Pickup -->
+            <a href="security-handover.html" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 border-l-primary">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-11 h-11 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-2xl">package_2</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                </div>
+                <div class="text-3xl font-bold text-primary mb-1">3</div>
+                <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wide">Awaiting Pickup</div>
+                <div class="text-[11px] text-secondary mt-1 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    In your custody
+                </div>
+            </a>
+
+            <!-- Returned Today -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 border-l-success">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-11 h-11 rounded-xl bg-success-container flex items-center justify-center text-success">
+                        <span class="material-symbols-outlined text-2xl">task_alt</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline">check_circle</span>
+                </div>
+                <div class="text-3xl font-bold text-primary mb-1">7</div>
+                <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wide">Returned Today</div>
+                <div class="text-[11px] text-success mt-1 flex items-center gap-1 font-semibold">
+                    <span class="material-symbols-outlined text-sm">trending_up</span>
+                    On track
+                </div>
+            </div>
+
+            <!-- Returned This Month -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 border-l-secondary">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-11 h-11 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                        <span class="material-symbols-outlined text-2xl">inventory</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline">analytics</span>
+                </div>
+                <div class="text-3xl font-bold text-primary mb-1">45</div>
+                <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wide">This Month</div>
+                <div class="text-[11px] text-secondary mt-1 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">info</span>
+                    +12% vs last month
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── MAIN GRID ─────────── -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- ═══ NEEDS YOUR ACTION (2 cols) ═══ -->
+            <div class="lg:col-span-2 space-y-5">
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-6 bg-accent rounded-full"></div>
+                            <h2 class="text-base font-bold text-primary">Needs Your Action</h2>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase">3 urgent</span>
+                    </div>
+
+                    <!-- Action Item 1: Confirm Receipt -->
+                    <div class="mb-4 p-4 rounded-xl border-2 border-accent/30 bg-accent-fixed/10">
+                        <div class="flex items-start gap-4">
+                            <div class="relative shrink-0">
+                                <div class="w-12 h-12 rounded-xl bg-accent text-white flex items-center justify-center relative">
+                                    <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                                    <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-error text-white flex items-center justify-center text-[10px] font-bold">!</span>
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-accent text-white text-[10px] font-bold uppercase">Confirm Receipt</span>
+                                    <span class="text-[11px] text-secondary">Assigned 2h ago</span>
+                                </div>
+                                <h3 class="text-sm font-bold text-primary mb-1">MacBook Air M2 — Space Gray</h3>
+                                <div class="space-y-1 text-[11px] text-secondary">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                                        <span class="font-mono">#ATH-8850</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">location_on</span>
+                                        <span>From: Central Library — 2nd Floor</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button onclick="confirmReceipt('ATH-8850')" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-base">check_circle</span>
+                                Confirm Receipt
+                            </button>
+                            <button class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Action Item 2: Confirm Receipt -->
+                    <div class="mb-4 p-4 rounded-xl bg-surface-container-low">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase">Confirm Receipt</span>
+                                    <span class="text-[11px] text-secondary">Assigned 4h ago</span>
+                                </div>
+                                <h3 class="text-sm font-bold text-primary mb-1">Blue Leather Wallet</h3>
+                                <div class="space-y-1 text-[11px] text-secondary">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                                        <span class="font-mono">#ATH-8842</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">location_on</span>
+                                        <span>From: Central Library</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button onclick="confirmReceipt('ATH-8842')" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-base">check_circle</span>
+                                Confirm Receipt
+                            </button>
+                            <button class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Action Item 3: Handover Ready -->
+                    <div class="p-4 rounded-xl bg-success-container/20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-success text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-2xl">package_2</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap mb-1">
+                                    <span class="px-2 py-0.5 rounded-md bg-success text-white text-[10px] font-bold uppercase">Ready for Handover</span>
+                                    <span class="text-[11px] text-secondary">Pickup scheduled</span>
+                                </div>
+                                <h3 class="text-sm font-bold text-primary mb-1">Apple Watch with Grey Band</h3>
+                                <p class="text-[11px] text-secondary">
+                                    Owner <strong>Ahmed Al-Ghamdi</strong> is on the way. Scan QR to complete.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button onclick="openQRScanner('CLM-2026-901')" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                                <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+                                Scan & Handover
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ RECENT ACTIVITY ═══ -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-6 bg-primary rounded-full"></div>
+                            <h2 class="text-base font-bold text-primary">Recent Activity</h2>
+                        </div>
+                        <a href="security-history.html" class="text-xs text-primary hover:text-primary-dark font-semibold">View All</a>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-success-container flex items-center justify-center text-success shrink-0">
+                                <span class="material-symbols-outlined text-lg">check_circle</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-on-surface">
+                                    <strong class="text-primary">Confirmed receipt</strong> for #ATH-8820 (iPad Pro)
+                                </p>
+                                <span class="text-[11px] text-secondary">30 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+                                <span class="material-symbols-outlined text-lg">package_2</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-on-surface">
+                                    <strong class="text-primary">Completed handover</strong> for #CLM-2026-847 (Navy Wallet)
+                                </p>
+                                <span class="text-[11px] text-secondary">2 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-accent-fixed flex items-center justify-center text-accent shrink-0">
+                                <span class="material-symbols-outlined text-lg">add_circle</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-on-surface">
+                                    <strong class="text-primary">New assignment</strong> received: #ATH-8850
+                                </p>
+                                <span class="text-[11px] text-secondary">2 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+                                <span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-on-surface">
+                                    <strong class="text-primary">Verified QR</strong> for pickup #CLM-2026-847
+                                </p>
+                                <span class="text-[11px] text-secondary">2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SIDEBAR (1 col) ═══ -->
+            <aside class="space-y-5">
+
+                <!-- Officer Card -->
+                <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-6 shadow-sm text-white">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-14 h-14 rounded-full bg-white/15 flex items-center justify-center text-2xl font-bold">
+                            SQ
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold">Sarah Al-Qahtani</div>
+                            <div class="text-[11px] text-white/70">Officer ID: SEC-017</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-2 text-xs">
+                            <span class="material-symbols-outlined text-base text-white/70">badge</span>
+                            <span class="text-white/90">Security Officer</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <span class="material-symbols-outlined text-base text-white/70">location_on</span>
+                            <span class="text-white/90">Central Custody — Bldg 17</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <span class="material-symbols-outlined text-base text-white/70">schedule</span>
+                            <span class="text-white/90">Shift: 8:00 AM – 4:00 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/15">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="text-white/70">Today's progress</span>
+                            <span class="font-bold">7 / 10 tasks</span>
+                        </div>
+                        <div class="w-full bg-white/15 h-2 rounded-full overflow-hidden">
+                            <div class="bg-success h-full rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-base font-bold text-primary mb-4">Quick Actions</h3>
+
+                    <div class="space-y-2">
+                        <button onclick="openQRScanner()" class="w-full flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group text-left">
+                            <div class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">qr_code_scanner</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-semibold text-on-surface">Scan QR</div>
+                                <div class="text-[11px] text-secondary">Verify pickup</div>
+                            </div>
+                            <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                        </button>
+
+                        <a href="security-assignments.html" class="w-full flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group">
+                            <div class="w-10 h-10 rounded-lg bg-accent text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">pending_actions</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-semibold text-on-surface">My Assignments</div>
+                                <div class="text-[11px] text-secondary">5 active</div>
+                            </div>
+                            <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                        </a>
+
+                        <a href="security-history.html" class="w-full flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group">
+                            <div class="w-10 h-10 rounded-lg bg-secondary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">history</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-semibold text-on-surface">History</div>
+                                <div class="text-[11px] text-secondary">Past 45 handovers</div>
+                            </div>
+                            <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Report Issue Card -->
+                <div class="bg-accent-fixed/30 border border-accent/30 rounded-2xl p-5">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-accent text-2xl shrink-0">report_problem</span>
+                        <div>
+                            <h4 class="text-sm font-bold text-on-surface mb-1">Item Damaged or Missing?</h4>
+                            <p class="text-[11px] text-on-surface-variant mb-3 leading-relaxed">
+                                Report any issue with an item in your custody immediately.
+                            </p>
+                            <button class="text-xs font-semibold text-accent hover:underline flex items-center gap-1">
+                                Report Issue
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Admin -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-base font-bold text-primary mb-3">Need Help?</h3>
+                    <p class="text-xs text-secondary mb-4 leading-relaxed">
+                        Contact your supervisor or the IT support team for assistance.
+                    </p>
+                    <div class="space-y-2">
+                        <button class="w-full flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors text-left">
+                            <span class="material-symbols-outlined text-primary text-lg">call</span>
+                            <div class="flex-1">
+                                <div class="text-xs font-semibold text-on-surface">Call Supervisor</div>
+                                <div class="text-[10px] text-secondary font-mono">Ext. 2401</div>
+                            </div>
+                        </button>
+                        <button class="w-full flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors text-left">
+                            <span class="material-symbols-outlined text-secondary text-lg">support_agent</span>
+                            <div class="flex-1">
+                                <div class="text-xs font-semibold text-on-surface">IT Support</div>
+                                <div class="text-[10px] text-secondary">Available 24/7</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     QR SCANNER MODAL
+══════════════════════════════════════════════════════════════ -->
+<div id="qrModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/70 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="qrBox" class="relative w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-all duration-300">
+
+        <div class="px-6 py-4 border-b border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">qr_code_scanner</span>
+                <div>
+                    <h3 class="text-base font-bold text-primary">Scan Pickup QR</h3>
+                    <p class="text-[11px] text-secondary">Point camera at the QR code</p>
+                </div>
+            </div>
+            <button onclick="closeQRScanner()" class="p-1.5 rounded-full text-secondary hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+
+        <div class="p-6">
+            <div class="relative w-full aspect-square max-w-xs mx-auto rounded-2xl bg-primary/95 overflow-hidden border-4 border-primary">
+                <div class="absolute top-3 left-3 w-8 h-8 border-t-4 border-l-4 border-success rounded-tl-lg"></div>
+                <div class="absolute top-3 right-3 w-8 h-8 border-t-4 border-r-4 border-success rounded-tr-lg"></div>
+                <div class="absolute bottom-3 left-3 w-8 h-8 border-b-4 border-l-4 border-success rounded-bl-lg"></div>
+                <div class="absolute bottom-3 right-3 w-8 h-8 border-b-4 border-r-4 border-success rounded-br-lg"></div>
+                <div class="absolute left-4 right-4 h-0.5 bg-success shadow-[0_0_15px_3px_rgba(46,125,91,0.8)]" style="animation: scanLine 2s ease-in-out infinite;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white/40 text-[120px]">qr_code_2</span>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-secondary mt-4">
+                Align the QR code within the frame
+            </p>
+
+            <div class="grid grid-cols-2 gap-2 mt-5">
+                <button onclick="simulateScanSuccess()" class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-base">check_circle</span>
+                    Simulate Success
+                </button>
+                <button onclick="simulateScanFail()" class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-base">cancel</span>
+                    Simulate Fail
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-base font-bold text-primary">Athar Security</h3>
+                <p class="text-[11px] text-secondary mt-0.5">Officer Portal v1.0</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Guidelines</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Policies</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Contact IT</a>
+            </div>
+            <p class="text-[11px] text-secondary text-center md:text-right">
+                © 2026 Athar Platform • Security v1.0
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    /* ═══ QR Scanner ═══ */
+    let activeClaimId = null;
+
+    function openQRScanner(claimId) {
+        activeClaimId = claimId || null;
+        const modal = document.getElementById("qrModal");
+        const box = document.getElementById("qrBox");
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100", "pointer-events-auto");
+        box.classList.remove("scale-95");
+        box.classList.add("scale-100");
+    }
+
+    function closeQRScanner() {
+        const modal = document.getElementById("qrModal");
+        const box = document.getElementById("qrBox");
+        modal.classList.add("opacity-0", "pointer-events-none");
+        modal.classList.remove("opacity-100", "pointer-events-auto");
+        box.classList.add("scale-95");
+        box.classList.remove("scale-100");
+    }
+
+    function simulateScanSuccess() {
+        closeQRScanner();
+        showToast(`✅ QR verified successfully — Item handed over`, "success");
+
+        // Fade out the handover item
+        setTimeout(() => {
+            const items = document.querySelectorAll(".bg-success-container\\/20");
+            if (items.length > 0) {
+                const item = items[0];
+                item.style.transition = "all 0.4s ease";
+                item.style.opacity = "0";
+                item.style.transform = "translateX(-30px)";
+                setTimeout(() => item.remove(), 400);
+            }
+        }, 500);
+    }
+
+    function simulateScanFail() {
+        showToast(`❌ Invalid or expired QR code`, "error");
+    }
+
+    /* ═══ Confirm Receipt ═══ */
+    function confirmReceipt(itemId) {
+        if (!confirm(`Confirm receipt for item ${itemId}?\n\nYou will become responsible for this item.`)) return;
+
+        showToast(`✅ Receipt confirmed for ${itemId}`, "success");
+
+        // Find the action card and remove it
+        const cards = document.querySelectorAll(".bg-accent-fixed\\/10, .bg-surface-container-low");
+        cards.forEach(card => {
+            if (card.textContent.includes(itemId)) {
+                card.style.transition = "all 0.4s ease";
+                card.style.opacity = "0";
+                card.style.transform = "translateX(-30px)";
+                setTimeout(() => card.remove(), 400);
+            }
+        });
+    }
+
+    /* ═══ Toast ═══ */
+    function showToast(message, type = "info") {
+        const toast = document.createElement("div");
+        const bg = type === "success" ? "bg-success" : type === "error" ? "bg-error" : "bg-primary";
+        const icon = type === "success" ? "check_circle" : type === "error" ? "cancel" : "info";
+
+        toast.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-[60] flex items-center gap-3 slide-in`;
+        toast.innerHTML = `
+            <span class="material-symbols-outlined">${icon}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = "all 0.4s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px)";
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+    }
+
+    /* ═══ Escape ═══ */
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeQRScanner();
+    });
+
+    document.getElementById("qrModal")?.addEventListener("click", function(e) {
+        if (e.target === this) closeQRScanner();
+    });
+</script>
+
+<style>
+    @keyframes scanLine {
+        0%   { top: 10%; }
+        50%  { top: 90%; }
+        100% { top: 10%; }
+    }
+</style>
+
+</body>
+</html>

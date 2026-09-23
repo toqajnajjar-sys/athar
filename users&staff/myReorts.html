@@ -42,7 +42,7 @@
 <!-- HEADER -->
 <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
     <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
-        <a href="index.html" class="flex items-center gap-2 shrink-0">
+        <a  class="flex items-center gap-2 shrink-0">
             <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                 <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
             </div>
@@ -53,22 +53,26 @@
         </a>
 
         <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Home</a>
-<a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
+            <a href="home.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Home</a>
+            <a href="report lost item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Lost Items</a>
             <a href="Report Found Item.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Found Items</a>
-            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>            <a href="my-reports.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">My Reports</a>
-            <a href="my-claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Claims</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Support</a>
+            <a href="search inventory.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Inventory</a>  
+            <a href="myReorts.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">My Reports</a>
+            <a href="My Claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Claims</a>
         </nav>
 
         <div class="flex items-center gap-2 sm:gap-4">
-            <a href="notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+            <a href="notification.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
                 <span class="material-symbols-outlined text-2xl">notifications</span>
                 <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
             </a>
+            <button class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors hidden sm:block" aria-label="AI Assistant">
+                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"></span>
+            </button>
             <div class="flex items-center gap-2 pl-2">
                 <div class="hidden md:flex flex-col text-right">
-                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Ali</span>
                     <span class="text-xs text-secondary">Student • CS</span>
                 </div>
                 <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
@@ -85,12 +89,7 @@
 
         <!-- Page header -->
         <section class="mb-6">
-            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
-                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
-                <span class="material-symbols-outlined text-sm">chevron_right</span>
-                <span class="text-primary font-medium">My Reports</span>
-            </nav>
-
+            
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                     <h1 class="text-2xl lg:text-3xl font-bold text-primary">My Reports</h1>
@@ -106,7 +105,6 @@
             </div>
         </section>
 
-        <!-- Stats cards -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
                 <div class="text-xs text-secondary mb-1">Total Reports</div>
@@ -151,14 +149,11 @@
             </div>
         </section>
 
-        <!-- Reports List -->
         <section id="reportsList" class="space-y-4">
 
-            <!-- ═══ REPORT 1: ACTIVE (Lost) ═══ -->
             <article data-status="active" data-type="lost"
                      class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
                 <div class="flex flex-col sm:flex-row">
-                    <!-- Image -->
                     <div class="relative w-full sm:w-48 h-44 sm:h-auto bg-surface-container shrink-0">
                         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeUeRYtkdKqgU5GbVeiXGEz8443MIZzI0_xHGveU7vwBlnwSjNtCetPcvEHnwtYSQCn9_-qsayiF-fHMpMyLNChQQsme9gnjvyEfuWrV0IqxSmdE1YAOfiSZxSWVkpphF7DnR1l4oV9EIMC5rg-uUiNN7irvycXMeqek0AzsS1xU3wtrR5XmHvBrN9l9XUb8w9XUmxKgDD8LO_xVb5tdf2RxxQDXFksDs6rX78mY-32ZuT9Nx4kEufSw"
                              alt="MacBook" class="w-full h-full object-cover"/>
@@ -167,7 +162,6 @@
                         </span>
                     </div>
 
-                    <!-- Content -->
                     <div class="flex-1 p-4 lg:p-5">
                         <div class="flex items-start justify-between gap-3 mb-3">
                             <div>
@@ -253,7 +247,6 @@
                             </span>
                         </div>
 
-                        <!-- Match alert -->
                         <div class="mb-3 p-3 rounded-lg bg-accent-fixed/30 flex items-center gap-2">
                             <span class="material-symbols-outlined text-accent text-lg">bolt</span>
                             <div class="text-xs text-on-surface-variant flex-1">
@@ -290,7 +283,6 @@
                 </div>
             </article>
 
-            <!-- ═══ REPORT 3: RETURNED (Found) ═══ -->
             <article data-status="returned" data-type="found"
                      class="report-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90">
                 <div class="flex flex-col sm:flex-row">

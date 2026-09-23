@@ -5,13 +5,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Athar — Login & Register</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -22,17 +20,14 @@
                         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
                     },
                     colors: {
-                        // Core brand
                         primary:   "#1a3263",
                         "primary-dark": "#122447",
                         secondary: "#547792",
                         "secondary-fixed": "#cae6ff",
-                        // Surfaces (used in HTML)
                         surface:              "#f8f9ff",
                         "surface-container":  "#e5eeff",
                         "surface-container-low": "#eef4ff",
                         "surface-variant":    "#d3e4fe",
-                        // Text / borders
                         "on-surface":         "#1a1c1e",
                         "on-surface-variant": "#44464f",
                         outline:              "#757780",
@@ -60,9 +55,7 @@
 <main class="w-full min-h-screen bg-surface">
     <div class="w-full min-h-screen flex flex-col lg:flex-row shadow-2xl overflow-hidden">
 
-        <!-- ═══════════════════════════════════════════════════════════
-             LEFT COLUMN — Brand / Hero (sticky on desktop)
-        ════════════════════════════════════════════════════════════ -->
+      
         <aside class="relative w-full lg:w-[46%] lg:h-screen flex flex-col justify-between p-8 sm:p-12 lg:p-14
                       overflow-hidden bg-primary order-2 lg:order-1 text-left lg:sticky lg:top-0">
 
@@ -70,7 +63,6 @@
             <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida/AEtjO1Vi5qOFBF-_SGFmdSTsw3RBH4jjaXtDB3mIrV6Izt7yPrmfGrk95JLkVmucfHj2iZo8VdEbQ0E647yM12ULGbcr4Vmlfs6CFBHFo66HBhWhP5fBnS8S-bGw3LVZANh0mFSAZLnaZFqiaajfe4ZvhlWpQgaP6UTSQ7NQQgxkzVo0nL4a5CnCdYon8r92dR1gjsLjLfFLjboWoOaANaLBib9ij7Wffj4Yzud0aaJKXoDjHwPoL4bKOhbQ_vM')">
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-[#1a3263]/95 via-[#1a3263]/88 to-[#102040]/98 backdrop-blur-[1.5px]"></div>
-            <!-- Hero content -->
             <div class="relative z-10 my-auto py-8">
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
                     Welcome to
@@ -82,7 +74,6 @@
                 </p>
             </div>
 
-            <!-- Testimonial card -->
             <div class="relative z-10 pt-4">
                 <div class="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-start gap-3">
                     <span class="material-symbols-outlined text-secondary-fixed text-2xl mt-0.5 shrink-0">verified</span>
@@ -93,15 +84,12 @@
             </div>
         </aside>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             RIGHT COLUMN — Auth Portal
-        ════════════════════════════════════════════════════════════ -->
+        
         <section class="w-full lg:w-[54%] lg:h-screen lg:overflow-y-auto flex flex-col justify-between
                         p-6 sm:p-10 lg:p-12 bg-white order-1 lg:order-2">
 
             <div class="max-w-lg w-full mx-auto my-auto py-4">
 
-                <!-- Header -->
                 <header class="mb-6 text-left">
                     <h2 id="formMainTitle" class="text-2xl sm:text-3xl font-bold tracking-tight mb-1.5">
                         LOGIN TO YOUR ACCOUNT
@@ -111,7 +99,6 @@
                     </p>
                 </header>
 
-                <!-- Tabs -->
                 <div class="grid grid-cols-2 p-1.5 mb-6 rounded-xl bg-surface-container gap-1" role="tablist">
                     <button id="mainTabLogin" type="button" role="tab"
                             class="tab-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-all duration-200 cursor-pointer"
@@ -127,11 +114,9 @@
                     </button>
                 </div>
 
-                <!-- ═══════════ LOGIN MODE ═══════════ -->
                 <div id="loginModeContainer" class="space-y-5">
                     <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
 
-                        <!-- Email -->
                         <div class="space-y-1.5 text-left">
                             <label class="block text-xs font-semibold" for="loginEmail">Email</label>
                             <div class="input-wrap relative flex items-center rounded-xl bg-surface-container-low
@@ -144,11 +129,10 @@
                             </div>
                         </div>
 
-                        <!-- Password -->
                         <div class="space-y-1.5 text-left">
                             <div class="flex items-center justify-between">
                                 <label class="block text-xs font-semibold" for="loginPassword">Password</label>
-                                <a href="#recovery" class="text-xs text-secondary hover:text-primary font-medium hover:underline transition-colors">
+                                <a href="reset password.html" class="text-xs text-secondary hover:text-primary font-medium hover:underline transition-colors">
                                     Forgot your password?
                                 </a>
                             </div>
@@ -167,7 +151,6 @@
                             </div>
                         </div>
 
-                        <!-- Submit -->
                         <button id="loginSubmitBtn" type="submit"
                                 class="btn-submit w-full group flex items-center justify-center gap-2 py-3 px-6 rounded-xl
                                        bg-primary text-white text-base font-semibold
@@ -179,10 +162,8 @@
                     </form>
                 </div>
 
-                <!-- ═══════════ REGISTER MODE ═══════════ -->
                 <div id="registerModeContainer" class="space-y-5 hidden">
 
-                    <!-- Role selector -->
                     <div class="space-y-2 text-left">
                         <label class="block text-xs font-semibold">Select the university account type.</label>
                         <div class="grid grid-cols-2 p-1 rounded-xl bg-surface-container-low gap-1">
@@ -203,7 +184,6 @@
 
                     <form id="registerForm" class="space-y-3.5" onsubmit="handleRegister(event)">
 
-                        <!-- Full name -->
                         <div class="space-y-1 text-left">
                             <label class="block text-xs font-semibold" for="regFullName">Full Name <span class="text-error">*</span></label>
                             <div class="input-wrap relative flex items-center rounded-xl bg-surface-container-low
@@ -215,7 +195,6 @@
                             </div>
                         </div>
 
-                        <!-- Email -->
                         <div class="space-y-1 text-left">
                             <label id="labelRegEmail" class="block text-xs font-semibold" for="regEmail">
                                 Email <span class="text-error">*</span>
@@ -229,7 +208,6 @@
                             </div>
                         </div>
 
-                        <!-- University ID (students only) -->
                         <div id="fieldUniversityIdWrapper" class="space-y-1 text-left">
                             <label class="block text-xs font-semibold" for="regUniId">University ID <span class="text-error">*</span></label>
                             <div class="input-wrap relative flex items-center rounded-xl bg-surface-container-low
@@ -241,7 +219,6 @@
                             </div>
                         </div>
 
-                        <!-- Phone -->
                         <div class="space-y-1 text-left">
                             <label class="block text-xs font-semibold" for="regPhone">Phone Number <span class="text-error">*</span></label>
                             <div class="input-wrap relative flex items-center rounded-xl bg-surface-container-low
@@ -253,8 +230,7 @@
                             </div>
                         </div>
 
-                        <!-- Passwords -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+]                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div class="space-y-1 text-left">
                                 <label class="block text-xs font-semibold" for="regPassword">Password <span class="text-error">*</span></label>
                                 <div class="input-wrap relative flex items-center rounded-xl bg-surface-container-low
@@ -288,7 +264,6 @@
                             </div>
                         </div>
 
-                        <!-- Submit -->
                         <button id="regSubmitBtn" type="submit"
                                 class="btn-submit w-full group flex items-center justify-center gap-2 py-3 px-6 rounded-xl
                                        bg-primary text-white text-sm sm:text-base font-semibold
@@ -300,7 +275,6 @@
                     </form>
                 </div>
 
-                <!-- Support link -->
                 <p class="mt-6 text-center text-xs text-on-surface-variant">
                     Are you facing a problem?
                     <a href="#security-support"
@@ -310,7 +284,6 @@
                 </p>
             </div>
 
-            <!-- Footer -->
             <footer class="pt-6 border-t border-surface-container text-outline text-xs text-center">
                 © 2026 Athar Platform • All Rights Reserved
             </footer>
@@ -319,14 +292,9 @@
 </main>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   STATE
-══════════════════════════════════════════════════════════════ */
 let currentUserRole = 'student';
 
-/* ══════════════════════════════════════════════════════════════
-   TAB SWITCHING (Login <-> Register)
-══════════════════════════════════════════════════════════════ */
+
 function switchMainTab(mode) {
     const isLogin = mode === 'login';
 
@@ -364,9 +332,6 @@ function switchMainTab(mode) {
     }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   ROLE SWITCHING (Student <-> Staff)
-══════════════════════════════════════════════════════════════ */
 function switchUserRole(role) {
     currentUserRole = role;
 
@@ -408,9 +373,7 @@ function updateRoleDisplay() {
         : 'Create New Staff Account';
 }
 
-/* ══════════════════════════════════════════════════════════════
-   PASSWORD VISIBILITY TOGGLE
-══════════════════════════════════════════════════════════════ */
+
 function togglePassword(inputId, iconId) {
     const input = document.getElementById(inputId);
     const icon  = document.getElementById(iconId);
@@ -420,9 +383,7 @@ function togglePassword(inputId, iconId) {
     icon.textContent = isHidden ? 'visibility_off' : 'visibility';
 }
 
-/* ══════════════════════════════════════════════════════════════
-   BUTTON LOADING STATE (shared helper)
-══════════════════════════════════════════════════════════════ */
+
 function setButtonLoading(btn, loading, successLabel = null) {
     const label = btn.querySelector('.btn-label');
 

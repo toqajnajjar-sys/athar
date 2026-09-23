@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Manage Matches — Athar Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                        secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                        "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                        success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                        surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                        "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                        "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                        "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                        error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                        accent:"#cd911a","accent-fixed":"#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+
+        /* Circular progress ring */
+        .score-ring {
+            background: conic-gradient(#2e7d5b var(--score), #e5eeff 0);
+        }
+        .score-ring.medium { background: conic-gradient(#cd911a var(--score), #e5eeff 0); }
+        .score-ring.low    { background: conic-gradient(#ba1a1a var(--score), #e5eeff 0); }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER (ADMIN) — نفس Dashboard
+══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+
+        <a href="#" class="flex items-center gap-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Admin Panel</span>
+            </div>
+            <span class="hidden md:inline-block ml-2 px-2.5 py-1 rounded-full bg-accent-fixed text-accent text-[10px] font-bold uppercase tracking-wide">
+                Admin
+            </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="Admin Dashboard.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Dashboard</a>
+            <a href="Manage Matches.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white transition-colors">Matches</a>
+            <a href="Verify Claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Claims</a>
+            <a href="Handover & Assign.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">Handover</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="Admin Notifications .html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">7</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2 border-l border-surface-container">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Ali</span>
+                    <span class="text-xs text-secondary">Campus Admin</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">shield_person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- ─────────── PAGE HEADER ─────────── -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="admin-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">Matches</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">Manage Matches</h1>
+                    <p class="text-sm text-secondary mt-1">
+                        <span class="font-semibold text-accent">5 pending matches</span> awaiting your review.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button class="flex items-center gap-1.5 bg-white hover:bg-surface-container-low text-secondary text-xs font-semibold px-4 py-2.5 rounded-xl border border-surface-container transition-all">
+                        <span class="material-symbols-outlined text-lg">filter_alt</span>
+                        <span>Advanced</span>
+                    </button>
+                    <button onclick="confirmAllHighConfidence()" class="flex items-center gap-1.5 bg-success hover:bg-success/90 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">done_all</span>
+                        <span>Confirm All 90%+</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── FILTER BAR ─────────── -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
+
+                <!-- Search -->
+                <div class="relative flex-1">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">search</span>
+                    <input id="matchSearch" type="text" oninput="filterMatches()"
+                           placeholder="Search by ID, item name, or user..."
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+
+                <!-- Confidence Pills -->
+                <div class="flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-xl">
+                    <button id="mf-all" onclick="filterConfidence('all')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap">
+                        All <span class="opacity-70">(5)</span>
+                    </button>
+                    <button id="mf-high" onclick="filterConfidence('high')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-success mr-1"></span>
+                        High 90%+
+                    </button>
+                    <button id="mf-medium" onclick="filterConfidence('medium')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-accent mr-1"></span>
+                        Med 70-89%
+                    </button>
+                    <button id="mf-low" onclick="filterConfidence('low')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-error mr-1"></span>
+                        Low &lt;70%
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────── MATCHES LIST ─────────── -->
+        <section id="matchesList" class="space-y-5">
+
+            <!-- ═══════════════════════════════════════════════════
+                 MATCH 1: 94% (HIGH)
+            ═══════════════════════════════════════════════════ -->
+            <article class="match-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                     data-confidence="high" data-score="94"
+                     data-search="ath-8841 ath-8850 macbook air ahmed sarah apple">
+
+                <!-- Header bar -->
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                        <div>
+                            <div class="text-sm font-bold">Match Suggestion #M-1024</div>
+                            <div class="text-[11px] text-white/70">Generated 45 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-full bg-accent text-white text-[10px] font-bold uppercase tracking-wide">High Confidence</span>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="p-5">
+
+                    <!-- Score + Actions Bar -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <!-- Score -->
+                        <div class="flex items-center gap-3">
+                            <div class="score-ring rounded-full w-16 h-16 flex items-center justify-center" style="--score: 94%">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+                                    <span class="text-base font-bold text-success">94%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-primary">Strong Match</div>
+                                <div class="text-[11px] text-secondary">5 of 6 attributes match</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Info -->
+                        <div class="flex items-center gap-4 text-xs text-secondary">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-base">schedule</span>
+                                Pending review
+                            </span>
+                            <span class="flex items-center gap-1 text-accent font-semibold">
+                                <span class="material-symbols-outlined text-base">priority_high</span>
+                                Suggested priority
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Side-by-Side Comparison -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+
+                        <!-- LOST side -->
+                        <div class="bg-error-container/15 border border-error/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error text-white text-[10px] font-bold uppercase tracking-wide">
+                                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                    Lost
+                                </span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8841</span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeUeRYtkdKqgU5GbVeiXGEz8443MIZzI0_xHGveU7vwBlnwSjNtCetPcvEHnwtYSQCn9_-qsayiF-fHMpMyLNChQQsme9gnjvyEfuWrV0IqxSmdE1YAOfiSZxSWVkpphF7DnR1l4oV9EIMC5rg-uUiNN7irvycXMeqek0AzsS1xU3wtrR5XmHvBrN9l9XUb8w9XUmxKgDD8LO_xVb5tdf2RxxQDXFksDs6rX78mY-32ZuT9Nx4kEufSw"
+                                         alt="Lost MacBook" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-sm font-bold text-primary line-clamp-1">MacBook Air M2 — Space Gray</h4>
+                                    <div class="space-y-1 mt-2 text-[11px] text-secondary">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">person</span>
+                                            <span class="truncate">Ahmed Ali (Student)</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">location_on</span>
+                                            <span class="truncate">Business College — Hall 104</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                            <span>Reported Mar 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FOUND side -->
+                        <div class="bg-success-container/20 border border-success/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success text-white text-[10px] font-bold uppercase tracking-wide">
+                                    <span class="material-symbols-outlined text-sm">task_alt</span>
+                                    Found
+                                </span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8850</span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqHkVzz7xnT8fQWJEsQ7tIj24k29dRGhrybb4mrczHVPDqH7xx9wVm5z0ODUAxn5H-BMLaQSCwO7-Fx3KHk2zGbZeMCjNwgdr9sfvzHXX3H9fWzDXNZhwMyB_pdLVQka7Iopvkz6WEnfb9uPBZrUNJ_bxyHm21pmKMofH3JI5LDkTqIYKAMtBNSIkxzPSjn1wIaVzKQnLPVo9Dtd8giP24Ksc1FBjl8hU0wmgN1ZPNcqhHiV5pG4ONJw"
+                                         alt="Found MacBook" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-sm font-bold text-primary line-clamp-1">MacBook Air M2 — Space Gray</h4>
+                                    <div class="space-y-1 mt-2 text-[11px] text-secondary">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">person</span>
+                                            <span class="truncate">Sarah Al-Otaibi (Student)</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">location_on</span>
+                                            <span class="truncate">Central Library — 2nd Floor</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                            <span>Reported Mar 11</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Compared -->
+                    <div class="bg-surface-container-low rounded-xl p-4 mb-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-primary text-lg">compare_arrows</span>
+                            <span class="text-sm font-bold text-primary">Attributes Compared</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+                            <!-- Match items -->
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Brand</div>
+                                    <div class="font-semibold text-on-surface truncate">Apple ✅</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Color</div>
+                                    <div class="font-semibold text-on-surface truncate">Space Gray ✅</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Category</div>
+                                    <div class="font-semibold text-on-surface truncate">Laptop ✅</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Model</div>
+                                    <div class="font-semibold text-on-surface truncate">M2 (2023) ✅</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Sticker</div>
+                                    <div class="font-semibold text-on-surface truncate">Hackathon 2024 ✅</div>
+                                </div>
+                            </div>
+
+                            <!-- Mismatch -->
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-accent-fixed/40">
+                                <span class="material-symbols-outlined text-accent text-base">warning</span>
+                                <div class="min-w-0">
+                                    <div class="text-[10px] text-secondary">Location</div>
+                                    <div class="font-semibold text-on-surface truncate">Different ⚠️</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="confirmMatch(this, 'M-1024')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Confirm Match
+                        </button>
+                        <button onclick="rejectMatch(this, 'M-1024')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Reject
+                        </button>
+                        <button onclick="requestClarification('M-1024')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">help</span>
+                            Request Clarification
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Full Details
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════════════
+                 MATCH 2: 87% (MEDIUM)
+            ═══════════════════════════════════════════════════ -->
+            <article class="match-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                     data-confidence="medium" data-score="87"
+                     data-search="ath-8840 ath-8842 wallet montblanc khalid nouf">
+
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                        <div>
+                            <div class="text-sm font-bold">Match Suggestion #M-1023</div>
+                            <div class="text-[11px] text-white/70">Generated 2 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-accent-fixed text-accent text-[10px] font-bold uppercase tracking-wide">Medium Confidence</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="flex items-center gap-3">
+                            <div class="score-ring medium rounded-full w-16 h-16 flex items-center justify-center" style="--score: 87%">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+                                    <span class="text-base font-bold text-accent">87%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-primary">Likely Match</div>
+                                <div class="text-[11px] text-secondary">4 of 6 attributes match</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                        <div class="bg-error-container/15 border border-error/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error text-white text-[10px] font-bold uppercase">Lost</span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8840</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
+                                         alt="Wallet lost" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-sm font-bold text-primary line-clamp-1">Navy Montblanc Wallet</h4>
+                                    <div class="space-y-1 mt-2 text-[11px] text-secondary">
+                                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">person</span><span class="truncate">Khalid Al-Mutairi</span></div>
+                                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">location_on</span><span class="truncate">Central Library</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-success-container/20 border border-success/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success text-white text-[10px] font-bold uppercase">Found</span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8842</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
+                                         alt="Wallet found" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-sm font-bold text-primary line-clamp-1">Blue Leather Wallet</h4>
+                                    <div class="space-y-1 mt-2 text-[11px] text-secondary">
+                                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">person</span><span class="truncate">Nouf Al-Harbi</span></div>
+                                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">location_on</span><span class="truncate">Central Library</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attributes -->
+                    <div class="bg-surface-container-low rounded-xl p-4 mb-4">
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div><div class="text-[10px] text-secondary">Category</div><div class="font-semibold truncate">Wallet ✅</div></div>
+                            </div>
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div><div class="text-[10px] text-secondary">Location</div><div class="font-semibold truncate">Library ✅</div></div>
+                            </div>
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div><div class="text-[10px] text-secondary">Material</div><div class="font-semibold truncate">Leather ✅</div></div>
+                            </div>
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-success-container/40">
+                                <span class="material-symbols-outlined text-success text-base">check_circle</span>
+                                <div><div class="text-[10px] text-secondary">Date</div><div class="font-semibold truncate">Same week ✅</div></div>
+                            </div>
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-accent-fixed/40">
+                                <span class="material-symbols-outlined text-accent text-base">warning</span>
+                                <div><div class="text-[10px] text-secondary">Brand</div><div class="font-semibold truncate">Montblanc vs Unknown ⚠️</div></div>
+                            </div>
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-accent-fixed/40">
+                                <span class="material-symbols-outlined text-accent text-base">warning</span>
+                                <div><div class="text-[10px] text-secondary">Color</div><div class="font-semibold truncate">Navy vs Blue ⚠️</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="confirmMatch(this, 'M-1023')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Confirm Match
+                        </button>
+                        <button onclick="rejectMatch(this, 'M-1023')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Reject
+                        </button>
+                        <button onclick="requestClarification('M-1023')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">help</span>
+                            Request Clarification
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════════════
+                 MATCH 3: 62% (LOW)
+            ═══════════════════════════════════════════════════ -->
+            <article class="match-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90"
+                     data-confidence="low" data-score="62"
+                     data-search="ath-8839 ath-8845 headphones sony mohammed fatima">
+
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                        <div>
+                            <div class="text-sm font-bold">Match Suggestion #M-1022</div>
+                            <div class="text-[11px] text-white/70">Generated 5 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-wide">Low Confidence</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="flex items-center gap-3">
+                            <div class="score-ring low rounded-full w-16 h-16 flex items-center justify-center" style="--score: 62%">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+                                    <span class="text-base font-bold text-error">62%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-primary">Weak Match</div>
+                                <div class="text-[11px] text-secondary">Only 2 of 6 attributes match</div>
+                            </div>
+                        </div>
+                        <span class="text-[11px] text-secondary flex items-center gap-1">
+                            <span class="material-symbols-outlined text-base">info</span>
+                            Manual review recommended
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                        <div class="bg-error-container/15 border border-error/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error text-white text-[10px] font-bold uppercase">Lost</span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8839</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-primary">Black Sony Headphones</h4>
+                            <p class="text-[11px] text-secondary mt-1">Reported by Mohammed A.</p>
+                        </div>
+
+                        <div class="bg-success-container/20 border border-success/20 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success text-white text-[10px] font-bold uppercase">Found</span>
+                                <span class="font-mono text-[11px] text-secondary">#ATH-8845</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-primary">Black Wireless Headphones</h4>
+                            <p class="text-[11px] text-secondary mt-1">Reported by Fatima S.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="confirmMatch(this, 'M-1022')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Confirm Anyway
+                        </button>
+                        <button onclick="rejectMatch(this, 'M-1022')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Reject
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Empty state -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">task_alt</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">All caught up!</h3>
+                <p class="text-xs text-secondary">No matches pending review.</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-base font-bold text-primary">Athar Admin</h3>
+                <p class="text-[11px] text-secondary mt-0.5">University Lost & Found Platform</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Help</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Policies</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Contact IT</a>
+            </div>
+            <p class="text-[11px] text-secondary text-center md:text-right">
+                © 2026 Athar Platform • Admin v1.0
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════ -->
+<script>
+    /* ═══════════════════════════════════════════════════════════
+       FILTER: Confidence Level
+    ═══════════════════════════════════════════════════════════ */
+    let currentConfidence = "all";
+    let currentSearch = "";
+
+    function filterConfidence(level) {
+        currentConfidence = level;
+        applyFilters();
+        updatePillStyles(level);
+    }
+
+    function filterMatches() {
+        currentSearch = document.getElementById("matchSearch").value.trim().toLowerCase();
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const cards = document.querySelectorAll(".match-card");
+        let visible = 0;
+
+        cards.forEach(card => {
+            const confidence = card.dataset.confidence;
+            const searchData = (card.dataset.search || "").toLowerCase();
+
+            const matchConf = (currentConfidence === "all") || (confidence === currentConfidence);
+            const matchSearch = !currentSearch || searchData.includes(currentSearch);
+
+            if (matchConf && matchSearch) {
+                card.style.display = "";
+                visible++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        document.getElementById("emptyState").classList.toggle("hidden", visible > 0);
+    }
+
+    function updatePillStyles(level) {
+        ["all","high","medium","low"].forEach(l => {
+            const btn = document.getElementById("mf-" + l);
+            if (l === level) {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap";
+            } else {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap";
+            }
+        });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ACTIONS
+    ═══════════════════════════════════════════════════════════ */
+    function confirmMatch(btn, matchId) {
+        if (!confirm(`Confirm match ${matchId}?\n\nThis will:\n• Notify both users\n• Unlock contact between them\n• Mark the item as matched`)) return;
+
+        const card = btn.closest(".match-card");
+        animateRemove(card, "success");
+        showToast(`✅ Match ${matchId} confirmed — both users notified`, "success");
+    }
+
+    function rejectMatch(btn, matchId) {
+        if (!confirm(`Reject match ${matchId}?\n\nThis suggestion will be removed.`)) return;
+
+        const card = btn.closest(".match-card");
+        animateRemove(card, "error");
+        showToast(`❌ Match ${matchId} rejected`, "error");
+    }
+
+    function requestClarification(matchId) {
+        const note = prompt(`Request more details for match ${matchId}.\n\nWho should we contact?\n(Type "sender", "receiver", or "both")`);
+
+        if (!note) return;
+        showToast(`📩 Clarification request sent (${note})`, "info");
+    }
+
+    function confirmAllHighConfidence() {
+        const highCards = document.querySelectorAll('.match-card[data-confidence="high"]');
+        if (highCards.length === 0) {
+            showToast("No high-confidence matches to confirm.", "info");
+            return;
+        }
+
+        if (!confirm(`Confirm all ${highCards.length} high-confidence matches?\n\nThis will notify all involved users.`)) return;
+
+        highCards.forEach(card => animateRemove(card, "success"));
+        showToast(`✅ ${highCards.length} high-confidence matches confirmed`, "success");
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ANIMATION + TOAST
+    ═══════════════════════════════════════════════════════════ */
+    function animateRemove(card, type) {
+        card.style.transition = "all 0.4s ease";
+        card.style.opacity = "0";
+        card.style.transform = "translateX(-30px)";
+
+        const borderColor = type === "success" ? "border-l-4 border-l-success" : "border-l-4 border-l-error";
+        card.className += " " + borderColor;
+
+        setTimeout(() => {
+            card.remove();
+            applyFilters();
+        }, 400);
+    }
+
+    function showToast(message, type = "info") {
+        const toast = document.createElement("div");
+        const bg = type === "success" ? "bg-success" : type === "error" ? "bg-error" : "bg-primary";
+
+        toast.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-3`;
+        toast.style.animation = "slideIn 0.3s ease-out";
+        toast.innerHTML = `
+            <span class="material-symbols-outlined">${type === "success" ? "check_circle" : type === "error" ? "cancel" : "info"}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = "all 0.4s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px)";
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       INIT
+    ═══════════════════════════════════════════════════════════ */
+    document.addEventListener("DOMContentLoaded", () => {
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes slideIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
+
+</body>
+</html>

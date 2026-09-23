@@ -45,69 +45,16 @@
 
 <body class="bg-surface text-on-surface font-sans antialiased">
 
-<!-- ══════════════════════════════════════════════════════════════
-     HEADER
-══════════════════════════════════════════════════════════════ -->
-<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
-
-        <a href="index.html" class="flex items-center gap-2 shrink-0">
-            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
-            </div>
-            <div class="hidden sm:flex flex-col leading-tight">
-                <span class="text-lg font-bold text-primary">Athar</span>
-                <span class="text-[11px] text-secondary">Lost & Found</span>
-            </div>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Home</a>
-            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Inventory</a>
-            <a href="my-reports.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Reports</a>
-            <a href="my-claims.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">My Claims</a>
-            <a href="contact-requests.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">Requests</a>
-        </nav>
-
-        <div class="flex items-center gap-2 sm:gap-4">
-            <a href="notifications.html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
-                <span class="material-symbols-outlined text-2xl">notifications</span>
-                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">3</span>
-            </a>
-            <div class="flex items-center gap-2 pl-2">
-                <div class="hidden md:flex flex-col text-right">
-                    <span class="text-sm font-semibold text-on-surface">Ahmed Al-Ghamdi</span>
-                    <span class="text-xs text-secondary">Student • CS</span>
-                </div>
-                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white text-lg">person</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- ══════════════════════════════════════════════════════════════
-     MAIN
-══════════════════════════════════════════════════════════════ -->
-<main class="w-full pt-20 bg-surface">
+<main class="w-full pt-15 bg-surface">
     <div class="max-w-5xl mx-auto px-4 lg:px-8 py-8">
 
-        <!-- ─────────── PAGE HEADER ─────────── -->
-        <section class="mb-6">
-            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
-                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
-                <span class="material-symbols-outlined text-sm">chevron_right</span>
-                <span class="text-primary font-medium">Contact Requests</span>
-            </nav>
-
+        <section class="mb-6">           
             <h1 class="text-2xl lg:text-3xl font-bold text-primary">Contact Requests</h1>
             <p class="text-sm text-secondary mt-1">
                 Manage all communication requests related to lost and found items.
             </p>
         </section>
 
-        <!-- ─────────── STATS ─────────── -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-accent">
                 <div class="text-xs text-secondary mb-1">Pending</div>
@@ -127,7 +74,6 @@
             </div>
         </section>
 
-        <!-- ─────────── MAIN TABS (Received / Sent) ─────────── -->
         <section class="mb-6">
             <div class="grid grid-cols-2 p-1.5 bg-white rounded-2xl shadow-sm gap-1">
                 <button id="tabReceived" onclick="switchTab('received')"
@@ -145,7 +91,6 @@
             </div>
         </section>
 
-        <!-- ─────────── STATUS FILTER PILLS ─────────── -->
         <section class="mb-6">
             <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
                 <button id="cf-all" onclick="filterStatus('all')"
@@ -175,15 +120,11 @@
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════
-             RECEIVED REQUESTS
-        ═══════════════════════════════════════════════════════ -->
-        <section id="panel-received" class="space-y-4">
+           <section id="panel-received" class="space-y-4">
 
-            <!-- ═══ REQUEST 1: PENDING ═══ -->
             <article data-status="pending" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all ring-2 ring-accent/20">
                 <div class="flex items-start gap-4">
-                    <!-- Avatar -->
+                    
                     <div class="shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg relative">
                         S
                         <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-accent text-white flex items-center justify-center">
@@ -192,7 +133,7 @@
                     </div>
 
                     <div class="flex-1 min-w-0">
-                        <!-- Header -->
+                       
                         <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
                             <div>
                                 <h3 class="text-sm font-bold text-primary">Sarah Al-Otaibi</h3>
@@ -206,7 +147,7 @@
                             </span>
                         </div>
 
-                        <!-- Item being discussed -->
+                        
                         <div class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low mb-3">
                             <div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shrink-0">
                                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO2vq3a_jWA66mjgW9ZwhDHCs_7qH6sRDF7FmbeZ_al849PoQrI4W7-k8c0JMUkRNJmdx8b71ShQqvs4Dw_eAkJOfspPaO9l6xljV1Zg_i1cG9UB9Fzgdw8Bz_a5_CG6ABX8ZlKg1K1AP0JonvxCUHI9-34_MWHt0wrnDRpl2kpeRdWr8Rmw9L9fA90lbsDmPNz-MWGzgh5qbKpn4loz_hRhgHSTuRiQe5lCMp3Sg3121sUs019gdrw"
@@ -218,7 +159,7 @@
                             </div>
                         </div>
 
-                        <!-- Message preview -->
+                        
                         <div class="p-3 rounded-lg bg-surface-container-low mb-4">
                             <div class="flex items-start gap-2">
                                 <span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">chat</span>
@@ -229,7 +170,7 @@
                             </div>
                         </div>
 
-                        <!-- Action buttons -->
+                        
                         <div class="flex flex-wrap items-center gap-2">
                             <button onclick="handleAction(this, 'accepted')"
                                     class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
@@ -255,7 +196,7 @@
                 </div>
             </article>
 
-            <!-- ═══ REQUEST 2: ACCEPTED ═══ -->
+            
             <article data-status="accepted" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
                 <div class="flex items-start gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg relative">
@@ -312,7 +253,7 @@
                 </div>
             </article>
 
-            <!-- ═══ REQUEST 3: REJECTED ═══ -->
+            
             <article data-status="rejected" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all opacity-90">
                 <div class="flex items-start gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-surface-container-high text-secondary flex items-center justify-center font-bold text-lg">
@@ -361,7 +302,7 @@
                 </div>
             </article>
 
-            <!-- ═══ REQUEST 4: CLOSED ═══ -->
+            
             <article data-status="closed" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all opacity-75">
                 <div class="flex items-start gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-surface-container text-secondary flex items-center justify-center font-bold text-lg">
@@ -410,7 +351,7 @@
                 </div>
             </article>
 
-            <!-- Empty state -->
+            
             <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
                 <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
                     <span class="material-symbols-outlined text-4xl text-outline">mail_off</span>
@@ -420,12 +361,10 @@
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════════════════
-             SENT REQUESTS
-        ═══════════════════════════════════════════════════════ -->
+       
         <section id="panel-sent" class="space-y-4 hidden">
 
-            <!-- ═══ SENT 1: PENDING ═══ -->
+           
             <article data-status="pending" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
                 <div class="flex items-start gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-lg">
@@ -481,7 +420,7 @@
                 </div>
             </article>
 
-            <!-- ═══ SENT 2: ACCEPTED ═══ -->
+           
             <article data-status="accepted" class="request-card bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
                 <div class="flex items-start gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-lg">
@@ -530,7 +469,6 @@
                 </div>
             </article>
 
-            <!-- Empty state -->
             <div id="emptyStateSent" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
                 <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
                     <span class="material-symbols-outlined text-4xl text-outline">outbox</span>
@@ -542,9 +480,7 @@
     </div>
 </main>
 
-<!-- ══════════════════════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════════════════════ -->
+
 <footer class="w-full bg-surface-container-low mt-12">
     <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -565,11 +501,9 @@
     </div>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════════════════════════════ -->
+
 <script>
-    /* ═══ Tab Switching (Received / Sent) ═══ */
+    
     function switchTab(tab) {
         const received = document.getElementById("panel-received");
         const sent     = document.getElementById("panel-sent");
@@ -591,9 +525,9 @@
         }
     }
 
-    /* ═══ Filter by Status ═══ */
+    
     function filterStatus(status) {
-        // Only filter visible panel
+       
         const visiblePanel = document.querySelector("section[id^='panel-']:not(.hidden)");
         if (!visiblePanel) return;
 
@@ -606,7 +540,7 @@
             if (match) visible++;
         });
 
-        // Update pill styles
+        
         ["all","pending","accepted","rejected","closed"].forEach(s => {
             const btn = document.getElementById("cf-" + s);
             if (s === status) {
@@ -616,12 +550,12 @@
             }
         });
 
-        // Empty state
+        
         const empty = visiblePanel.querySelector("[id^='emptyState']");
         if (empty) empty.classList.toggle("hidden", visible > 0);
     }
 
-    /* ═══ Handle Accept / Reject / Close ═══ */
+    
     function handleAction(btn, newStatus) {
         const card = btn.closest(".request-card");
         if (!card) return;
@@ -635,25 +569,25 @@
         const conf = labels[newStatus];
         if (!conf) return;
 
-        // Confirm
+        
         if (!confirm(`Mark this request as "${conf.text}"?`)) return;
 
-        // Update data-status
+        
         card.dataset.status = newStatus;
 
-        // Update badge in card
+        
         const oldBadge = card.querySelector(".shrink-0.inline-flex");
         if (oldBadge) {
             oldBadge.className = `shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${conf.bg} ${conf.color} text-[11px] font-bold`;
             oldBadge.innerHTML = `<span class="material-symbols-outlined text-sm">${conf.icon}</span> ${conf.text}`;
         }
 
-        // Remove ring if accepted
+        
         if (newStatus === "accepted") {
             card.classList.remove("ring-2","ring-accent/20");
         }
 
-        // Fade card
+        
         card.style.transition = "all 0.3s";
         card.style.opacity = "0.7";
 

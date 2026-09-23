@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Verify Claims — Athar Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                        secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                        "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                        success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                        surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                        "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                        "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                        "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                        error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                        accent:"#cd911a","accent-fixed":"#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- HEADER -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+        <a href="#" class="flex items-center gap-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Admin Panel</span>
+            </div>
+            <span class="hidden md:inline-block ml-2 px-2.5 py-1 rounded-full bg-accent-fixed text-accent text-[10px] font-bold uppercase tracking-wide">Admin</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="Admin Dashboard.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Dashboard</a>
+            <a href="Manage Matches.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Matches</a>
+            <a href="Verify Claims.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">Claims</a>
+            <a href="Handover & Assign.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Handover</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="Admin Notifications .html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">7</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2 border-l border-surface-container">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Ali</span>
+                    <span class="text-xs text-secondary">Campus Admin</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">shield_person</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- PAGE HEADER -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="admin-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">Claims</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">Verify Claims</h1>
+                    <p class="text-sm text-secondary mt-1">
+                        <span class="font-semibold text-accent">8 claims</span> awaiting your decision.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button class="flex items-center gap-1.5 bg-white hover:bg-surface-container-low text-secondary text-xs font-semibold px-4 py-2.5 rounded-xl border border-surface-container transition-all">
+                        <span class="material-symbols-outlined text-lg">filter_alt</span>
+                        <span>Advanced</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-accent">
+                <div class="text-xs text-secondary mb-1">Under Review</div>
+                <div class="text-2xl font-bold text-accent" id="statReview">2</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-success">
+                <div class="text-xs text-secondary mb-1">Approved Today</div>
+                <div class="text-2xl font-bold text-success">4</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-error">
+                <div class="text-xs text-secondary mb-1">Rejected Today</div>
+                <div class="text-2xl font-bold text-error">1</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">Avg. Review Time</div>
+                <div class="text-2xl font-bold text-primary">2.4<span class="text-sm font-medium text-secondary ml-1">hrs</span></div>
+            </div>
+        </section>
+
+        <!-- FILTER BAR -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm flex flex-col lg:flex-row gap-3">
+
+                <!-- Search -->
+                <div class="relative flex-1">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">search</span>
+                    <input id="claimSearch" type="text" oninput="applyFilters()"
+                           placeholder="Search by claim ID, item, or user..."
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+
+                <!-- Status pills -->
+                <div class="flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-xl overflow-x-auto">
+                    <button id="cf-all" onclick="filterStatus('all')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap">
+                        All
+                    </button>
+                    <button id="cf-review" onclick="filterStatus('review')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-accent mr-1"></span>
+                        Under Review
+                    </button>
+                    <button id="cf-approved" onclick="filterStatus('approved')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-success mr-1"></span>
+                        Approved
+                    </button>
+                    <button id="cf-rejected" onclick="filterStatus('rejected')"
+                            class="text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap">
+                        <span class="inline-block w-2 h-2 rounded-full bg-error mr-1"></span>
+                        Rejected
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLAIMS LIST -->
+        <section id="claimsList" class="space-y-5">
+
+            <!-- ═══════════════════════════════════════════
+                 CLAIM 1: UNDER REVIEW (Urgent)
+            ═══════════════════════════════════════════ -->
+            <article class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all ring-2 ring-accent/30"
+                     data-status="review"
+                     data-search="clm-2026-901 ahmed apple watch ath-8770">
+
+                <!-- Header bar -->
+                <div class="bg-gradient-to-r from-accent to-accent/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">hourglass_top</span>
+                        <div>
+                            <div class="text-sm font-bold">Claim #CLM-2026-901</div>
+                            <div class="text-[11px] text-white/80">Submitted 3 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">priority_high</span>
+                        Expires in 2h
+                    </span>
+                </div>
+
+                <!-- Body -->
+                <div class="p-5">
+
+                    <!-- Claimant Info -->
+                    <div class="flex items-start gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shrink-0">A</div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <h3 class="text-base font-bold text-primary">Ahmed Ali</h3>
+                                <span class="px-2 py-0.5 rounded-full bg-success-container text-on-success-container text-[10px] font-bold flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-xs">check</span>
+                                    Nafath Verified
+                                </span>
+                            </div>
+                            <p class="text-xs text-secondary mt-1">Student • Computer Science • ID: 442019823</p>
+                            <p class="text-xs text-secondary">a.ali@ksu.edu.sa</p>
+                        </div>
+                    </div>
+
+                    <!-- Item Reference -->
+                    <div class="mb-5 p-3 rounded-xl bg-surface-container-low flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVomfYU848SrkOK2OPbZGFAOKGyxZs08TWS7ApG-OIdu_W51Ai3ZHNyFVtHRRlGwxt3XFxOFe-94pJGFZXcZ1N9iIiIQRRw76xoeAeVobSL23UCqbN-FLFeIwf2HF1CnWuTpTeduta14U215j8QWs3CithW6a7G3wvzHvMVfIYoH2dZxiDR98f2oenW4d9bzYnl2txVDLFfVIvwsKY9Hy4PH5u19gpgf1bqn4sUzxYrMxFYpncQglS6g"
+                                 alt="Watch" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="text-[10px] text-secondary">Claiming item:</div>
+                            <div class="text-sm font-bold text-primary truncate">Apple Watch with Grey Band</div>
+                            <div class="text-[11px] text-secondary font-mono">Ref: #ATH-8770 • Found at Sports Complex</div>
+                        </div>
+                        <span class="shrink-0 px-2.5 py-1 rounded-full bg-success-container text-on-success-container text-[10px] font-bold">Secured</span>
+                    </div>
+
+                    <!-- SECRET NOTE COMPARISON -->
+                    <div class="mb-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-primary text-lg">compare_arrows</span>
+                            <span class="text-sm font-bold text-primary">Verification Comparison</span>
+                            <span class="ml-auto px-2 py-0.5 rounded-full bg-success-container text-on-success-container text-[10px] font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-xs">auto_awesome</span>
+                                92% Text Match
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <!-- Claimant's Secret Note -->
+                            <div class="bg-accent-fixed/20 border border-accent/30 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="material-symbols-outlined text-accent text-base">lock</span>
+                                    <span class="text-xs font-bold text-accent uppercase tracking-wide">Claimant's Secret Note</span>
+                                </div>
+                                <p class="text-xs text-on-surface leading-relaxed">
+                                    "The watch has a small scratch on the bottom left corner of the screen.
+                                    The grey sport band has a visible crease near the buckle. Battery health
+                                    is around 89%. The lock screen wallpaper is a photo of my family."
+                                </p>
+                                <div class="mt-3 pt-3 border-t border-accent/20 text-[10px] text-secondary">
+                                    Submitted by claimant • 3h ago
+                                </div>
+                            </div>
+
+                            <!-- Original Item Record -->
+                            <div class="bg-success-container/20 border border-success/30 rounded-xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="material-symbols-outlined text-success text-base">fact_check</span>
+                                    <span class="text-xs font-bold text-success uppercase tracking-wide">Custody Record</span>
+                                </div>
+                                <p class="text-xs text-on-surface leading-relaxed">
+                                    "Grey sport band with visible crease near buckle. Small scratch on
+                                    bottom-left of screen. Locked with a 4-digit PIN. Battery reported
+                                    around 89%."
+                                </p>
+                                <div class="mt-3 pt-3 border-t border-success/20 text-[10px] text-secondary">
+                                    Recorded by security officer • Mar 5, 2026
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attachments -->
+                    <div class="mb-5">
+                        <div class="text-xs font-bold text-primary mb-2 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-base">attach_file</span>
+                            Attached Documents (2)
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low">
+                                <div class="w-10 h-10 rounded-md bg-secondary-container flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-semibold text-on-surface truncate">Purchase_Receipt.pdf</p>
+                                    <span class="text-[10px] text-secondary">1.2 MB</span>
+                                </div>
+                                <button class="p-1.5 text-primary hover:bg-primary/10 rounded transition-colors" title="View">
+                                    <span class="material-symbols-outlined text-lg">visibility</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low">
+                                <div class="w-10 h-10 rounded-md bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-lg">image</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-semibold text-on-surface truncate">Watch_Photo_Original.jpg</p>
+                                    <span class="text-[10px] text-secondary">2.1 MB</span>
+                                </div>
+                                <button class="p-1.5 text-primary hover:bg-primary/10 rounded transition-colors" title="View">
+                                    <span class="material-symbols-outlined text-lg">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button onclick="approveClaim(this, 'CLM-2026-901')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Approve Claim
+                        </button>
+                        <button onclick="openRejectModal('CLM-2026-901')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Reject
+                        </button>
+                        <button onclick="requestMoreInfo('CLM-2026-901')"
+                                class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">help</span>
+                            Request More Info
+                        </button>
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors ml-auto">
+                            <span class="material-symbols-outlined text-base">history</span>
+                            Full History
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════
+                 CLAIM 2: UNDER REVIEW
+            ═══════════════════════════════════════════ -->
+            <article class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                     data-status="review"
+                     data-search="clm-2026-899 khalid lexus keys ath-8604">
+
+                <div class="bg-gradient-to-r from-accent to-accent/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">hourglass_top</span>
+                        <div>
+                            <div class="text-sm font-bold">Claim #CLM-2026-899</div>
+                            <div class="text-[11px] text-white/80">Submitted yesterday</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide">Under Review</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex items-start gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shrink-0">K</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <h3 class="text-base font-bold text-primary">Khalid Al-Mutairi</h3>
+                                <span class="px-2 py-0.5 rounded-full bg-success-container text-on-success-container text-[10px] font-bold flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-xs">check</span>
+                                    Nafath Verified
+                                </span>
+                            </div>
+                            <p class="text-xs text-secondary mt-1">Staff • Engineering Dept</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-5 p-3 rounded-xl bg-surface-container-low flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5PlWdmMTUyqZxoFQEPmzd_ligvhfVLR8RaRyau51k60yT4kDQbiGv0zs_AY7xZG6l7diS3GxQ-ZLRA3cVGGx7g35ef8xjiNLwKSNP3xWvylrnjZaof789SK2TAbGlSgqOsOwbFuSiiNM_iWWpvhBUU4i3jZpiEx7wahXKGmRBAizosr_xwCAvhHmZVC_hb2Ce6mnocjbH8N0lrqxE1GVd0Wl_OoQu-KVAfbMxHGT84fGVPNPA5XfX7A"
+                                 alt="Keys" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="text-[10px] text-secondary">Claiming item:</div>
+                            <div class="text-sm font-bold text-primary truncate">Lexus Key Fob with Blue Lanyard</div>
+                            <div class="text-[11px] text-secondary font-mono">Ref: #ATH-8604</div>
+                        </div>
+                        <span class="shrink-0 px-2.5 py-1 rounded-full bg-success-container text-on-success-container text-[10px] font-bold">Secured</span>
+                    </div>
+
+                    <!-- Comparison -->
+                    <div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="bg-accent-fixed/20 border border-accent/30 rounded-xl p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-accent text-base">lock</span>
+                                <span class="text-xs font-bold text-accent uppercase">Claimant's Note</span>
+                            </div>
+                            <p class="text-xs text-on-surface leading-relaxed">
+                                "Key has a small scratch near the 'Lexus' emblem. Blue lanyard has a torn edge on one side. Attached is a home key with 'D4' engraved."
+                            </p>
+                        </div>
+
+                        <div class="bg-success-container/20 border border-success/30 rounded-xl p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-success text-base">fact_check</span>
+                                <span class="text-xs font-bold text-success uppercase">Custody Record</span>
+                            </div>
+                            <p class="text-xs text-on-surface leading-relaxed">
+                                "Key fob with minor wear on emblem. Blue lanyard present, small tear noted. Extra home key attached."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button onclick="approveClaim(this, 'CLM-2026-899')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-success hover:bg-success/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            Approve
+                        </button>
+                        <button onclick="openRejectModal('CLM-2026-899')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">cancel</span>
+                            Reject
+                        </button>
+                        <button onclick="requestMoreInfo('CLM-2026-899')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">help</span>
+                            Request More Info
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════
+                 CLAIM 3: APPROVED
+            ═══════════════════════════════════════════ -->
+            <article class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-90"
+                     data-status="approved"
+                     data-search="clm-2026-847 sarah wallet ath-8840">
+
+                <div class="bg-gradient-to-r from-success to-success/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">task_alt</span>
+                        <div>
+                            <div class="text-sm font-bold">Claim #CLM-2026-847</div>
+                            <div class="text-[11px] text-white/80">Approved 2 hours ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide">Approved</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex items-start gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shrink-0">S</div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-primary">Sarah Al-Otaibi</h3>
+                            <p class="text-xs text-secondary mt-1">Student • Business Administration</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 p-3 rounded-xl bg-success-container/40 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-success text-lg shrink-0">check_circle</span>
+                        <div class="text-xs text-on-success-container">
+                            <strong>Approved by you</strong> — QR code sent to claimant. Awaiting pickup at Bldg 17.
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Details
+                        </button>
+                        <button onclick="resendQR('CLM-2026-847')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">send</span>
+                            Resend QR
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════
+                 CLAIM 4: REJECTED
+            ═══════════════════════════════════════════ -->
+            <article class="claim-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all opacity-75"
+                     data-status="rejected"
+                     data-search="clm-2026-820 mohammed calculator ath-8802">
+
+                <div class="bg-gradient-to-r from-error to-error/90 text-white px-5 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl">cancel</span>
+                        <div>
+                            <div class="text-sm font-bold">Claim #CLM-2026-820</div>
+                            <div class="text-[11px] text-white/80">Rejected 1 week ago</div>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wide">Rejected</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex items-start gap-4 pb-5 mb-5 border-b border-surface-container">
+                        <div class="w-14 h-14 rounded-full bg-surface-container-high text-secondary flex items-center justify-center font-bold text-lg shrink-0">M</div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-primary">Mohammed Al-Zahrani</h3>
+                            <p class="text-xs text-secondary mt-1">Student • Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 p-3 rounded-xl bg-error-container/40 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-error text-lg shrink-0">info</span>
+                        <div class="text-xs text-on-error-container">
+                            <strong>Rejection reason:</strong> The description provided did not match
+                            the item's private record. The claimant mentioned a blue case, but the
+                            actual item has a black case.
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-surface-container">
+                        <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs font-semibold transition-colors">
+                            <span class="material-symbols-outlined text-base">visibility</span>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">task_alt</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">All claims reviewed!</h3>
+                <p class="text-xs text-secondary">You're up to date.</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     REJECT MODAL
+══════════════════════════════════════════════════════════════ -->
+<div id="rejectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="rejectBox" class="relative w-full max-w-md bg-white rounded-2xl shadow-xl transform scale-95 transition-all duration-300">
+        <div class="px-6 py-4 border-b border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-xl">cancel</span>
+                <h3 class="text-base font-bold text-primary">Reject Claim</h3>
+            </div>
+            <button onclick="closeRejectModal()" class="p-1.5 rounded-full text-secondary hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <p class="text-sm text-secondary">
+                Rejecting <strong id="rejectClaimId" class="text-primary">#CLM-2026-901</strong>.
+                Please provide a clear reason for the claimant.
+            </p>
+
+            <div>
+                <label class="block text-xs font-semibold text-on-surface mb-2">Rejection Reason <span class="text-error">*</span></label>
+                <select id="rejectReason" class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer">
+                    <option value="">Select a reason...</option>
+                    <option value="desc_mismatch">Description doesn't match the item record</option>
+                    <option value="insufficient_evidence">Insufficient evidence provided</option>
+                    <option value="already_claimed">Item already claimed by someone else</option>
+                    <option value="suspicious_activity">Suspicious claim activity</option>
+                    <option value="other">Other (specify below)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-on-surface mb-2">Additional Notes (Optional)</label>
+                <textarea id="rejectNotes" rows="3"
+                          placeholder="Add any details to help the claimant understand..."
+                          class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"></textarea>
+            </div>
+        </div>
+
+        <div class="px-6 py-4 border-t border-surface-container flex items-center justify-end gap-2">
+            <button onclick="closeRejectModal()" class="px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-sm font-semibold transition-colors">
+                Cancel
+            </button>
+            <button onclick="confirmReject()" class="px-5 py-2.5 rounded-lg bg-error hover:bg-error/90 text-white text-sm font-semibold transition-colors flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">cancel</span>
+                Confirm Rejection
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-base font-bold text-primary">Athar Admin</h3>
+                <p class="text-[11px] text-secondary mt-0.5">University Lost & Found Platform</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Help</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Policies</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Contact IT</a>
+            </div>
+            <p class="text-[11px] text-secondary text-center md:text-right">
+                © 2026 Athar Platform • Admin v1.0
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+    let currentStatus = "all";
+    let currentSearch = "";
+    let pendingRejectId = null;
+
+    /* ═══ Filters ═══ */
+    function filterStatus(status) {
+        currentStatus = status;
+        applyFilters();
+        updatePillStyles(status);
+    }
+
+    function applyFilters() {
+        currentSearch = document.getElementById("claimSearch").value.trim().toLowerCase();
+
+        const cards = document.querySelectorAll(".claim-card");
+        let visible = 0;
+
+        cards.forEach(card => {
+            const matchStatus = (currentStatus === "all") || (card.dataset.status === currentStatus);
+            const searchData = (card.dataset.search || "").toLowerCase();
+            const matchSearch = !currentSearch || searchData.includes(currentSearch);
+
+            if (matchStatus && matchSearch) {
+                card.style.display = "";
+                visible++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        document.getElementById("emptyState").classList.toggle("hidden", visible > 0);
+    }
+
+    function updatePillStyles(status) {
+        ["all","review","approved","rejected"].forEach(s => {
+            const btn = document.getElementById("cf-" + s);
+            if (s === status) {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg bg-primary text-white transition-all whitespace-nowrap";
+            } else {
+                btn.className = "text-xs font-semibold px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all whitespace-nowrap";
+            }
+        });
+    }
+
+    /* ═══ Actions ═══ */
+    function approveClaim(btn, claimId) {
+        if (!confirm(`Approve claim ${claimId}?\n\nThis will:\n• Notify the claimant\n• Generate a pickup QR code\n• Move item to Handover queue`)) return;
+
+        const card = btn.closest(".claim-card");
+        animateUpdate(card, "approved");
+        showToast(`✅ Claim ${claimId} approved — QR code sent`, "success");
+    }
+
+    function openRejectModal(claimId) {
+        pendingRejectId = claimId;
+        document.getElementById("rejectClaimId").textContent = "#" + claimId;
+        document.getElementById("rejectReason").value = "";
+        document.getElementById("rejectNotes").value = "";
+
+        const modal = document.getElementById("rejectModal");
+        const box = document.getElementById("rejectBox");
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100", "pointer-events-auto");
+        box.classList.remove("scale-95");
+        box.classList.add("scale-100");
+    }
+
+    function closeRejectModal() {
+        const modal = document.getElementById("rejectModal");
+        const box = document.getElementById("rejectBox");
+        modal.classList.add("opacity-0", "pointer-events-none");
+        modal.classList.remove("opacity-100", "pointer-events-auto");
+        box.classList.add("scale-95");
+        box.classList.remove("scale-100");
+    }
+
+    function confirmReject() {
+        const reason = document.getElementById("rejectReason").value;
+        if (!reason) {
+            alert("Please select a rejection reason.");
+            return;
+        }
+
+        const card = document.querySelector(`.claim-card[data-search*="${pendingRejectId.toLowerCase()}"]`);
+        if (card) animateUpdate(card, "rejected");
+
+        showToast(`❌ Claim ${pendingRejectId} rejected`, "error");
+        closeRejectModal();
+        pendingRejectId = null;
+    }
+
+    function requestMoreInfo(claimId) {
+        const note = prompt(`Request more information for ${claimId}.\n\nWhat additional details do you need?`);
+        if (!note) return;
+        showToast(`📩 Request sent to claimant`, "info");
+    }
+
+    function resendQR(claimId) {
+        showToast(`📤 QR code re-sent for ${claimId}`, "success");
+    }
+
+    /* ═══ Animations ═══ */
+    function animateUpdate(card, newStatus) {
+        card.style.transition = "all 0.4s ease";
+        card.style.opacity = "0";
+        card.style.transform = "translateX(-30px)";
+
+        setTimeout(() => {
+            // Update status
+            card.dataset.status = newStatus;
+
+            // Update header
+            const header = card.querySelector("div:first-child");
+            const badge = header.querySelector("span:last-child");
+            const icon = header.querySelector("span:first-child");
+            const title = header.querySelector("div > div:first-child");
+
+            if (newStatus === "approved") {
+                header.className = "bg-gradient-to-r from-success to-success/90 text-white px-5 py-3 flex items-center justify-between";
+                badge.textContent = "Approved";
+                icon.textContent = "task_alt";
+                title.nextElementSibling.textContent = "Approved just now";
+            } else if (newStatus === "rejected") {
+                header.className = "bg-gradient-to-r from-error to-error/90 text-white px-5 py-3 flex items-center justify-between";
+                badge.textContent = "Rejected";
+                icon.textContent = "cancel";
+                title.nextElementSibling.textContent = "Rejected just now";
+            }
+
+            card.style.opacity = "1";
+            card.style.transform = "translateX(0)";
+            applyFilters();
+        }, 400);
+    }
+
+    /* ═══ Toast ═══ */
+    function showToast(message, type = "info") {
+        const toast = document.createElement("div");
+        const bg = type === "success" ? "bg-success" : type === "error" ? "bg-error" : "bg-primary";
+        const icon = type === "success" ? "check_circle" : type === "error" ? "cancel" : "info";
+
+        toast.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-50 flex items-center gap-3 slide-in`;
+        toast.innerHTML = `
+            <span class="material-symbols-outlined">${icon}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = "all 0.4s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px)";
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+    }
+
+    /* ═══ Escape key ═══ */
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeRejectModal();
+    });
+
+    document.getElementById("rejectModal")?.addEventListener("click", function(e) {
+        if (e.target === this) closeRejectModal();
+    });
+</script>
+
+</body>
+</html>

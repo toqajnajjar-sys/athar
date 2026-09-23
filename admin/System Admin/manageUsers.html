@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Manage Users — Athar Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        primary:"#1a3263","primary-dark":"#122447","primary-fixed":"#d9e2ff",
+                        secondary:"#3f627c","secondary-container":"#badefd","on-secondary-container":"#40637d",
+                        "secondary-fixed":"#cae6ff","on-secondary-fixed":"#001e2f",
+                        success:"#2e7d5b","success-container":"#c8f0dd","on-success-container":"#0f3f2a",
+                        surface:"#f8f9ff","surface-container-lowest":"#ffffff",
+                        "surface-container-low":"#eff4ff","surface-container":"#e5eeff",
+                        "surface-container-high":"#dce9ff","surface-variant":"#d3e4fe",
+                        "on-surface":"#0b1c30","on-surface-variant":"#44464f",outline:"#757780",
+                        error:"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a",
+                        accent:"#cd911a","accent-fixed":"#ffdeae",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+
+        /* User row hover */
+        .user-row { transition: background-color 0.15s ease; }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-4px);
+            transition: all 0.15s ease;
+        }
+        .dropdown-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased">
+
+<!-- HEADER -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+        <a href="#" class="flex items-center gap-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-2xl">travel_explore</span>
+            </div>
+            <div class="hidden sm:flex flex-col leading-tight">
+                <span class="text-lg font-bold text-primary">Athar</span>
+                <span class="text-[11px] text-secondary">Admin Panel</span>
+            </div>
+            <span class="hidden md:inline-block ml-2 px-2.5 py-1 rounded-full bg-accent-fixed text-accent text-[10px] font-bold uppercase tracking-wide">Admin</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl">
+            <a href="System Admin Dashboard.html" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Dashboard</a>
+            <a href="manageUsers.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white">Manage Users</a>
+            <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Settings</a>
+        </nav>
+        
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="Admin Notifications .html" class="relative p-2 rounded-full text-secondary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-2xl">notifications</span>
+                <span class="absolute top-1 right-1 min-w-[20px] h-5 px-1 rounded-full bg-error text-white text-[10px] font-bold flex items-center justify-center">7</span>
+            </a>
+            <div class="flex items-center gap-2 pl-2 border-l border-surface-container">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-semibold text-on-surface">Ahmed Ali</span>
+                    <span class="text-xs text-secondary">System Admin</span>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-lg">admin_panel_settings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="w-full pt-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+
+        <!-- PAGE HEADER -->
+        <section class="mb-6">
+            <nav class="flex items-center gap-2 text-xs text-secondary mb-4">
+                <a href="admin-dashboard.html" class="hover:text-primary transition-colors">Dashboard</a>
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-primary font-medium">Users</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-2xl lg:text-3xl font-bold text-primary">Manage Users</h1>
+                    <p class="text-sm text-secondary mt-1">
+                        <span class="font-semibold text-primary">1,845</span> total users on the platform.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button class="flex items-center gap-1.5 bg-white hover:bg-surface-container-low text-secondary text-xs font-semibold px-4 py-2.5 rounded-xl border border-surface-container transition-all">
+                        <span class="material-symbols-outlined text-lg">download</span>
+                        <span>Export CSV</span>
+                    </button>
+                    <button onclick="openAddUserModal()" class="flex items-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        <span class="material-symbols-outlined text-lg">person_add</span>
+                        <span>Add User</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-primary">
+                <div class="text-xs text-secondary mb-1">Total Users</div>
+                <div class="text-2xl font-bold text-primary">1,845</div>
+                <div class="text-[11px] text-secondary mt-1">+12 this week</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-success">
+                <div class="text-xs text-secondary mb-1">Active</div>
+                <div class="text-2xl font-bold text-success">1,720</div>
+                <div class="text-[11px] text-secondary mt-1">93.2% of total</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-secondary">
+                <div class="text-xs text-secondary mb-1">Security Officers</div>
+                <div class="text-2xl font-bold text-secondary">8</div>
+                <div class="text-[11px] text-secondary mt-1">Across campus</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-l-error">
+                <div class="text-xs text-secondary mb-1">Deactivated</div>
+                <div class="text-2xl font-bold text-error">125</div>
+                <div class="text-[11px] text-secondary mt-1">Last 30 days</div>
+            </div>
+        </section>
+
+        <!-- FILTER BAR -->
+        <section class="mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm flex flex-col lg:flex-row gap-3">
+
+                <!-- Search -->
+                <div class="relative flex-1">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-xl pointer-events-none">search</span>
+                    <input id="userSearch" type="text" oninput="applyUserFilters()"
+                           placeholder="Search by name, email, or university ID..."
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+
+                <!-- Role Filter -->
+                <div class="relative">
+                    <select id="roleFilter" onchange="applyUserFilters()"
+                            class="appearance-none bg-surface-container-low text-on-surface text-sm rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer min-w-[180px]">
+                        <option value="">All Roles</option>
+                        <option value="student">Students</option>
+                        <option value="staff">Staff</option>
+                        <option value="security">Security Officers</option>
+                        <option value="campus_admin">Campus Admins</option>
+                        <option value="system_admin">System Admins</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">expand_more</span>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="relative">
+                    <select id="statusFilter" onchange="applyUserFilters()"
+                            class="appearance-none bg-surface-container-low text-on-surface text-sm rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer min-w-[140px]">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-lg pointer-events-none">expand_more</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- USERS TABLE -->
+        <section class="bg-white rounded-2xl shadow-sm overflow-hidden mb-6">
+
+            <!-- Table Header (Desktop) -->
+            <div class="hidden lg:grid grid-cols-12 gap-4 px-5 py-3 bg-surface-container-low border-b border-surface-container">
+                <div class="col-span-1 flex items-center">
+                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" class="w-4 h-4 rounded accent-primary cursor-pointer"/>
+                </div>
+                <div class="col-span-4 text-xs font-semibold text-secondary uppercase tracking-wide">User</div>
+                <div class="col-span-2 text-xs font-semibold text-secondary uppercase tracking-wide">Role</div>
+                <div class="col-span-2 text-xs font-semibold text-secondary uppercase tracking-wide">Status</div>
+                <div class="col-span-2 text-xs font-semibold text-secondary uppercase tracking-wide">Joined</div>
+                <div class="col-span-1 text-xs font-semibold text-secondary uppercase tracking-wide text-right">Actions</div>
+            </div>
+
+            <!-- Users List -->
+            <div id="usersList">
+
+                <!-- USER 1: Student (Active) -->
+                <div class="user-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 px-5 py-4 border-b border-surface-container items-center hover:bg-surface-container-low/50"
+                     data-role="student" data-status="active"
+                     data-search="ahmed ali ahmed@ksu.edu.sa 442019823 computer science">
+
+                    <!-- Checkbox (Desktop) -->
+                    <div class="hidden lg:flex col-span-1 items-center">
+                        <input type="checkbox" class="user-checkbox w-4 h-4 rounded accent-primary cursor-pointer"/>
+                    </div>
+
+                    <!-- User Info -->
+                    <div class="lg:col-span-4 flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0">
+                            AG
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-primary truncate">Ahmed Ali</div>
+                            <div class="text-[11px] text-secondary truncate">ahmed@ksu.edu.sa</div>
+                            <div class="text-[11px] text-secondary lg:hidden truncate">Student • 442019823</div>
+                        </div>
+                    </div>
+
+                    <!-- Role (Desktop) -->
+                    <div class="hidden lg:block lg:col-span-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-sm">school</span>
+                            Student
+                        </span>
+                    </div>
+
+                    <!-- Status (Desktop) -->
+                    <div class="hidden lg:flex lg:col-span-2 items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-success"></span>
+                        <span class="text-xs text-on-surface-variant font-medium">Active</span>
+                    </div>
+
+                    <!-- Joined (Desktop) -->
+                    <div class="hidden lg:block lg:col-span-2 text-xs text-secondary">
+                        Jan 15, 2026
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="lg:col-span-1 flex items-center justify-end gap-1.5 lg:gap-1">
+                        <button onclick="viewUser('Ahmed Ali')" title="View"
+                                class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button onclick="editUser('Ahmed Ali')" title="Edit"
+                                class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <div class="relative">
+                            <button onclick="toggleDropdown(this)" title="More"
+                                    class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-lg">more_vert</span>
+                            </button>
+                            <!-- Dropdown -->
+                            <div class="dropdown-menu absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-surface-container z-20 py-1">
+                                <button onclick="changeRole('Ahmed Ali')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                                    Change Role
+                                </button>
+                                <button onclick="resetPassword('Ahmed Ali')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">lock_reset</span>
+                                    Reset Password
+                                </button>
+                                <div class="h-px bg-surface-container my-1"></div>
+                                <button onclick="deactivateUser('Ahmed Ali', this)" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-error hover:bg-error-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">block</span>
+                                    Deactivate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER 2: Security (Active) -->
+                <div class="user-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 px-5 py-4 border-b border-surface-container items-center hover:bg-surface-container-low/50"
+                     data-role="security" data-status="active"
+                     data-search="sarah al-otaibi sarah@ksu.edu.sa security bldg17">
+
+                    <div class="hidden lg:flex col-span-1 items-center">
+                        <input type="checkbox" class="user-checkbox w-4 h-4 rounded accent-primary cursor-pointer"/>
+                    </div>
+
+                    <div class="lg:col-span-4 flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-secondary text-white flex items-center justify-center font-bold shrink-0">
+                            SO
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-primary truncate">Sarah Al-Otaibi</div>
+                            <div class="text-[11px] text-secondary truncate">sarah@ksu.edu.sa</div>
+                            <div class="text-[11px] text-secondary lg:hidden truncate">Security • Bldg 17</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-sm">shield_person</span>
+                            Security
+                        </span>
+                    </div>
+
+                    <div class="hidden lg:flex lg:col-span-2 items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-success"></span>
+                        <span class="text-xs text-on-surface-variant font-medium">Active</span>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2 text-xs text-secondary">
+                        Dec 8, 2026
+                    </div>
+
+                    <div class="lg:col-span-1 flex items-center justify-end gap-1.5 lg:gap-1">
+                        <button onclick="viewUser('Sarah Al-Otaibi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button onclick="editUser('Sarah Al-Otaibi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <div class="relative">
+                            <button onclick="toggleDropdown(this)" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-lg">more_vert</span>
+                            </button>
+                            <div class="dropdown-menu absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-surface-container z-20 py-1">
+                                <button onclick="changeRole('Sarah Al-Otaibi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                                    Change Role
+                                </button>
+                                <button onclick="resetPassword('Sarah Al-Otaibi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">lock_reset</span>
+                                    Reset Password
+                                </button>
+                                <div class="h-px bg-surface-container my-1"></div>
+                                <button onclick="deactivateUser('Sarah Al-Otaibi', this)" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-error hover:bg-error-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">block</span>
+                                    Deactivate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER 3: Campus Admin (Active) -->
+                <div class="user-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 px-5 py-4 border-b border-surface-container items-center hover:bg-surface-container-low/50"
+                     data-role="campus_admin" data-status="active"
+                     data-search="khalid al-mutairi khalid@ksu.edu.sa campus admin">
+
+                    <div class="hidden lg:flex col-span-1 items-center">
+                        <input type="checkbox" class="user-checkbox w-4 h-4 rounded accent-primary cursor-pointer"/>
+                    </div>
+
+                    <div class="lg:col-span-4 flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-accent text-white flex items-center justify-center font-bold shrink-0">
+                            KM
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-primary truncate">Khalid Al-Mutairi</div>
+                            <div class="text-[11px] text-secondary truncate">khalid@ksu.edu.sa</div>
+                            <div class="text-[11px] text-secondary lg:hidden truncate">Campus Admin</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-fixed text-accent text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                            Campus Admin
+                        </span>
+                    </div>
+
+                    <div class="hidden lg:flex lg:col-span-2 items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-success"></span>
+                        <span class="text-xs text-on-surface-variant font-medium">Active</span>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2 text-xs text-secondary">
+                        Nov 20, 2026
+                    </div>
+
+                    <div class="lg:col-span-1 flex items-center justify-end gap-1.5 lg:gap-1">
+                        <button onclick="viewUser('Khalid Al-Mutairi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button onclick="editUser('Khalid Al-Mutairi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <div class="relative">
+                            <button onclick="toggleDropdown(this)" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-lg">more_vert</span>
+                            </button>
+                            <div class="dropdown-menu absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-surface-container z-20 py-1">
+                                <button onclick="changeRole('Khalid Al-Mutairi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                                    Change Role
+                                </button>
+                                <button onclick="resetPassword('Khalid Al-Mutairi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">lock_reset</span>
+                                    Reset Password
+                                </button>
+                                <div class="h-px bg-surface-container my-1"></div>
+                                <button onclick="deactivateUser('Khalid Al-Mutairi', this)" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-error hover:bg-error-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">block</span>
+                                    Deactivate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER 4: Student (Inactive) -->
+                <div class="user-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 px-5 py-4 border-b border-surface-container items-center hover:bg-surface-container-low/50 opacity-75"
+                     data-role="student" data-status="inactive"
+                     data-search="mohammed al-zahrani mohammed@ksu.edu.sa 441208765 engineering">
+
+                    <div class="hidden lg:flex col-span-1 items-center">
+                        <input type="checkbox" class="user-checkbox w-4 h-4 rounded accent-primary cursor-pointer"/>
+                    </div>
+
+                    <div class="lg:col-span-4 flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-outline/40 text-white flex items-center justify-center font-bold shrink-0">
+                            MZ
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-on-surface truncate">Mohammed Al-Zahrani</div>
+                            <div class="text-[11px] text-secondary truncate">mohammed@ksu.edu.sa</div>
+                            <div class="text-[11px] text-secondary lg:hidden truncate">Student • 441208765</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-secondary text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-sm">school</span>
+                            Student
+                        </span>
+                    </div>
+
+                    <div class="hidden lg:flex lg:col-span-2 items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-outline"></span>
+                        <span class="text-xs text-secondary font-medium">Inactive</span>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2 text-xs text-secondary">
+                        Oct 2, 2026
+                    </div>
+
+                    <div class="lg:col-span-1 flex items-center justify-end gap-1.5 lg:gap-1">
+                        <button onclick="viewUser('Mohammed Al-Zahrani')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button onclick="editUser('Mohammed Al-Zahrani')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <div class="relative">
+                            <button onclick="toggleDropdown(this)" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-lg">more_vert</span>
+                            </button>
+                            <div class="dropdown-menu absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-surface-container z-20 py-1">
+                                <button onclick="reactivateUser('Mohammed Al-Zahrani', this)" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-success hover:bg-success-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">check_circle</span>
+                                    Reactivate
+                                </button>
+                                <button onclick="changeRole('Mohammed Al-Zahrani')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                                    Change Role
+                                </button>
+                                <div class="h-px bg-surface-container my-1"></div>
+                                <button onclick="deleteUser('Mohammed Al-Zahrani')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-error hover:bg-error-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">delete</span>
+                                    Delete Permanently
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER 5: Staff (Active) -->
+                <div class="user-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 px-5 py-4 border-b border-surface-container items-center hover:bg-surface-container-low/50"
+                     data-role="staff" data-status="active"
+                     data-search="nouf al-harbi nouf@ksu.edu.sa staff library">
+
+                    <div class="hidden lg:flex col-span-1 items-center">
+                        <input type="checkbox" class="user-checkbox w-4 h-4 rounded accent-primary cursor-pointer"/>
+                    </div>
+
+                    <div class="lg:col-span-4 flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold shrink-0">
+                            NH
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-primary truncate">Nouf Al-Harbi</div>
+                            <div class="text-[11px] text-secondary truncate">nouf@ksu.edu.sa</div>
+                            <div class="text-[11px] text-secondary lg:hidden truncate">Staff • Library</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant text-[11px] font-semibold">
+                            <span class="material-symbols-outlined text-sm">badge</span>
+                            Staff
+                        </span>
+                    </div>
+
+                    <div class="hidden lg:flex lg:col-span-2 items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-success"></span>
+                        <span class="text-xs text-on-surface-variant font-medium">Active</span>
+                    </div>
+
+                    <div class="hidden lg:block lg:col-span-2 text-xs text-secondary">
+                        Sep 12, 2026
+                    </div>
+
+                    <div class="lg:col-span-1 flex items-center justify-end gap-1.5 lg:gap-1">
+                        <button onclick="viewUser('Nouf Al-Harbi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button onclick="editUser('Nouf Al-Harbi')" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <div class="relative">
+                            <button onclick="toggleDropdown(this)" class="p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-lg">more_vert</span>
+                            </button>
+                            <div class="dropdown-menu absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-surface-container z-20 py-1">
+                                <button onclick="changeRole('Nouf Al-Harbi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                                    Change Role
+                                </button>
+                                <button onclick="resetPassword('Nouf Al-Harbi')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-on-surface hover:bg-surface-container-low transition-colors">
+                                    <span class="material-symbols-outlined text-base">lock_reset</span>
+                                    Reset Password
+                                </button>
+                                <div class="h-px bg-surface-container my-1"></div>
+                                <button onclick="deactivateUser('Nouf Al-Harbi', this)" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-error hover:bg-error-container/40 transition-colors">
+                                    <span class="material-symbols-outlined text-base">block</span>
+                                    Deactivate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty state -->
+            <div id="emptyUsers" class="hidden text-center py-16">
+                <div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-4xl text-outline">person_search</span>
+                </div>
+                <h3 class="text-base font-semibold text-primary mb-1">No users found</h3>
+                <p class="text-xs text-secondary">Try a different filter or search term.</p>
+            </div>
+        </section>
+
+        <!-- PAGINATION -->
+        <section class="bg-white rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs text-secondary">
+                Showing <strong class="text-primary">5</strong> of <strong class="text-primary">1,845</strong> users
+            </div>
+
+            <nav class="flex items-center gap-1.5">
+                <button disabled class="px-3 py-2 rounded-lg bg-surface-container-low text-secondary text-xs font-medium disabled:opacity-40">
+                    <span class="material-symbols-outlined text-base inline-block align-middle">chevron_left</span>
+                </button>
+                <button class="w-9 h-9 rounded-lg bg-primary text-white text-xs font-semibold">1</button>
+                <button class="w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs font-medium transition-colors">2</button>
+                <button class="w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs font-medium transition-colors">3</button>
+                <span class="px-1 text-secondary text-xs">...</span>
+                <button class="w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs font-medium transition-colors">369</button>
+                <button class="px-3 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-xs font-medium transition-colors">
+                    <span class="material-symbols-outlined text-base inline-block align-middle">chevron_right</span>
+                </button>
+            </nav>
+        </section>
+    </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     BULK ACTION BAR (يظهر عند التحديد)
+══════════════════════════════════════════════════════════════ -->
+<div id="bulkBar" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-primary text-white rounded-xl shadow-2xl px-5 py-3 flex items-center gap-4 z-40 opacity-0 pointer-events-none transition-all duration-300">
+    <span class="text-sm font-medium"><span id="selectedCount">0</span> selected</span>
+    <div class="h-6 w-px bg-white/20"></div>
+    <button class="flex items-center gap-1.5 text-xs font-semibold hover:text-accent-fixed transition-colors">
+        <span class="material-symbols-outlined text-base">mail</span>
+        Send Email
+    </button>
+    <button class="flex items-center gap-1.5 text-xs font-semibold hover:text-error transition-colors">
+        <span class="material-symbols-outlined text-base">block</span>
+        Deactivate
+    </button>
+    <button onclick="clearSelection()" class="p-1.5 rounded-full hover:bg-white/10 transition-colors">
+        <span class="material-symbols-outlined text-base">close</span>
+    </button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ADD USER MODAL
+══════════════════════════════════════════════════════════════ -->
+<div id="addUserModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="addUserBox" class="relative w-full max-w-lg bg-white rounded-2xl shadow-xl transform scale-95 transition-all duration-300">
+
+        <div class="px-6 py-4 border-b border-surface-container flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">person_add</span>
+                <h3 class="text-base font-bold text-primary">Add New User</h3>
+            </div>
+            <button onclick="closeAddUserModal()" class="p-1.5 rounded-full text-secondary hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+
+        <form onsubmit="submitAddUser(event)" class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-on-surface mb-1.5">Full Name <span class="text-error">*</span></label>
+                <input type="text" required
+                       placeholder="Ahmed Ali"
+                       class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-on-surface mb-1.5">University Email <span class="text-error">*</span></label>
+                <input type="email" required
+                       placeholder="user@ksu.edu.sa"
+                       class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface mb-1.5">University ID</label>
+                    <input type="text" placeholder="442019823"
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface mb-1.5">Phone</label>
+                    <input type="tel" placeholder="+966 5X XXX XXXX"
+                           class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline"/>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-on-surface mb-1.5">Role <span class="text-error">*</span></label>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary/30">
+                        <input type="radio" name="newRole" value="student" checked class="accent-primary"/>
+                        <span class="text-xs font-semibold">Student</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary/30">
+                        <input type="radio" name="newRole" value="staff" class="accent-primary"/>
+                        <span class="text-xs font-semibold">Staff</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-secondary-container has-[:checked]:ring-2 has-[:checked]:ring-secondary/30">
+                        <input type="radio" name="newRole" value="security" class="accent-primary"/>
+                        <span class="text-xs font-semibold">Security</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-accent-fixed has-[:checked]:ring-2 has-[:checked]:ring-accent/30">
+                        <input type="radio" name="newRole" value="campus_admin" class="accent-primary"/>
+                        <span class="text-xs font-semibold">Campus Admin</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end gap-2">
+                <button type="button" onclick="closeAddUserModal()"
+                        class="px-4 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary text-sm font-semibold transition-colors">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-base">person_add</span>
+                    Create User
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="text-center md:text-left">
+                <h3 class="text-base font-bold text-primary">Athar Admin</h3>
+                <p class="text-[11px] text-secondary mt-0.5">University Lost & Found Platform</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Help</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Policies</a>
+                <a href="#" class="text-xs text-secondary hover:text-primary transition-colors">Contact IT</a>
+            </div>
+            <p class="text-[11px] text-secondary text-center md:text-right">
+                © 2026 Athar Platform • Admin v1.0
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+    /* ═══ Filters ═══ */
+    function applyUserFilters() {
+        const search = document.getElementById("userSearch").value.trim().toLowerCase();
+        const role   = document.getElementById("roleFilter").value;
+        const status = document.getElementById("statusFilter").value;
+
+        const users = document.querySelectorAll(".user-row");
+        let visible = 0;
+
+        users.forEach(user => {
+            const matchRole   = !role   || user.dataset.role === role;
+            const matchStatus = !status || user.dataset.status === status;
+            const searchData  = (user.dataset.search || "").toLowerCase();
+            const matchSearch = !search || searchData.includes(search);
+
+            if (matchRole && matchStatus && matchSearch) {
+                user.style.display = "";
+                visible++;
+            } else {
+                user.style.display = "none";
+            }
+        });
+
+        document.getElementById("emptyUsers").classList.toggle("hidden", visible > 0);
+    }
+
+    /* ═══ Select All ═══ */
+    function toggleSelectAll(masterCb) {
+        const checkboxes = document.querySelectorAll(".user-checkbox");
+        checkboxes.forEach(cb => {
+            if (cb.closest(".user-row").style.display !== "none") {
+                cb.checked = masterCb.checked;
+            }
+        });
+        updateBulkBar();
+    }
+
+    document.addEventListener("change", (e) => {
+        if (e.target.classList.contains("user-checkbox")) {
+            updateBulkBar();
+        }
+    });
+
+    function updateBulkBar() {
+        const selected = document.querySelectorAll(".user-checkbox:checked").length;
+        const bar = document.getElementById("bulkBar");
+        document.getElementById("selectedCount").textContent = selected;
+
+        if (selected > 0) {
+            bar.classList.remove("opacity-0", "pointer-events-none");
+            bar.classList.add("opacity-100", "pointer-events-auto");
+        } else {
+            bar.classList.add("opacity-0", "pointer-events-none");
+            bar.classList.remove("opacity-100", "pointer-events-auto");
+        }
+    }
+
+    function clearSelection() {
+        document.querySelectorAll(".user-checkbox").forEach(cb => cb.checked = false);
+        document.getElementById("selectAll").checked = false;
+        updateBulkBar();
+    }
+
+    /* ═══ Dropdown Toggle ═══ */
+    function toggleDropdown(btn) {
+        const menu = btn.nextElementSibling;
+        const isOpen = menu.classList.contains("active");
+
+        // Close all other dropdowns
+        document.querySelectorAll(".dropdown-menu.active").forEach(m => m.classList.remove("active"));
+
+        if (!isOpen) menu.classList.add("active");
+    }
+
+    // Close on outside click
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".relative") || !e.target.closest("[onclick*='toggleDropdown']")) {
+            document.querySelectorAll(".dropdown-menu.active").forEach(m => m.classList.remove("active"));
+        }
+    });
+
+    /* ═══ User Actions ═══ */
+    function viewUser(name) {
+        showToast(`👁️ Viewing profile: ${name}`, "info");
+    }
+
+    function editUser(name) {
+        showToast(`✏️ Editing: ${name}`, "info");
+    }
+
+    function changeRole(name) {
+        const roles = ["Student", "Staff", "Security", "Campus Admin"];
+        const choice = prompt(`Change role for ${name}.\n\nOptions:\n1. Student\n2. Staff\n3. Security\n4. Campus Admin\n\nEnter number:`);
+
+        if (!choice) return;
+        const idx = parseInt(choice) - 1;
+        if (idx >= 0 && idx < roles.length) {
+            showToast(`✅ ${name} role changed to ${roles[idx]}`, "success");
+        }
+    }
+
+    function resetPassword(name) {
+        if (!confirm(`Send password reset email to ${name}?`)) return;
+        showToast(`📧 Password reset email sent to ${name}`, "success");
+    }
+
+    function deactivateUser(name, btn) {
+        if (!confirm(`Deactivate ${name}?\n\nThey will lose access to the platform immediately.`)) return;
+
+        const row = btn.closest(".user-row");
+        row.dataset.status = "inactive";
+        row.classList.add("opacity-75");
+
+        // Update status cell
+        const statusCell = row.querySelector(".lg\\:col-span-2:nth-of-type(3)");
+        if (statusCell) {
+            statusCell.innerHTML = `
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span class="text-xs text-secondary font-medium">Inactive</span>
+            `;
+        }
+
+        showToast(`❌ ${name} deactivated`, "error");
+    }
+
+    function reactivateUser(name, btn) {
+        if (!confirm(`Reactivate ${name}?`)) return;
+
+        const row = btn.closest(".user-row");
+        row.dataset.status = "active";
+        row.classList.remove("opacity-75");
+
+        // Update status cell
+        const statusCell = row.querySelector(".lg\\:col-span-2:nth-of-type(3)");
+        if (statusCell) {
+            statusCell.innerHTML = `
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+                <span class="text-xs text-on-surface-variant font-medium">Active</span>
+            `;
+        }
+
+        showToast(`✅ ${name} reactivated`, "success");
+    }
+
+    function deleteUser(name) {
+        if (!confirm(`⚠️ PERMANENTLY DELETE ${name}?\n\nThis action CANNOT be undone!`)) return;
+        if (!confirm(`Are you really sure? All their data will be lost.`)) return;
+        showToast(`🗑️ ${name} deleted permanently`, "error");
+    }
+
+    /* ═══ Add User Modal ═══ */
+    function openAddUserModal() {
+        const modal = document.getElementById("addUserModal");
+        const box = document.getElementById("addUserBox");
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100", "pointer-events-auto");
+        box.classList.remove("scale-95");
+        box.classList.add("scale-100");
+    }
+
+    function closeAddUserModal() {
+        const modal = document.getElementById("addUserModal");
+        const box = document.getElementById("addUserBox");
+        modal.classList.add("opacity-0", "pointer-events-none");
+        modal.classList.remove("opacity-100", "pointer-events-auto");
+        box.classList.add("scale-95");
+        box.classList.remove("scale-100");
+    }
+
+    function submitAddUser(event) {
+        event.preventDefault();
+        closeAddUserModal();
+        showToast(`✅ New user created — Invitation sent`, "success");
+    }
+
+    /* ═══ Toast ═══ */
+    function showToast(message, type = "info") {
+        const toast = document.createElement("div");
+        const bg = type === "success" ? "bg-success" : type === "error" ? "bg-error" : "bg-primary";
+        const icon = type === "success" ? "check_circle" : type === "error" ? "cancel" : "info";
+
+        toast.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-medium px-5 py-3.5 rounded-xl shadow-xl z-[60] flex items-center gap-3 slide-in`;
+        toast.innerHTML = `
+            <span class="material-symbols-outlined">${icon}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = "all 0.4s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(20px)";
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+    }
+
+    /* ═══ Escape ═══ */
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAddUserModal();
+    });
+</script>
+
+</body>
+</html>
